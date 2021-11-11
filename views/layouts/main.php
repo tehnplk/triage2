@@ -36,28 +36,20 @@ AppAsset::register($this);
             ]);
 
             $mnu_items = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-                ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
-                . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-                )
+                ['label' => '<i class="far fa-address-card"></i> รายชื่อ', 'url' => ['/patient/patient/index']],
             ];
+
+            if (!\Yii::$app->user->isGuest) {
+                $mnu_items[] = ['label' => '<i class="fas fa-sign-out-alt"></i> USER(' . \Yii::$app->user->identity->username . ')', 'url' => ['/site/logout'], 'linkOptions' => ['data-method' => 'post']];
+            } else {
+                $mnu_items[] = ['label' => '<i class="far fa-user"></i> เข้าระบบ', 'url' => ['/site/login']];
+            }
 
             echo Nav::widget([
                 'options' => [
                     'class' => 'navbar-nav ml-auto',
-                    'encodeLabels' => false,
                 ],
+                'encodeLabels' => false,
                 'items' => $mnu_items
             ]);
             NavBar::end();

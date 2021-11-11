@@ -1,0 +1,45 @@
+.help-block{
+    font-size: 11px;
+    color: tomato !important;
+}
+
+.control-label{
+    font-size: 13px;
+    font-weight: normal !important;
+    color: #404040
+}
+.form-control{
+    color: blue;
+    font-weight: bold;
+}
+.select2-selection__rendered{
+    color: blue !important;
+    font-weight: bold;
+}
+
+.grid-view .table thead tr th{
+    font-size: 13px;
+}
+
+.grid-view .table tbody tr td{
+
+}
+
+.breadcrumb{
+    font-size: 13px
+}
+.alert{
+    margin-top: 65px !important;
+}
+.nav-tabs{
+    /*   height: 40px ;*/
+    font-size: 14px
+}
+
+.grid-view table tbody tr{
+    font-size: 13px;
+    /*        cursor: pointer;*/
+}
+.grid-view table tbody tr:hover {
+    /*        background-color: wheat;*/
+}
