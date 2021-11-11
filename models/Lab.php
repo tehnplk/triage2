@@ -24,21 +24,19 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Lab extends \yii\db\ActiveRecord
-{
+class Lab extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'lab';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['visit_id', 'patient_id'], 'integer'],
             [['lab_date', 'lab_time'], 'safe'],
@@ -51,8 +49,7 @@ class Lab extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
@@ -61,15 +58,16 @@ class Lab extends \yii\db\ActiveRecord
             'patient_id' => 'Patient ID',
             'patient_cid' => 'Patient Cid',
             'patient_fullname' => 'Patient Fullname',
-            'lab_date' => 'Lab Date',
-            'lab_time' => 'Lab Time',
-            'lab_place' => 'Lab Place',
-            'lab_kind' => 'Lab Kind',
-            'lab_result' => 'Lab Result',
+            'lab_date' => 'วันตรวจ',
+            'lab_time' => 'เวลาตรวจ',
+            'lab_place' => 'สถานที่ตรวจ',
+            'lab_kind' => 'ชนิดการตรวจ',
+            'lab_result' => 'ผลตรวจ',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
     }
+
 }

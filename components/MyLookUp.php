@@ -57,4 +57,13 @@ class MyLookUp extends Component {
         ];
     }
 
+    public static function covid_test_result() {
+
+        return [
+            'Negative' => 'Negative(-)',
+            'Positive' => 'Positive(+)',
+            'Inconclusive' => 'Inconclusive(สรุปผลไม่ได้)'
+        ];
+    }
+
 }

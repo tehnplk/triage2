@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\Risk;
 use app\models\Patient;
+use app\models\Lab;
 
 /**
  * This is the model class for table "visit".
@@ -95,16 +96,14 @@ class Visit extends \yii\db\ActiveRecord {
 
         $this->bmi = ($this->bw) / ( ($this->bh / 100) * ($this->bh / 100));
 
-        //คำนวณอายุ
+        //คำนวณอายุวันที่มา visit
         $dob = $patient->birth;
         $bday = new \DateTime($dob);
         $diff = $bday->diff(new \DateTime($this->visit_date));
-
         $this->age_y = $diff->y;
         $this->age_m = $diff->m;
-        //จบอายุ
 
-
+        //ความเสี่ยง
         $risk = new Risk();
         $risk->hoscode = $this->hoscode;
         $risk->patient_id = $this->patient_id;
@@ -116,10 +115,21 @@ class Visit extends \yii\db\ActiveRecord {
         $risk->bmi = $this->bmi >= 30 || $this->bw >= 90;
         $risk->aging = $this->age_y >= 60;
 
+        //LAB
+        $lab = new Lab();
+        $lab->hoscode = $this->hoscode;
+        $lab->patient_id = $this->patient_id;
+        $lab->patient_cid = $this->patient_cid;
+        $lab->patient_fullname = $this->patient_fullname;
+        $lab->visit_id = $this->id;
+        $lab->lab_date = $this->visit_date;
+        $lab->lab_time = $this->visit_time;
+
 
         if ($insert) {
             $this->updateAttributes(['bmi', 'age_y', 'age_m']);
             $risk->save(false);
+            $lab->save(false);
         } else {
             $this->updateAttributes(['bmi']);
         }

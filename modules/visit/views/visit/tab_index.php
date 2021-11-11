@@ -24,7 +24,7 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-check-square"></i> ปัจจัยเสี่ยง',
-            'url' => Url::to(['/visit/visit/index', 'patient_id' => $patient->id]),
+            'url' => Url::to(['/risk/risk/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class="far fa-vial"></i> LAB',
@@ -32,11 +32,11 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-pills"></i> จ่ายยา',
-            'url' => Url::to(['/appoint/appoint/index', 'patient_id' => $patient->id]),
+            'url' => Url::to(['/drug/drug/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class="far fa-radiation"></i> X-RAY',
-            'url' => Url::to(['/appoint/appoint/index', 'patient_id' => $patient->id]),
+            'url' => Url::to(['/xray/xray/index', 'patient_id' => $patient->id]),
         ],
     ],
 ]);

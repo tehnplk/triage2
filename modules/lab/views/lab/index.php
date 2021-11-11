@@ -14,7 +14,7 @@ $this->title = 'Labs';
 <div class="lab-index">
 
 
-    <p>
+    <p style="display: none">
         <?= Html::a('เพิ่มผลตรวจ', ['create'], ['class' => 'btn btn-success btn-create']) ?>
     </p>
 
@@ -33,7 +33,7 @@ $this->title = 'Labs';
             // 'patient_id',
             //'patient_cid',
             //'patient_fullname',
-            'lab_date',
+            'lab_date:date:วันตรวจ',
             'lab_time',
             'lab_place',
             'lab_kind',
