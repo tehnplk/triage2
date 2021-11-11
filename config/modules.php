@@ -7,5 +7,8 @@ return [
     'visit' => [
         'class' => 'app\modules\visit\Module',
     ],
+    'lab' => [
+        'class' => 'app\modules\lab\Module',
+    ],
 ];
 
