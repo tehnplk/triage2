@@ -29,7 +29,7 @@ $this->title = 'Risks';
             //'patient_cid',
             //'patient_fullname',
             'risk_date:date:วันมา',
-           // 'risk_time',
+            // 'risk_time',
             'aging',
             'bmi',
             'dm',
@@ -46,12 +46,8 @@ $this->title = 'Risks';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            [
-                'class' => 'yii\grid\ActionColumn', 'template' => "{update}"
-            ],
-            [
-                'class' => 'yii\grid\ActionColumn', 'template' => "{delete}"
-            ],
+            ['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
+            //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
     ?>

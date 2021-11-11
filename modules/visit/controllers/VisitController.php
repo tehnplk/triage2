@@ -7,6 +7,8 @@ use app\models\VisitSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Risk;
+use app\models\Lab;
 
 /**
  * VisitController implements the CRUD actions for Visit model.
@@ -115,8 +117,16 @@ class VisitController extends Controller {
      */
     public function actionDelete($id) {
         $model = $this->findModel($id);
+        $risk = Risk::find()->where(['visit_id' => $id])->one();
+        $lab = Lab::find()->where(['visit_id' => $id])->one();
+        if ($risk) {
+            $risk->delete();
+        }
+        if ($lab) {
+            $lab->delete();
+        }
         $model->delete();
-
+        \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");
         return $this->redirect(['index', 'patient_id' => $model->patient_id]);
     }
 

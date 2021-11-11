@@ -42,12 +42,8 @@ $this->title = 'Labs';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            [
-                'class' => 'yii\grid\ActionColumn', 'template' => "{update}"
-            ],
-            [
-                'class' => 'yii\grid\ActionColumn', 'template' => "{delete}"
-            ],
+            ['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
+            //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
     ?>
