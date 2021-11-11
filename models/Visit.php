@@ -29,21 +29,19 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Visit extends \yii\db\ActiveRecord
-{
+class Visit extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'visit';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['patient_id', 'bw', 'bh', 'spo2', 'bps', 'bpd', 'pulse'], 'integer'],
             [['visit_date', 'visit_time'], 'safe'],
@@ -51,36 +49,37 @@ class Visit extends \yii\db\ActiveRecord
             [['hoscode', 'hosname', 'patient_fullname', 'cc', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
             [['hoscode', 'patient_id', 'visit_date'], 'unique', 'targetAttribute' => ['hoscode', 'patient_id', 'visit_date']],
+            [['patient_id', 'visit_date', 'visit_time', 'bw', 'bh', 'spo2'], 'required'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
             'hosname' => 'Hosname',
             'patient_id' => 'Patient ID',
-            'patient_cid' => 'Patient Cid',
-            'patient_fullname' => 'Patient Fullname',
-            'visit_date' => 'Visit Date',
-            'visit_time' => 'Visit Time',
-            'bw' => 'Bw',
-            'bh' => 'Bh',
-            'bmi' => 'Bmi',
-            'temperature' => 'Temperature',
-            'spo2' => 'Spo2',
-            'bps' => 'Bps',
-            'bpd' => 'Bpd',
-            'pulse' => 'Pulse',
-            'cc' => 'Cc',
+            'patient_cid' => 'เลข13หลัก',
+            'patient_fullname' => 'ชื่อ-สกุล',
+            'visit_date' => 'วันที่มา',
+            'visit_time' => 'เวลามา',
+            'bw' => 'น้ำหนัก(กก)',
+            'bh' => 'ส่วนสูง(ซม)',
+            'bmi' => 'BMI',
+            'temperature' => 'อุณหภูมิ(C)',
+            'spo2' => 'SpO2',
+            'bps' => 'ความดันบน(BPS)',
+            'bpd' => 'ความดันล่าง(BPD)',
+            'pulse' => 'ชีพจร(Pulse)',
+            'cc' => 'อาการเจ็บป่วย',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
     }
+
 }

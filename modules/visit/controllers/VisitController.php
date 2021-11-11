@@ -64,8 +64,13 @@ class VisitController extends Controller {
      */
     public function actionCreate($patient_id = NULL) {
         $this->layout = 'off';
+        $patient = \app\models\Patient::findOne($patient_id);
+
         $model = new Visit();
         $model->patient_id = $patient_id;
+        $model->hoscode = $patient->hoscode;
+        $model->patient_cid = $patient->cid;
+        $model->patient_fullname = $patient->full_name;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -108,9 +113,10 @@ class VisitController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'patient_id' => $model->patient_id]);
     }
 
     /**

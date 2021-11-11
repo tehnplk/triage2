@@ -8,49 +8,75 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="visit-form">
+<div style="margin: 5px;padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
 
     <?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-2">
+            <?= $form->field($model, 'hoscode')->textInput(['disabled' => true]) ?>
+        </div>
+       
+        <div class="col-2">
+            <?= $form->field($model, 'patient_id')->textInput(['disabled' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'patient_cid')->textInput(['disabled' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'patient_fullname')->textInput(['disabled' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'hoscode')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'hosname')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'visit_date')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'visit_time')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'patient_id')->textInput() ?>
 
-    <?= $form->field($model, 'patient_cid')->textInput(['maxlength' => true]) ?>
+    <div class="row">
 
-    <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
+        <div class="col">
+            <?= $form->field($model, 'bw')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'bh')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'bmi')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'temperature')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'spo2')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'visit_date')->textInput() ?>
 
-    <?= $form->field($model, 'visit_time')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'bps')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'bpd')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'pulse')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'bw')->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'bh')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'cc')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'bmi')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'temperature')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'spo2')->textInput() ?>
-
-    <?= $form->field($model, 'bps')->textInput() ?>
-
-    <?= $form->field($model, 'bpd')->textInput() ?>
-
-    <?= $form->field($model, 'pulse')->textInput() ?>
-
-    <?= $form->field($model, 'cc')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_by')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
