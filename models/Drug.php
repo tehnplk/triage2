@@ -75,4 +75,20 @@ class Drug extends \yii\db\ActiveRecord {
         ];
     }
 
+    public function behaviors() {
+        return [
+            [
+                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            [
+                'class' => \yii\behaviors\BlameableBehavior::class,
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+        ];
+    }
+
 }
