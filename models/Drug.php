@@ -27,21 +27,19 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Drug extends \yii\db\ActiveRecord
-{
+class Drug extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'drug';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['visit_id', 'patient_id', 'drug_amount'], 'integer'],
             [['drug_date', 'drug_time'], 'safe'],
@@ -53,8 +51,7 @@ class Drug extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
@@ -63,18 +60,19 @@ class Drug extends \yii\db\ActiveRecord
             'patient_id' => 'Patient ID',
             'patient_cid' => 'Patient Cid',
             'patient_fullname' => 'Patient Fullname',
-            'drug_date' => 'Drug Date',
-            'drug_time' => 'Drug Time',
-            'drug_id' => 'Drug ID',
-            'drug_name' => 'Drug Name',
-            'drug_amount' => 'Drug Amount',
-            'drug_unit' => 'Drug Unit',
-            'drug_usage' => 'Drug Usage',
-            'drug_dispenser' => 'Drug Dispenser',
+            'drug_date' => 'วันที่',
+            'drug_time' => 'เวลา',
+            'drug_id' => 'รหัสยา',
+            'drug_name' => 'ชื่อยา',
+            'drug_amount' => 'จำนวน',
+            'drug_unit' => 'หน่วยนับ',
+            'drug_usage' => 'วิธีการใช้ยา',
+            'drug_dispenser' => 'ผู้จ่าย',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
     }
+
 }

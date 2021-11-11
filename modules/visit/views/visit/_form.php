@@ -13,7 +13,7 @@ use kartik\time\TimePicker;
 <div style="margin: 5px;padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
 
     <?php $form = ActiveForm::begin(); ?>
-    <div class="row">
+    <div class="row" style="display: none">
         <div class="col-2">
             <?= $form->field($model, 'hoscode')->textInput(['disabled' => true]) ?>
         </div>

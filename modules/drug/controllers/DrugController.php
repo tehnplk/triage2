@@ -68,6 +68,13 @@ class DrugController extends Controller {
 
         $model = new Drug();
 
+        $model->patient_id = $patient_id;
+        $model->hoscode = $patient->hoscode;
+        $model->patient_cid = $patient->cid;
+        $model->patient_fullname = $patient->full_name;
+        $model->drug_date = date('Y-m-d');
+        $model->drug_time = date('H:i:s');
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['success']);
@@ -89,6 +96,7 @@ class DrugController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id) {
+        $this->layout = 'off';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {

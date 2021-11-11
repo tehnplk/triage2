@@ -10,12 +10,13 @@ use yii\grid\GridView;
 $this->title = 'Drugs';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="mt-2"></div>
 <div class="drug-index">
 
-    
+
 
     <p>
-        <?= Html::a('เพิ่มจ่ายยา', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-success btn-create']) ?>
+        <?= Html::a('เพิ่มจ่ายยา', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -45,7 +46,12 @@ $this->title = 'Drugs';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{update}"
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{delete}"
+            ],
         ],
     ]);
     ?>

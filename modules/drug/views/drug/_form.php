@@ -8,45 +8,57 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="drug-form">
+<div style="margin: 5px;padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'hoscode')->textInput(['maxlength' => true]) ?>
+    <div style="display: none">
+        <?= $form->field($model, 'hoscode')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'hosname')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'hosname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'visit_id')->textInput() ?>
+        <?= $form->field($model, 'visit_id')->textInput() ?>
 
-    <?= $form->field($model, 'patient_id')->textInput() ?>
+        <?= $form->field($model, 'patient_id')->textInput() ?>
 
-    <?= $form->field($model, 'patient_cid')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'patient_cid')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'drug_date')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'drug_time')->textInput() ?>    
+        </div>
 
-    <?= $form->field($model, 'drug_date')->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'drug_time')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'drug_name')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'drug_amount')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'drug_unit')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'drug_id')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'drug_usage')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-3">
+            <?= $form->field($model, 'drug_dispenser')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'drug_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'drug_amount')->textInput() ?>
 
-    <?= $form->field($model, 'drug_unit')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'drug_usage')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'drug_dispenser')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_by')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

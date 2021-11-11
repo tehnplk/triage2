@@ -26,17 +26,30 @@ use app\components\MyLookUp;
         <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'lab_date')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'lab_time')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'lab_date')->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'lab_time')->textInput() ?>
 
-    <?= $form->field($model, 'lab_place')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'lab_kind')->dropDownList(['ATK' => 'ATK', 'PCR' => 'PCR'], ['prompt' => '']) ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'lab_place')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'lab_kind')->dropDownList(['ATK' => 'ATK', 'PCR' => 'PCR'], ['prompt' => '']) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'lab_result')->dropDownList(MyLookUp::covid_test_result(), ['prompt' => '']) ?>
+        </div>
 
-    <?= $form->field($model, 'lab_result')->dropDownList(MyLookUp::covid_test_result(), ['prompt' => '']) ?>
-
+    </div>
 
 
     <div class="form-group">
