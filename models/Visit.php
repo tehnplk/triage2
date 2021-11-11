@@ -48,7 +48,7 @@ class Visit extends \yii\db\ActiveRecord {
             [['bmi', 'temperature'], 'number'],
             [['hoscode', 'hosname', 'patient_fullname', 'cc', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
-            [['hoscode', 'patient_id', 'visit_date'], 'unique', 'targetAttribute' => ['hoscode', 'patient_id', 'visit_date']],
+            [['visit_date'], 'unique', 'targetAttribute' => ['hoscode', 'patient_id', 'visit_date'], 'message' => 'ข้อมูลซ้ำซ้อนในวันเดียวกัน'],
             [['patient_id', 'visit_date', 'visit_time', 'bw', 'bh', 'spo2'], 'required'],
         ];
     }
@@ -80,6 +80,18 @@ class Visit extends \yii\db\ActiveRecord {
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
+    }
+
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+
+        $this->bmi = ($this->bw) / ( ($this->bh / 100) * ($this->bh / 100));
+
+        if ($insert) {
+            $this->updateAttributes(['bmi']);
+        } else {
+            $this->updateAttributes(['bmi']);
+        }
     }
 
 }

@@ -31,7 +31,7 @@ $this->title = 'Visits';
             // 'patient_id',
             // 'patient_cid',
             //'patient_fullname',
-            'visit_date',
+            'visit_date:date:วันมา',
             'visit_time',
             'bw',
             'bh',

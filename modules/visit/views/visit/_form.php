@@ -69,7 +69,7 @@ use kartik\time\TimePicker;
             <?= $form->field($model, 'bh')->textInput() ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'bmi')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'bmi')->textInput(['disabled' => true]) ?>
         </div>
         <div class="col">
             <?= $form->field($model, 'temperature')->textInput(['maxlength' => true]) ?>

@@ -71,6 +71,7 @@ class VisitController extends Controller {
         $model->hoscode = $patient->hoscode;
         $model->patient_cid = $patient->cid;
         $model->patient_fullname = $patient->full_name;
+        $model->visit_date = date('Y-m-d');
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
