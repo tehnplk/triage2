@@ -14,6 +14,7 @@ use Yii;
  * @property string|null $prefix
  * @property string|null $first_name
  * @property string|null $last_name
+ * @property string|null $full_name
  * @property string|null $gender
  * @property string|null $bdate
  * @property string|null $bmon
@@ -54,7 +55,7 @@ class Patient extends \yii\db\ActiveRecord {
         return [
             [['birth'], 'safe'],
             [['age_y', 'age_m', 'age_d'], 'integer'],
-            [['hoscode', 'hosname', 'prefix', 'first_name', 'last_name', 'gender', 'marital', 'nation', 'family', 'personal_disease', 'addr_no', 'addr_road', 'addr_moo', 'addr_tmb', 'addr_amp', 'addr_chw', 'tel', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
+            [['hoscode', 'hosname', 'prefix', 'first_name', 'last_name', 'full_name', 'gender', 'marital', 'nation', 'family', 'personal_disease', 'addr_no', 'addr_road', 'addr_moo', 'addr_tmb', 'addr_amp', 'addr_chw', 'tel', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['bdate', 'bmon'], 'string', 'max' => 2],
             [['byear'], 'string', 'max' => 4],
             [['hoscode', 'cid', 'prefix', 'first_name', 'last_name', 'gender', 'bdate', 'bmon', 'byear'], 'required'],
@@ -76,6 +77,7 @@ class Patient extends \yii\db\ActiveRecord {
             'prefix' => 'คำนำหน้า',
             'first_name' => 'ชื่อ',
             'last_name' => 'นามสกุล',
+            'full_name' => 'ชื่อ-สกุล',
             'gender' => 'เพศ',
             'bdate' => 'วันเกิด',
             'bmon' => 'เดือนเกิด',
@@ -153,11 +155,16 @@ class Patient extends \yii\db\ActiveRecord {
         $this->age_d = $diff->d;
         //จบอายุ
 
+        $this->full_name = "$this->prefix$this->first_name $this->last_name";
+
         if ($insert) {
             $this->updateAttributes(['birth']);
             $this->updateAttributes(['age_y', 'age_m', 'age_d']);
+            $this->updateAttributes(['full_name']);
         } else {
+            $this->updateAttributes(['birth']);
             $this->updateAttributes(['age_y', 'age_m', 'age_d']);
+            $this->updateAttributes(['full_name']);
         }
     }
 

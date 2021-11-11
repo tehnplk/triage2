@@ -34,7 +34,15 @@ AppAsset::register($this);
                 ],
                 'innerContainerOptions' => ['class' => 'container-fluid'],
             ]);
-
+            ?>
+            <?php if (!empty($this->params['pt_fullname'])): ?>
+                <div class="nav-item bg-primary border border-light ml-5 px-2 text-light d-flex justify-content-center">
+                    <span style="font-size: 16px" class="py-1"><?= $this->params['pt_fullname'] ?></span>
+                    <span class="mx-2"></span>
+                    <span style="font-size: 16px" class="py-1"><?= Html::a('<i class="far fa-times"></i>', ['/patient/patient/index'], ['class' => 'text-dark']) ?></span>
+                </div>
+            <?php endif; ?>
+            <?php
             $mnu_items = [
                 ['label' => '<i class="far fa-address-card"></i> รายชื่อ', 'url' => ['/patient/patient/index']],
             ];
