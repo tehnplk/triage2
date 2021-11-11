@@ -9,8 +9,9 @@ $this->title = 'Create Patient';
 //$this->params['breadcrumbs'][] = ['label' => 'Patients', 'url' => ['index']];
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div>
+<div class="d-flex justify-content-between mb-1">
     <span class="bg-primary text-light px-3"> ข้อมูลผู้ป่วย </span>
+    <span><a href="http://plkprom.plkhealth.go.th/plkprom/web/index.php?r=regis/util/gen-cid" target="_blank">GEN-CID</a></span>
 </div>
 <div class="patient-create">
     <?=
