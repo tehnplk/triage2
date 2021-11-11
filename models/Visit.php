@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\Risk;
+use app\models\Patient;
 
 /**
  * This is the model class for table "visit".
@@ -24,6 +26,8 @@ use Yii;
  * @property int|null $bpd
  * @property int|null $pulse
  * @property string|null $cc อาการ
+ * @property int|null $age_y
+ * @property int|null $age_m
  * @property string|null $created_at
  * @property string|null $created_by
  * @property string|null $updated_at
@@ -43,7 +47,7 @@ class Visit extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['patient_id', 'bw', 'bh', 'spo2', 'bps', 'bpd', 'pulse'], 'integer'],
+            [['patient_id', 'bw', 'bh', 'spo2', 'bps', 'bpd', 'pulse', 'age_y', 'age_m'], 'integer'],
             [['visit_date', 'visit_time'], 'safe'],
             [['bmi', 'temperature'], 'number'],
             [['hoscode', 'hosname', 'patient_fullname', 'cc', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
@@ -75,6 +79,8 @@ class Visit extends \yii\db\ActiveRecord {
             'bpd' => 'ความดันล่าง(BPD)',
             'pulse' => 'ชีพจร(Pulse)',
             'cc' => 'อาการเจ็บป่วย',
+            'age_y' => 'อายุ(ปี)',
+            'age_m' => 'เดือน',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
@@ -85,10 +91,35 @@ class Visit extends \yii\db\ActiveRecord {
     public function afterSave($insert, $changedAttributes) {
         parent::afterSave($insert, $changedAttributes);
 
+        $patient = Patient::findOne($this->patient_id);
+
         $this->bmi = ($this->bw) / ( ($this->bh / 100) * ($this->bh / 100));
 
+        //คำนวณอายุ
+        $dob = $patient->birth;
+        $bday = new \DateTime($dob);
+        $diff = $bday->diff(new \DateTime($this->visit_date));
+
+        $this->age_y = $diff->y;
+        $this->age_m = $diff->m;
+        //จบอายุ
+
+
+        $risk = new Risk();
+        $risk->hoscode = $this->hoscode;
+        $risk->patient_id = $this->patient_id;
+        $risk->patient_cid = $this->patient_cid;
+        $risk->patient_fullname = $this->patient_fullname;
+        $risk->visit_id = $this->id;
+        $risk->risk_date = $this->visit_date;
+        $risk->risk_time = $this->visit_time;
+        $risk->bmi = $this->bmi >= 30 || $this->bw >= 90;
+        $risk->aging = $this->age_y >= 60;
+
+
         if ($insert) {
-            $this->updateAttributes(['bmi']);
+            $this->updateAttributes(['bmi', 'age_y', 'age_m']);
+            $risk->save(false);
         } else {
             $this->updateAttributes(['bmi']);
         }

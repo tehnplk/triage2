@@ -62,12 +62,15 @@ class RiskController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate($patient_id = NULL) {
+        $this->layout = 'off';
+        $patient = \app\models\Patient::findOne($patient_id);
         $model = new Risk();
+        $model->patient_id = $patient->id;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['success']);
             }
         } else {
             $model->loadDefaultValues();
@@ -86,10 +89,11 @@ class RiskController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id) {
+        $this->layout = 'off';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['success']);
         }
 
         return $this->render('update', [
@@ -105,9 +109,9 @@ class RiskController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+        $model->delete();
+        return $this->redirect(['index', 'patient_id' => $model->patient_id]);
     }
 
     /**
@@ -123,6 +127,11 @@ class RiskController extends Controller {
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionSuccess() {
+        $this->layout = 'off';
+        return $this->render('_success');
     }
 
 }

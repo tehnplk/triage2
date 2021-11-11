@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-11 13:24:37
+Date: 2021-11-11 19:35:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -67,7 +67,8 @@ CREATE TABLE `lab` (
   `created_by` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
   `updated_by` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx` (`patient_id`,`lab_date`,`lab_kind`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
@@ -121,6 +122,44 @@ INSERT INTO `patient` VALUES ('3', '00051', null, '3650100810887', 'นาย', 
 INSERT INTO `patient` VALUES ('4', '07477', null, '3650100810887', 'นาย', 'ออออ', 'หหปปผป', 'นายออออ หหปปผป', 'ชาย', '01', '01', '2563', '2020-01-01', '1', '10', '10', '', '', '', '', '', '', '', '', '', '', '', null, null, null, null);
 
 -- ----------------------------
+-- Table structure for risk
+-- ----------------------------
+DROP TABLE IF EXISTS `risk`;
+CREATE TABLE `risk` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hoscode` varchar(255) DEFAULT '',
+  `hosname` varchar(255) DEFAULT NULL,
+  `visit_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `patient_cid` varchar(13) DEFAULT NULL,
+  `patient_fullname` varchar(255) DEFAULT NULL,
+  `risk_date` date DEFAULT NULL,
+  `risk_time` time DEFAULT NULL,
+  `aging` varchar(255) DEFAULT '' COMMENT 'อายุมากกว่า 60ปี',
+  `bmi` varchar(255) DEFAULT '' COMMENT 'bmiมากกว่า30 หรือน้ำหนักมากกว่า90',
+  `dm` varchar(255) DEFAULT '' COMMENT 'โรคเบาหวานที่คุมไม่ได้',
+  `copd` varchar(255) DEFAULT '' COMMENT 'COPD',
+  `cirrhosis` varchar(255) DEFAULT '' COMMENT 'Cirrhosis',
+  `stroke` varchar(255) DEFAULT '' COMMENT 'Stroke',
+  `ihd` varchar(255) DEFAULT '' COMMENT 'IHD',
+  `hiv` varchar(255) DEFAULT '' COMMENT 'HIV',
+  `cancer` varchar(255) DEFAULT '' COMMENT 'CANCER',
+  `suppress` varchar(255) DEFAULT '' COMMENT 'กินยากดภูมิคุ้มกัน',
+  `preg` varchar(255) DEFAULT '' COMMENT 'กำลังตั้งครรภ์',
+  `non_risk` varchar(255) DEFAULT NULL COMMENT 'ไม่มีความเสี่ยง',
+  `created_at` varchar(255) DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of risk
+-- ----------------------------
+INSERT INTO `risk` VALUES ('2', '', '', null, '3', '', '', null, null, '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '0', '0', null, null, null, null);
+
+-- ----------------------------
 -- Table structure for triage
 -- ----------------------------
 DROP TABLE IF EXISTS `triage`;
@@ -163,6 +202,8 @@ CREATE TABLE `visit` (
   `patient_id` int(11) DEFAULT NULL,
   `patient_cid` varchar(13) DEFAULT NULL,
   `patient_fullname` varchar(255) DEFAULT NULL,
+  `age_y` int(11) DEFAULT NULL,
+  `age_m` int(11) DEFAULT NULL,
   `visit_date` date DEFAULT NULL,
   `visit_time` time DEFAULT NULL,
   `bw` int(11) DEFAULT NULL,
@@ -180,10 +221,10 @@ CREATE TABLE `visit` (
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx` (`hoscode`,`patient_id`,`visit_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of visit
 -- ----------------------------
-INSERT INTO `visit` VALUES ('1', '', '', '4', '', '', null, null, null, null, null, null, null, null, null, null, '', '', '', '', '');
-INSERT INTO `visit` VALUES ('2', '', '', '3', '', '', null, null, null, null, null, null, null, null, '123', null, '', '', '', '', '');
+INSERT INTO `visit` VALUES ('4', '00051', null, '3', '3650100810887', 'นายอุเทน จาดยางโทน', null, null, '2021-11-11', '14:50:50', '56', '160', null, null, '96', null, null, null, '', null, null, null, null);
+INSERT INTO `visit` VALUES ('5', '00051', null, '3', '3650100810887', 'นายอุเทน จาดยางโทน', null, null, '2021-11-12', '15:00:20', '65', '168', '23.0', '37.0', '89', null, null, null, '', null, null, null, null);

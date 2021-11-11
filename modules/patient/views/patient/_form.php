@@ -56,13 +56,13 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'age_y')->textInput() ?>
+            <?= $form->field($model, 'age_y')->textInput(['disabled' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'age_m')->textInput() ?>
+            <?= $form->field($model, 'age_m')->textInput(['disabled' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'age_d')->textInput() ?>
+            <?= $form->field($model, 'age_d')->textInput(['disabled' => true]) ?>
         </div>
         <div class="col">
             <?= $form->field($model, 'marital')->dropDownList(MyLookUp::marital(), ['prompt' => '']) ?>

@@ -13,11 +13,6 @@ $this->title = 'Risks';
 <div class="mt-2"></div>
 <div class="risk-index">
 
-
-    <p>
-        <?= Html::a('ประเมินปัจจัยเสี่ยง', ['create'], ['class' => 'btn btn-success btn-create']) ?>
-    </p>
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?=
@@ -33,8 +28,8 @@ $this->title = 'Risks';
             //'patient_id',
             //'patient_cid',
             //'patient_fullname',
-            'risk_date',
-            'risk_time',
+            'risk_date:date:วันมา',
+           // 'risk_time',
             'aging',
             'bmi',
             'dm',
@@ -51,7 +46,12 @@ $this->title = 'Risks';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{update}"
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{delete}"
+            ],
         ],
     ]);
     ?>

@@ -27,10 +27,10 @@ $this->title = 'Labs';
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'id',
-           // 'hoscode',
-           // 'hosname',
-           // 'visit_id',
-           // 'patient_id',
+            // 'hoscode',
+            // 'hosname',
+            // 'visit_id',
+            // 'patient_id',
             //'patient_cid',
             //'patient_fullname',
             'lab_date',
@@ -42,7 +42,12 @@ $this->title = 'Labs';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{update}"
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{delete}"
+            ],
         ],
     ]);
     ?>

@@ -33,21 +33,19 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Risk extends \yii\db\ActiveRecord
-{
+class Risk extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'risk';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['visit_id', 'patient_id'], 'integer'],
             [['risk_date', 'risk_time'], 'safe'],
@@ -59,34 +57,34 @@ class Risk extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
             'hosname' => 'Hosname',
             'visit_id' => 'Visit ID',
             'patient_id' => 'Patient ID',
-            'patient_cid' => 'Patient Cid',
-            'patient_fullname' => 'Patient Fullname',
-            'risk_date' => 'Risk Date',
-            'risk_time' => 'Risk Time',
-            'aging' => 'Aging',
-            'bmi' => 'Bmi',
-            'dm' => 'Dm',
-            'copd' => 'Copd',
+            'patient_cid' => 'เลข13หลัก',
+            'patient_fullname' => 'ชื่อ-สกุล',
+            'risk_date' => 'วันที่ประเมิน',
+            'risk_time' => 'เวลา',
+            'aging' => 'อายุ>60ปี',
+            'bmi' => 'BMI>30 หรือน้ำหนัก>90',
+            'dm' => 'โรคเบาหวานที่คุมไม่ได้',
+            'copd' => 'COPD',
             'cirrhosis' => 'Cirrhosis',
             'stroke' => 'Stroke',
-            'ihd' => 'Ihd',
-            'hiv' => 'Hiv',
+            'ihd' => 'IHD',
+            'hiv' => 'HIV',
             'cancer' => 'Cancer',
-            'suppress' => 'Suppress',
-            'preg' => 'Preg',
-            'non_risk' => 'Non Risk',
+            'suppress' => 'กินยากดภูมิคุ้มกัน',
+            'preg' => 'กำลังตั้งครรภ์',
+            'non_risk' => 'ไม่มีปัจจัยเสี่ยง',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
     }
+
 }

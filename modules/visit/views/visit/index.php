@@ -47,8 +47,10 @@ $this->title = 'Visits';
             //'updated_at',
             //'updated_by',
             [
-                'class' => 'yii\grid\ActionColumn',
-                'template' => "{update} {delete}"
+                'class' => 'yii\grid\ActionColumn', 'template' => "{update}"
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn', 'template' => "{delete}"
             ],
         ],
     ]);

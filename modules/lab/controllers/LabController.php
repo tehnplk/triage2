@@ -128,4 +128,9 @@ class LabController extends Controller {
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    public function actionSuccess() {
+        $this->layout = 'off';
+        return $this->render('_success');
+    }
+
 }

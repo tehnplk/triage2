@@ -8,57 +8,107 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="risk-form">
+<style>
+
+    .control-label{
+        font-size: 12px
+    }
+    .help-block{
+        font-size: 11px;
+        color: tomato !important;
+    }
+
+    input[type=checkbox]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        padding: 10px;
+        margin-right: 10px;
+    }  
+
+
+</style>
+
+<div style="margin: 5px;padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
 
     <?php $form = ActiveForm::begin(); ?>
+    <div class="row" style="display: none">
+        <div class="col">
+            <?= $form->field($model, 'hoscode')->textInput(['maxlength' => true]) ?>
+        </div>       
 
-    <?= $form->field($model, 'hoscode')->textInput(['maxlength' => true]) ?>
+        <div class="col">
+            <?= $form->field($model, 'patient_id')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'hosname')->textInput(['maxlength' => true]) ?>
+        <div class="col">
+            <?= $form->field($model, 'patient_cid')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'visit_id')->textInput() ?>
+    </div>
+    <div class="row" style="display: none">
+        <div class="col">
+            <?= $form->field($model, 'risk_date')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'risk_time')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'patient_id')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'non_risk')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'aging')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'bmi')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'dm')->checkbox() ?>
+        </div>
 
-    <?= $form->field($model, 'patient_cid')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'copd')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'cirrhosis')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'stroke')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'ihd')->checkbox() ?>
+        </div>
 
-    <?= $form->field($model, 'risk_date')->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'risk_time')->textInput() ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'hiv')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'cancer')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'suppress')->checkbox() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'preg')->checkbox() ?>
+        </div>
 
-    <?= $form->field($model, 'aging')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'bmi')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'dm')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'copd')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cirrhosis')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'stroke')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ihd')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'hiv')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cancer')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'suppress')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'preg')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'non_risk')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_by')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
