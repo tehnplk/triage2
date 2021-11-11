@@ -28,7 +28,7 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-vial"></i> LAB',
-            'url' => Url::to(['/appoint/appoint/index', 'patient_id' => $patient->id]),
+            'url' => Url::to(['/lab/lab/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class="far fa-pills"></i> จ่ายยา',

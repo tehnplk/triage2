@@ -3,7 +3,8 @@
 use yii\helpers\Url;
 use yii\bootstrap4\Tabs;
 
-$patient = $model;
+$patient = app\models\Patient::findOne($searchModel->patient_id);
+
 $this->params['pt_fullname'] = $patient->full_name . "  ($patient->age_y ปี $patient->age_m ด)";
 
 echo Tabs::widget([
@@ -11,8 +12,7 @@ echo Tabs::widget([
     'items' => [
         [
             'label' => '<i class="far fa-user"></i> ข้อมูลบุคคล',
-            'content' => $this->render('update', ['model' => $patient]),
-            'active' => true
+            'url' => Url::to(['/patient/patient/update', 'id' => $patient->id]),
         ],
         [
             'label' => '<i class="far fa-stethoscope"></i> สัญญาณชีพ',
@@ -24,7 +24,11 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-vial"></i> LAB',
-            'url' => Url::to(['/lab/lab/index', 'patient_id' => $patient->id]),
+            'content' => $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]),
+            'active' => true
         ],
         [
             'label' => '<i class="far fa-pills"></i> จ่ายยา',
