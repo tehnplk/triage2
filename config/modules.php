@@ -13,5 +13,8 @@ return [
     'risk' => [
         'class' => 'app\modules\risk\Module',
     ],
+    'drug' => [
+        'class' => 'app\modules\drug\Module',
+    ],
 ];
 

@@ -28,11 +28,11 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-pills"></i> จ่ายยา',
-            'url' => Url::to(['/appoint/appoint/index', 'patient_id' => $patient->id]),
+            'url' => Url::to(['/drug/drug/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class="far fa-radiation"></i> X-RAY',
-            'url' => Url::to(['/appoint/appoint/index', 'patient_id' => $patient->id]),
+            'url' => Url::to(['/drug/drug/index', 'patient_id' => $patient->id]),
         ],
     ],
 ]);
