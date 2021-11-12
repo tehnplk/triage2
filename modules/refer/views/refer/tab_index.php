@@ -16,11 +16,7 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-stethoscope"></i> สัญญาณชีพ',
-            'content' => $this->render('index', [
-                'searchModel' => $searchModel,
-                'dataProvider' => $dataProvider,
-            ]),
-            'active' => true
+            'url' => Url::to(['/visit/visit/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class="far fa-check-square"></i> ปัจจัยเสี่ยง',
@@ -41,6 +37,14 @@ echo Tabs::widget([
         [
             'label' => '<i class="far fa-circle"></i> Triage',
             'url' => Url::to(['/triage/triage/index', 'patient_id' => $patient->id]),
+        ],
+        [
+            'label' => '<i class = "fas fa-ambulance"></i> ส่งต่อ',
+            'content' => $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]),
+            'active' => true
         ],
     ],
 ]);

@@ -13,10 +13,6 @@ $this->title = 'Refers';
 <div class="refer-index">
 
 
-    <p>
-        <?= Html::a('ส่งต่อ', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?=
@@ -39,7 +35,7 @@ $this->title = 'Refers';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
     ?>

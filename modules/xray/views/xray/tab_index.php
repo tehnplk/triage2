@@ -32,15 +32,15 @@ echo Tabs::widget([
         ],
         [
             'label' => '<i class="far fa-radiation"></i> X-RAY',
-            'url' => Url::to(['/xray/xray/index', 'patient_id' => $patient->id]),
-        ],
-        [
-            'label' => '<i class="far fa-circle"></i> Triage',
             'content' => $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
             ]),
             'active' => true
+        ],
+        [
+            'label' => '<i class="far fa-circle"></i> Triage',
+            'url' => Url::to(['/triage/triage/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class = "far fa-ambulance"></i> ส่งต่อ',

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-11 23:17:45
+Date: 2021-11-12 15:57:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,7 +77,7 @@ CREATE TABLE `lab` (
 -- Records of lab
 -- ----------------------------
 INSERT INTO `lab` VALUES ('4', '00051', '', '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '', 'ATK', 'Positive', null, null, null, null);
-INSERT INTO `lab` VALUES ('5', '07477', null, '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', null, '', null, '2021-11-11 23:16:43', '100', '2021-11-11 23:16:43', '100');
+INSERT INTO `lab` VALUES ('5', '07477', '', '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '', 'PCR', 'Positive', '2021-11-11 23:16:43', '100', '2021-11-12 09:13:37', '100');
 
 -- ----------------------------
 -- Table structure for patient
@@ -126,6 +126,32 @@ INSERT INTO `patient` VALUES ('3', '00051', null, '3650100810887', 'นาย', 
 INSERT INTO `patient` VALUES ('4', '07477', null, '3650100810887', 'นาย', 'ทดสอบ', 'ระบบ', 'นายทดสอบ ระบบ', 'ชาย', '01', '01', '2500', '1957-01-01', '64', '10', '10', '', '', '', '', '', '', '', '', '', '', '', null, null, '2021-11-11 23:16:20', '100');
 
 -- ----------------------------
+-- Table structure for refer
+-- ----------------------------
+DROP TABLE IF EXISTS `refer`;
+CREATE TABLE `refer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hoscode` varchar(255) DEFAULT '',
+  `hosname` varchar(255) DEFAULT NULL,
+  `visit_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `patient_cid` varchar(13) DEFAULT NULL,
+  `patient_fullname` varchar(255) DEFAULT NULL,
+  `refer_date` date DEFAULT NULL,
+  `refer_time` time DEFAULT NULL,
+  `refer_to` varchar(255) DEFAULT '',
+  `created_at` varchar(255) DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of refer
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for risk
 -- ----------------------------
 DROP TABLE IF EXISTS `risk`;
@@ -161,7 +187,7 @@ CREATE TABLE `risk` (
 -- ----------------------------
 -- Records of risk
 -- ----------------------------
-INSERT INTO `risk` VALUES ('10', '00051', null, '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '', '1', '', '', '', '', '', '', '', '', '', null, null, null, null, null);
+INSERT INTO `risk` VALUES ('10', '00051', null, '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', null, null, '2021-11-12 15:14:42', '100');
 INSERT INTO `risk` VALUES ('11', '07477', null, '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '1', '1', '', '', '', '', '', '', '', '', '', null, '2021-11-11 23:16:43', '100', '2021-11-11 23:16:43', '100');
 
 -- ----------------------------
@@ -237,3 +263,39 @@ CREATE TABLE `visit` (
 -- ----------------------------
 INSERT INTO `visit` VALUES ('13', '00051', null, '3', '3650100810887', 'นายอุเทน จาดยางโทน', '41', '6', '2021-11-11', '22:55:25', '92', '163', '34.6', '36.5', '98', '120', '80', '99', 'ไข้ ไอ', null, null, '2021-11-11 23:16:06', '100');
 INSERT INTO `visit` VALUES ('14', '07477', null, '4', '3650100810887', 'นายทดสอบ ระบบ', '64', '10', '2021-11-11', '23:15:30', '90', '63', '226.8', '37.0', '96', null, null, null, '', '2021-11-11 23:16:43', '100', '2021-11-11 23:16:43', '100');
+
+-- ----------------------------
+-- Table structure for xray
+-- ----------------------------
+DROP TABLE IF EXISTS `xray`;
+CREATE TABLE `xray` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hoscode` varchar(255) DEFAULT '',
+  `hosname` varchar(255) DEFAULT NULL,
+  `visit_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `patient_cid` varchar(13) DEFAULT NULL,
+  `patient_fullname` varchar(255) DEFAULT NULL,
+  `xray_date` date DEFAULT NULL,
+  `xray_time` time DEFAULT NULL,
+  `xray_type` varchar(255) DEFAULT '',
+  `xray_result` varchar(255) DEFAULT '',
+  `xray_cat` varchar(255) DEFAULT '',
+  `covid19_pneumonia_cat` varchar(255) DEFAULT NULL,
+  `conclusion` varchar(255) DEFAULT NULL,
+  `comparison` varchar(255) DEFAULT NULL,
+  `finding` varchar(255) DEFAULT NULL,
+  `note` varchar(255) DEFAULT NULL,
+  `created_at` varchar(255) DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `updated_at` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `idx` (`patient_id`,`xray_date`,`xray_result`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of xray
+-- ----------------------------
+INSERT INTO `xray` VALUES ('4', '00051', '', '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '', 'ATK', 'Positive', null, null, null, null, null, null, null, null, null);
+INSERT INTO `xray` VALUES ('5', '07477', '', '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '', 'PCR', 'Positive', null, null, null, null, null, '2021-11-11 23:16:43', '100', '2021-11-12 09:13:37', '100');
