@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-12 16:45:46
+Date: 2021-11-12 17:01:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,13 +40,14 @@ CREATE TABLE `drug` (
   `updated_at` varchar(255) DEFAULT NULL,
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of drug
 -- ----------------------------
 INSERT INTO `drug` VALUES ('1', '07477', '', null, '4', '3650100810887', 'นายออออ หหปปผป', '2021-11-11', '22:28:08', '', 'sdsdsd', '30', 'เม็ด', '', '', null, null, null, null);
 INSERT INTO `drug` VALUES ('3', '00051', '', null, '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:43:45', '', 'พารา', '20', 'เม็ด', '', '', null, null, null, null);
+INSERT INTO `drug` VALUES ('4', '07477', '', null, '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-12', '16:47:26', '', 'ffffffffffff', '40', 'เม็ด', '', '', '2021-11-12 16:47:37', '100', '2021-11-12 16:47:37', '100');
 
 -- ----------------------------
 -- Table structure for lab
@@ -227,6 +228,81 @@ CREATE TABLE `triage` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hoscode` varchar(255) DEFAULT NULL,
+  `hosname` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `password2` varchar(255) DEFAULT NULL,
+  `auth_key` varchar(255) DEFAULT NULL,
+  `access_token` varchar(255) DEFAULT NULL,
+  `role` varchar(255) DEFAULT NULL,
+  `cid` varchar(13) DEFAULT NULL,
+  `fullname` varchar(255) DEFAULT NULL,
+  `onestop` varchar(255) DEFAULT NULL,
+  `last` varchar(255) DEFAULT NULL,
+  `last_session` varchar(255) DEFAULT NULL,
+  `last_ip` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `idx_username` (`username`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', '99788', null, 'vacc', '112233', null, null, null, 'vac', '', '', '', '2021-11-08 13:27:49', 'h0cs15aa7gr4794jtpkbtjprik', '110.77.172.237');
+INSERT INTO `user` VALUES ('2', '99788', null, 'admin', '11223344', null, null, null, 'adm', '', 'งาน Admin', '', '2021-11-08 13:09:28', '1h9kj4ardpqft332if9beevpcr', '110.77.172.237');
+INSERT INTO `user` VALUES ('3', '99788', null, 'regis', '112233', null, null, null, 'vac', '', '', '', '2021-09-03 11:32:09', null, null);
+INSERT INTO `user` VALUES ('4', '99788', null, 'rxrx', '112233', null, null, null, 'rxx', '', 'งานเภสัชกรรม', '', '2021-11-05 10:30:38', 'ua9ss9404vl0h2dopgdhk73g2e', '182.53.170.43');
+INSERT INTO `user` VALUES ('5', '99788', null, 'sasa', '112233', null, null, null, 'saa', '', 'Sa Sa', 'yes', '2021-11-08 14:35:13', 'bs2fikjfpdae6pl3746e8puh7v', '182.232.245.52');
+INSERT INTO `user` VALUES ('6', '11251', null, 'sa', '112233', null, null, null, 'saa', null, null, null, '2021-09-03 11:09:58', null, null);
+INSERT INTO `user` VALUES ('21', '99788', null, '201', '12345', null, null, null, 'vac', '', 'นายตุลย์  สุขะตุงคะ', 'no', '2021-11-08 13:06:40', 'qaruo9sg69l720p08cje4lengc', '110.77.172.237');
+INSERT INTO `user` VALUES ('22', '99788', null, '202', '12345', null, null, null, 'vac', '', 'นางจรีย์ภัสร์  วัฒนกุลชัย', 'no', '2021-11-08 07:53:21', 'rdj24gk9tfv9hn1g2ir8na3p53', '110.77.172.237');
+INSERT INTO `user` VALUES ('23', '99788', null, '203', '12345', null, null, null, 'vac', '', 'นางสาวปานประดับ  ปานเกิด', 'yes', '2021-11-08 07:48:28', '49it16vms1hh0snlog7ik10n98', '110.77.172.237');
+INSERT INTO `user` VALUES ('24', '99788', null, '204', '12345', null, null, null, 'vac', '', 'นางสาวอินทิรา  เทศกุล', 'yes', '2021-11-08 08:04:50', '7dendbdcj97tdfeht89qi32i7v', '110.77.172.237');
+INSERT INTO `user` VALUES ('25', '99788', null, '205', '12345', null, null, null, 'vac', '', 'นางสัญชวัล  ผูกพานิช', 'yes', '2021-11-08 08:07:37', 'navuc51t97m9jqvnepm91ersk6', '110.77.172.237');
+INSERT INTO `user` VALUES ('26', '99788', null, '206', '12345', null, null, null, 'vac', '', 'นางธิดารัตน์  ทัพภวิมล', 'no', '2021-10-30 18:32:08', 'jcmhi84o1dqq69hhjnuip5v81b', '119.76.14.43');
+INSERT INTO `user` VALUES ('27', '99788', null, '207', '12345', null, null, null, 'vac', '', 'นางสาวฆนรส  จ่างคำ', 'yes', '2021-10-25 07:57:11', '556u8j2fkvckodkpdp7cfj0hap', '110.77.177.217');
+INSERT INTO `user` VALUES ('28', '99788', null, '208', '12345', null, null, null, 'vac', '', 'นางระพีพรรณ วัฒนากร', 'yes', '2021-11-08 07:56:50', 'aoj442b5dtav6fv7krth2b7bcm', '110.77.172.237');
+INSERT INTO `user` VALUES ('29', '99788', null, '209', '12345', null, null, null, 'vac', '', 'นายอรรณพ  ทองด้วง  ', 'yes', '2021-09-24 17:11:38', 'jpl3uec4fne1r0ehpvess5f66c', '159.192.188.101');
+INSERT INTO `user` VALUES ('30', '99788', null, '210', '12345', null, null, null, 'vac', '', 'นายปิยวุฒิ  มากมี', 'no', '2021-10-25 14:15:53', '2igms0ff9tglj50btk16p7eajl', '110.77.177.217');
+INSERT INTO `user` VALUES ('31', '99788', null, '211', '12345', null, null, null, 'vac', '', 'นายณัฐสันต์  ศรีจันทร์งาม', 'yes', '2021-10-20 11:50:41', 't0i6h3tsdaoborleupmda5dcnq', '159.192.208.27');
+INSERT INTO `user` VALUES ('32', '99788', null, '212', '12345', null, null, null, 'vac', '', 'นายสิทธิชัย  พัดเถื่อน', 'yes', '2021-11-08 12:29:44', 'ihd54dfrsou9bn3a46ad5hu89r', '110.77.172.237');
+INSERT INTO `user` VALUES ('33', '99788', null, '213', '12345', null, null, null, 'vac', '', 'นายนพดล  คำพุฒ', 'yes', '2021-10-25 08:26:29', '9p0tfcsap4k80d5jrlhdaumbpi', '110.77.177.217');
+INSERT INTO `user` VALUES ('34', '99788', null, '214', '123456', null, null, null, 'vac', '', 'นายสันติ  แก้วชูเชิด', 'yes', null, null, null);
+INSERT INTO `user` VALUES ('35', '99788', null, '215', '12345', null, null, null, 'vac', '', 'นายศุภณัฐ  พรหมมณี', 'yes', '2021-11-01 08:02:20', 'su89n32eaugr4os8po7numdotk', '110.77.176.35');
+INSERT INTO `user` VALUES ('36', '99788', null, '216', '12345', null, null, null, 'vac', '', 'นายรัชต์พล  รัสมี', 'yes', '2021-11-04 15:32:25', '3pmg0motvmrpsklt7v74gbrcs2', '192.168.200.2');
+INSERT INTO `user` VALUES ('37', '99788', null, '217', '12345', null, null, null, 'vac', '', 'นางสาวกัลยา  มากพิณ', 'yes', '2021-11-01 07:51:15', 'oobp7v4h0foq1a3e6vprk8lvp9', '110.77.176.35');
+INSERT INTO `user` VALUES ('38', '99788', null, '218', '12345', null, null, null, 'vac', '', 'นางนภาพันธุ์  สมศรี', 'yes', '2021-11-01 07:48:39', 'jgm525simregtbbgq11u251ofi', '110.77.176.35');
+INSERT INTO `user` VALUES ('39', '99788', null, '219', '12345', null, null, null, 'vac', '', 'นางจันทร์ทิพย์ ประเสริฐศรี ', 'yes', '2021-10-26 14:39:12', 'bi6sasuictggo638rhjdnvcddm', '110.77.172.148');
+INSERT INTO `user` VALUES ('40', '99788', null, '220', '12345', null, null, null, 'vac', '', 'นางสาววิชญาภรณ์  วงศ์วิชญ์', 'yes', '2021-11-01 07:43:19', '7h51m5t6lrv8ua1v65cel791in', '110.77.176.35');
+INSERT INTO `user` VALUES ('41', '99788', null, '221', '12345', null, null, null, 'vac', '', 'นางสาวสุวพัชร อินสอน ', 'no', '2021-11-01 07:56:14', 'po8aiq3qjruoe115i5jahehkp8', '110.77.176.35');
+INSERT INTO `user` VALUES ('42', '99788', null, '222', '12345', null, null, null, 'vac', '', 'นางสาวหทัยขวัญ ศโรภาส', 'no', '2021-11-01 12:36:13', '00v9tf887j27i8kc0v74f7juqo', '110.77.176.35');
+INSERT INTO `user` VALUES ('43', '99788', null, '223', '12345', null, null, null, 'vac', '', 'นายพิสัยสิษฐ์ เสือแขม ', 'no', '2021-11-01 12:37:39', 'vi7bhj5m7er30rnsdfbn82lbtp', '110.77.176.35');
+INSERT INTO `user` VALUES ('44', '99788', null, '224', '12345', null, null, null, 'vac', '', 'นางสาวสุทธิรัตน์  พะโพ', 'yes', '2021-10-15 07:28:30', '24ta24p2phms4kfq93rlqqpo7k', '159.192.189.70');
+INSERT INTO `user` VALUES ('45', '99788', null, '601', '12345', null, null, null, 'vac', '', 'นางสาวกนกกาญจน์  อินศรี', 'yes', '2021-11-01 12:53:22', 't655fjdsvs738drambvpqirfvl', '110.77.176.35');
+INSERT INTO `user` VALUES ('46', '99788', null, '602', '12345', null, null, null, 'vac', '', 'นางสาวกรณ์วิกา  พราหมชม', 'yes', '2021-10-11 08:29:02', '4dnui5arb6a1jh5rnostehu5o0', '159.192.207.244');
+INSERT INTO `user` VALUES ('47', '99788', null, '603', '12345', null, null, null, 'vac', '', 'นางสาวธนาภรณ์  วงศ์ชรินรัตน์', 'yes', '2021-11-08 07:48:56', 'ufh0ms8pjr56n18qtvbhm0ps0h', '110.77.172.237');
+INSERT INTO `user` VALUES ('48', '99788', null, '604', '12345', null, null, null, 'vac', '', 'นางสุรีพร  ทิวะทรัพย์', 'yes', '2021-11-08 08:31:01', '94l4b6amc9qup2ht34ijb42m42', '110.77.172.237');
+INSERT INTO `user` VALUES ('49', '99788', null, '605', '12345', null, null, null, 'vac', '', 'นางศิริวรรณ  ภู่สามสาย', 'yes', '2021-11-01 07:53:23', 'qguj3jus9n44qe5rntsaccoml4', '110.77.176.35');
+INSERT INTO `user` VALUES ('50', '99788', null, '606', '12345', null, null, null, 'vac', '', 'นางอาพันชนก  วัฒนกุลชัย', 'yes', '2021-11-01 07:59:53', '275cm6c0q96icld6qabl7h0uhp', '110.77.176.35');
+INSERT INTO `user` VALUES ('51', '99788', null, '607', '12345', null, null, null, 'vac', '', 'นางสาวสุวิตา  สนทิม', 'yes', '2021-10-05 09:20:53', 'nvr0rh90912o9iul8787ph1852', '119.42.101.75');
+INSERT INTO `user` VALUES ('52', '99788', null, '608', '12345', null, null, null, 'vac', '', 'นางสาววันเพ็ญ  โพธิ์ดง', 'yes', '2021-11-01 07:48:31', '4gb52ohot3kq886rejs7j1ctdf', '110.77.176.35');
+INSERT INTO `user` VALUES ('53', '99788', null, '99788', '112233', null, null, null, 'saa', '', 'สสจ.พล', 'yes', '2021-09-25 08:54:12', '1315k4uhv1j6a029qqdlku7ftc', '182.232.245.64');
+INSERT INTO `user` VALUES ('54', '99788', null, '801', '12345', null, null, null, 'vac', '', 'รพ.สต.วัดพริก', 'no', '2021-10-15 08:10:56', 'ffd52k7304nrftqnjr1brn4ptn', '159.192.189.70');
+INSERT INTO `user` VALUES ('55', '99788', null, '666', '12345', null, null, null, 'vac', '', 'ONEsTOP', 'yes', '2021-09-28 12:49:39', '6inmsbj8k10g2fefttah93g89c', '61.7.130.155');
+INSERT INTO `user` VALUES ('56', '99788', null, 'plk005', '12345', null, null, null, 'vac', '', 'ฝ่ายส่งเสริม', 'no', '2021-11-01 14:38:49', '1976oadehn8laeph3geq3pdjh9', '61.19.22.22');
+INSERT INTO `user` VALUES ('57', '99788', null, '802', '12345', null, null, null, 'vac', '', 'รพ.สต.บ้านเสาหิน', 'no', '2021-09-24 08:09:11', '1sgktb1qotski16gevefobona2', '110.77.175.29');
+INSERT INTO `user` VALUES ('58', '99788', null, '803', '12345', null, null, null, 'vac', '', 'รพ.สต.บ้านกร่าง', 'no', '2021-09-24 08:09:18', 'trkifnm24h5vol0j4oiup5u6kg', '110.77.175.29');
+INSERT INTO `user` VALUES ('60', '99788', null, '701', '12345', null, null, null, 'vac', '', '', 'no', '2021-10-11 13:14:32', '3ja1jfnuki80hfftjhm7jcjhcd', '159.192.207.244');
+INSERT INTO `user` VALUES ('61', '99788', null, 'test', 'test', null, null, null, 'vac', '', 'Test', 'yes', '2021-10-30 07:29:25', 'knsjdme3elsb2tehdef6dsstga', '119.76.14.43');
+INSERT INTO `user` VALUES ('62', '99788', null, 'muey', '12345', null, null, null, 'vac', '', 'เจ้ม้วย', 'no', '2021-10-18 08:47:49', 'qs24ahr65dgn76vkbl37ailbv8', '159.192.188.62');
+
+-- ----------------------------
 -- Table structure for visit
 -- ----------------------------
 DROP TABLE IF EXISTS `visit`;
@@ -292,9 +368,9 @@ CREATE TABLE `xray` (
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx` (`patient_id`,`xray_date`,`xray_result`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of xray
 -- ----------------------------
-INSERT INTO `xray` VALUES ('4', '00051', '', '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '', 'ATK', 'Positive', null, null, null, null, null, null, null, null, null);
+INSERT INTO `xray` VALUES ('7', '', '', null, '4', '', '', '2021-11-12', '16:45:35', '', '', '', '', '', '', '', null, '2021-11-12 16:46:42', '100', '2021-11-12 16:46:49', '100');
