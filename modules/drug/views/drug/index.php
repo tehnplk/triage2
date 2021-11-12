@@ -16,7 +16,7 @@ $this->title = 'Drugs';
 
 
     <p>
-        <?= Html::a('เพิ่มจ่ายยา', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
+        <?= Html::a('<i class="far fa-plus"></i> เพิ่มจ่ายยา', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

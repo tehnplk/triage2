@@ -16,5 +16,8 @@ return [
     'drug' => [
         'class' => 'app\modules\drug\Module',
     ],
+    'xray' => [
+        'class' => 'app\modules\xray\Module',
+    ],
 ];
 
