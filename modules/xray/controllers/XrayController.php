@@ -67,6 +67,7 @@ class XrayController extends Controller {
         $patient = \app\models\Patient::findOne($patient_id);
         $model = new Xray();
 
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['success']);

@@ -10,12 +10,13 @@ use yii\grid\GridView;
 $this->title = 'Xrays';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="mt-2"></div>
 <div class="xray-index">
 
 
 
-    <p>
-        <?= Html::a('<i class="far fa-plus"></i> เพิ่ม', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-success btn-create']) ?>
+    <p class="text-center">
+        <?= Html::a('<i class="far fa-plus"></i> เพิ่ม X-RAY', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

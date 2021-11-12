@@ -15,7 +15,7 @@ use app\components\MyLookUp;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-        <div class="col">
+        <div class="col-1">
             <?= $form->field($model, 'hoscode')->textInput(['maxlength' => 5, 'placeholder' => 'รหัสหน่วยงาน 5 หลัก']) ?>
         </div>
         <div class="col-2">

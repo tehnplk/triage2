@@ -13,8 +13,8 @@ $this->title = 'Visits';
 <div class="mt-2"></div>
 <div class="visit-index">
 
-    <p>
-        <?= Html::a('เพิ่มสัญญาณชีพ', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-success btn-create']) ?>
+    <p class="text-center">
+        <?= Html::a('<i class="far fa-plus"></i> เพิ่มสัญญาณชีพ', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
