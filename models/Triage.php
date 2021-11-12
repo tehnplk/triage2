@@ -32,21 +32,19 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Triage extends \yii\db\ActiveRecord
-{
+class Triage extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'triage';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['visit_id', 'patient_id'], 'integer'],
             [['triage_date', 'triage_time', 'lab_date'], 'safe'],
@@ -58,8 +56,7 @@ class Triage extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
@@ -87,4 +84,21 @@ class Triage extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    public function behaviors() {
+        return [
+            [
+                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            [
+                'class' => \yii\behaviors\BlameableBehavior::class,
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+        ];
+    }
+
 }

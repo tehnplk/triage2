@@ -29,21 +29,19 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Xray extends \yii\db\ActiveRecord
-{
+class Xray extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'xray';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['visit_id', 'patient_id'], 'integer'],
             [['xray_date', 'xray_time'], 'safe'],
@@ -56,8 +54,7 @@ class Xray extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
@@ -66,8 +63,8 @@ class Xray extends \yii\db\ActiveRecord
             'patient_id' => 'Patient ID',
             'patient_cid' => 'Patient Cid',
             'patient_fullname' => 'Patient Fullname',
-            'xray_date' => 'Xray Date',
-            'xray_time' => 'Xray Time',
+            'xray_date' => 'วันที่',
+            'xray_time' => 'เวลา',
             'xray_type' => 'Xray Type',
             'xray_result' => 'Xray Result',
             'xray_cat' => 'Xray Cat',
@@ -82,4 +79,21 @@ class Xray extends \yii\db\ActiveRecord
             'updated_by' => 'Updated By',
         ];
     }
+
+    public function behaviors() {
+        return [
+            [
+                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new \yii\db\Expression('NOW()'),
+            ],
+            [
+                'class' => \yii\behaviors\BlameableBehavior::class,
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ],
+        ];
+    }
+
 }
