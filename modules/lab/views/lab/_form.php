@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\MyLookUp;
+use kartik\date\DatePicker;
+use kartik\time\TimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Lab */
@@ -28,10 +30,30 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'lab_date')->textInput() ?>
+            <?php
+            echo $form->field($model, 'lab_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => ''],
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                //'pickerButton' => false,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+            ]);
+            ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'lab_time')->textInput() ?>
+            <?php
+            echo $form->field($model, 'lab_time')->widget(TimePicker::classname(), [
+                'pluginOptions' => [
+                    'showSeconds' => TRUE,
+                    'showMeridian' => FALSE,
+                    'minuteStep' => 5,
+                    'secondStep' => 5,
+                ]
+            ]);
+            ?>
         </div>
 
     </div>

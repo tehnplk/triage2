@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\date\DatePicker;
+use kartik\time\TimePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Drug */
@@ -27,10 +29,30 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'drug_date')->textInput() ?>
+            <?php
+            echo $form->field($model, 'drug_date')->widget(DatePicker::classname(), [
+                'options' => ['placeholder' => ''],
+                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                //'pickerButton' => false,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'todayHighlight' => true,
+                    'format' => 'yyyy-mm-dd'
+                ]
+            ]);
+            ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'drug_time')->textInput() ?>    
+            <?php
+            echo $form->field($model, 'drug_time')->widget(TimePicker::classname(), [
+                'pluginOptions' => [
+                    'showSeconds' => TRUE,
+                    'showMeridian' => FALSE,
+                    'minuteStep' => 5,
+                    'secondStep' => 5,
+                ]
+            ]);
+            ?>
         </div>
 
     </div>
