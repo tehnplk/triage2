@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-12 15:57:00
+Date: 2021-11-12 16:09:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -298,4 +298,3 @@ CREATE TABLE `xray` (
 -- Records of xray
 -- ----------------------------
 INSERT INTO `xray` VALUES ('4', '00051', '', '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '', 'ATK', 'Positive', null, null, null, null, null, null, null, null, null);
-INSERT INTO `xray` VALUES ('5', '07477', '', '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '', 'PCR', 'Positive', null, null, null, null, null, '2021-11-11 23:16:43', '100', '2021-11-12 09:13:37', '100');
