@@ -19,5 +19,11 @@ return [
     'xray' => [
         'class' => 'app\modules\xray\Module',
     ],
+    'triage' => [
+        'class' => 'app\modules\triage\Module',
+    ],
+    'refer' => [
+        'class' => 'app\modules\refer\Module',
+    ],
 ];
 
