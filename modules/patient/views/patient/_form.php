@@ -90,15 +90,16 @@ use app\components\MyLookUp;
     </div>
 
     <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'personal_disease')->textInput(['maxlength' => true]) ?>
+        </div>
         <div class="col-3">
             <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-3">
             <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col">
-            <?= $form->field($model, 'personal_disease')->textInput(['maxlength' => true]) ?>
-        </div>
+
     </div>
 
     <div class="form-group text-center">
