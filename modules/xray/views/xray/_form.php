@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\time\TimePicker;
+use app\components\MyLookUp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Xray */
@@ -64,39 +65,13 @@ use kartik\time\TimePicker;
     </div>
 
 
+    <?= $form->field($model, 'comparison')->dropDownList(MyLookup::xray_comparision(), ['prompt' => '']) ?>
+    <?= $form->field($model, 'finding')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'conclusion')->textarea() ?>
+    <?= $form->field($model, 'covid19_pneumonia_cat')->dropDownList(MyLookup::covid19_pneumonia_cat(), ['prompt' => ''])->label('Category (Buddhachinaraj)') ?>   
+    <?= $form->field($model, 'xray_cat')->dropDownList(MyLookup::xray_categoly(), ['prompt' => ''])->label(' Category (Ramathibodi)') ?>
 
 
-    <div class="row">
-        <div class="col">
-            <?= $form->field($model, 'xray_cat')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col">
-            <?= $form->field($model, 'covid19_pneumonia_cat')->textInput(['maxlength' => true]) ?>
-        </div>
-        <div class="col">
-            <?= $form->field($model, 'conclusion')->textInput(['maxlength' => true]) ?>
-        </div>
-
-
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <?= $form->field($model, 'comparison')->textInput(['maxlength' => true]) ?>
-        </div>
-
-        <div class="col">
-            <?= $form->field($model, 'finding')->textInput(['maxlength' => true]) ?>
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col">
-            <?= $form->field($model, 'note')->textInput(['maxlength' => true]) ?>
-        </div>
-
-
-    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

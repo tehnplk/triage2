@@ -66,6 +66,7 @@ class XrayController extends Controller {
         $this->layout = 'off';
         $patient = \app\models\Patient::findOne($patient_id);
         $model = new Xray();
+        $model->patient_id = $patient_id;
 
 
         if ($this->request->isPost) {
@@ -111,7 +112,7 @@ class XrayController extends Controller {
     public function actionDelete($id) {
         $model = $this->findModel($id);
         $model->delete();
-        return $this->redirect(['index', 'patirnt_id' => $model->patient_id]);
+        return $this->redirect(['index', 'patient_id' => $model->patient_id]);
     }
 
     /**

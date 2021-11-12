@@ -19,7 +19,7 @@ $this->title = 'Xrays';
         <?= Html::a('<i class="far fa-plus"></i> เพิ่ม X-RAY', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <?=
     GridView::widget([
@@ -34,12 +34,12 @@ $this->title = 'Xrays';
             //'patient_id',
             //'patient_cid',
             //'patient_fullname',
-            'xray_date',
+            'xray_date:date:วันที่',
             'xray_time',
-            'xray_type',
-            'xray_result',
-            'xray_cat',
-            'covid19_pneumonia_cat',
+            //'xray_type',
+            //'xray_result',
+            //'xray_cat',
+            'covid19_pneumonia_cat:text:BUD-CAT',
             'conclusion',
             'comparison',
             'finding',
@@ -48,13 +48,15 @@ $this->title = 'Xrays';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
+            ['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
     ?>
 
 
 </div>
+
 
 <?php
 $this->registerJsFile('@web/js/popup.js');
@@ -66,7 +68,7 @@ $js = <<<JS
             e.preventDefault();
             a = $(this).attr('href');
             //$('#modal-create').modal('show').find('#modalContent').load(a);
-            win = popup(a,85,75);
+            win = popup(a,65,90);
             return false;
         }); 
         
@@ -74,7 +76,7 @@ $js = <<<JS
             e.preventDefault();
             a = $(this).attr('href');
             //$('#modal-update').modal('show').find('#modalContent').load(a);
-             win = popup(a,85,75);
+             win = popup(a,65,90);
            return false;
         });
         

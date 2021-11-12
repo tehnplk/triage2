@@ -66,4 +66,43 @@ class MyLookUp extends Component {
         ];
     }
 
+    public static function patient_color() {
+        return [
+            'ฟ้า' => 'ฟ้า',
+            'เขียว' => 'เขียว',
+            'เหลือง' => 'เหลือง',
+            'แดง' => 'แดง',
+            'none' => 'ไม่ได้จัดกลุ่ม'
+        ];
+    }
+
+    public static function xray_categoly() {
+        return [
+            'CAT-1' => 'CAT-1',
+            'CAT-2' => 'CAT-2',
+            'CAT-C' => 'CAT-C',
+            'CAT-3' => 'CAT-3',
+            'CAT-4' => 'CAT-4',
+            'CAT-5' => 'CAT-5',
+        ];
+    }
+
+    public static function covid19_pneumonia_cat() {
+        return [
+            'Negative' => ' Negative for pneumonia',
+            'Suspicious' => 'Suspicious:Equivocal for pneumonia',
+            'Positive' => 'Positive:Typical for COVID-19 pneumonia',
+            'Other diseases' => 'Other diseases'
+        ];
+    }
+
+    public static function xray_comparision() {
+        return [
+            'None' => 'None',
+            'Stable' => 'Stable',
+            'Progression' => 'Progression',
+            'Improvement' => 'Improvement'
+        ];
+    }
+
 }

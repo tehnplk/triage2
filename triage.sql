@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-12 16:26:18
+Date: 2021-11-12 16:45:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -292,7 +292,7 @@ CREATE TABLE `xray` (
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx` (`patient_id`,`xray_date`,`xray_result`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of xray
