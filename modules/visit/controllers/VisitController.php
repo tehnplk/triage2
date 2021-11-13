@@ -9,6 +9,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Risk;
 use app\models\Lab;
+use app\models\Triage;
 
 /**
  * VisitController implements the CRUD actions for Visit model.
@@ -77,6 +78,13 @@ class VisitController extends Controller {
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+
+                $triage = new Triage();
+                $triage->patient_id = $model->patient_id;
+                $triage->visit_id = $model->id;
+                $triage->spo2 = $model->spo2;
+                $triage->save(false);
+
                 return $this->redirect(['success']);
             }
         } else {
@@ -100,6 +108,11 @@ class VisitController extends Controller {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+            $triage = Triage::find()->where(['visit_id' => $model->id])->one();
+            $triage->spo2 = $model->spo2;
+            $triage->save(false);
+
             return $this->redirect(['success']);
         }
 
@@ -119,11 +132,15 @@ class VisitController extends Controller {
         $model = $this->findModel($id);
         $risk = Risk::find()->where(['visit_id' => $id])->one();
         $lab = Lab::find()->where(['visit_id' => $id])->one();
+        $triage = Triage::find()->where(['visit_id' => $id])->one();
         if ($risk) {
             $risk->delete();
         }
         if ($lab) {
             $lab->delete();
+        }
+        if ($triage) {
+            $triage->delete();
         }
         $model->delete();
         \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");
