@@ -47,7 +47,8 @@ class Xray extends \yii\db\ActiveRecord {
             [['xray_date', 'xray_time'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'xray_type', 'xray_result', 'xray_cat', 'covid19_pneumonia_cat', 'conclusion', 'comparison', 'finding', 'note', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
-            [['patient_id', 'xray_date', 'xray_result'], 'unique', 'targetAttribute' => ['patient_id', 'xray_date', 'xray_result']],
+            [['xray_date',], 'unique', 'targetAttribute' => ['patient_id', 'xray_date'], 'message' => 'ข้อมูลซ้ำซ้อนในวันเดียวกัน โปรดแก้ไขข้อมูลเดิม'],
+            [['xray_date'], 'required']
         ];
     }
 

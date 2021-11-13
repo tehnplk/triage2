@@ -22,34 +22,33 @@ use Yii;
  * @property string|null $updated_at
  * @property string|null $updated_by
  */
-class Refer extends \yii\db\ActiveRecord
-{
+class Refer extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'refer';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['visit_id', 'patient_id'], 'integer'],
             [['refer_date', 'refer_time'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'refer_to', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
+            [['refer_date'], 'unique', 'targetAttribute' => ['patient_id', 'refer_date'], 'message' => 'ข้อมูลซ้ำซ้อนในวันเดียวกัน'],
+            [['refer_date', 'refer_to'], 'required']
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'hoscode' => 'Hoscode',
@@ -58,13 +57,14 @@ class Refer extends \yii\db\ActiveRecord
             'patient_id' => 'Patient ID',
             'patient_cid' => 'Patient Cid',
             'patient_fullname' => 'Patient Fullname',
-            'refer_date' => 'Refer Date',
-            'refer_time' => 'Refer Time',
-            'refer_to' => 'Refer To',
+            'refer_date' => 'วันที่',
+            'refer_time' => 'เวลา',
+            'refer_to' => 'ส่งต่อ',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
     }
+
 }

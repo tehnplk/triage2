@@ -10,8 +10,8 @@ use yii\grid\GridView;
 $this->title = 'Visits';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mt-2"></div>
-<div class="visit-index">
+
+<div class="visit-index mt-2">
 
     <p class="text-center">
         <?= Html::a('<i class="far fa-plus"></i> เพิ่มสัญญาณชีพ', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>

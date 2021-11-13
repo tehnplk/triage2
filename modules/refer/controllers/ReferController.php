@@ -35,6 +35,7 @@ class ReferController extends Controller {
      * @return mixed
      */
     public function actionIndex($patient_id = NULL) {
+
         $searchModel = new ReferSearch();
         $searchModel->patient_id = $patient_id;
         $dataProvider = $searchModel->search($this->request->queryParams);
@@ -62,12 +63,17 @@ class ReferController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate($patient_id = NULL) {
+        $this->layout = 'off';
+        $patient = \app\models\Patient::findOne($patient_id);
+
         $model = new Refer();
+        $model->patient_id = $patient_id;
+        $model->refer_date = date('Y-m-d');
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index', 'patient_id' => $model->patient_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -86,10 +92,11 @@ class ReferController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id) {
+        $this->layout = 'off';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index', 'patient_id' => $model->patient_id]);
         }
 
         return $this->render('update', [
@@ -105,9 +112,9 @@ class ReferController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        $model = $this->findModel($id);
+        $model->delete();
+        return $this->redirect(['index', 'patient_id' => $model->patient_id]);
     }
 
     /**

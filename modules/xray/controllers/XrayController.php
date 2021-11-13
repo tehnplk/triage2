@@ -67,6 +67,8 @@ class XrayController extends Controller {
         $patient = \app\models\Patient::findOne($patient_id);
         $model = new Xray();
         $model->patient_id = $patient_id;
+        $model->xray_date = date('Y-m-d');
+        $model->xray_time = date('H:i:s');
 
 
         if ($this->request->isPost) {
