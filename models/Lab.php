@@ -88,4 +88,22 @@ class Lab extends \yii\db\ActiveRecord {
         ];
     }
 
+    public function afterSave($insert, $changedAttributes) {
+        parent::afterSave($insert, $changedAttributes);
+
+
+        $lab_date = new \DateTime($this->lab_date);
+        $diff = $lab_date->diff(new \DateTime(date('Y-m-d')));
+
+        if (in_array($this->lab_result, ['PCR-Positive', 'ATK-Positive'])) {
+            $this->doi = $diff->d + 1;
+        }
+
+        if ($insert) {
+            //no insert
+        } else {
+            $this->updateAttributes(['doi']);
+        }
+    }
+
 }

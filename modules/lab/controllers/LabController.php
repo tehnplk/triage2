@@ -96,6 +96,7 @@ class LabController extends Controller {
 
             $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
             $triage->lab_result = $model->lab_result;
+            $triage->doi = $model->doi;
             $triage->save(false);
 
             return $this->redirect(['success']);
