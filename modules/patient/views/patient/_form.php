@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\MyLookUp;
+use kartik\select2\Select2;
+use kartik\depdrop\DepDrop;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Patient */
@@ -70,23 +72,47 @@ use app\components\MyLookUp;
     </div>
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'addr_no')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'addr_chw')->dropDownList(MyLookUp::chw(), ['prompt' => '', 'id' => 'sel-chw']) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'addr_road')->textInput(['maxlength' => true]) ?>
+            <?php
+            echo $form->field($model, 'addr_amp')->widget(DepDrop::classname(), [
+                'data' => MyLookUp::amp($model->addr_chw),
+                'options' => ['id' => 'sel-amp'],
+                'pluginOptions' => [
+                    'depends' => ['sel-chw'],
+                    'placeholder' => '',
+                    //'initialize' => TRUE,
+                    'url' => yii\helpers\Url::to(['/patient/ajax/list-amp'])
+                ]
+            ]);
+            ?>
+        </div>
+        <div class="col">
+            <?php
+            echo $form->field($model, 'addr_tmb')->widget(DepDrop::classname(), [
+                'data' => MyLookUp::tmb($model->addr_amp),
+                'options' => ['id' => 'sel-tmb'],
+                'pluginOptions' => [
+                    'depends' => ['sel-amp'],
+                    'placeholder' => '',
+                    //'initialize' => TRUE,
+                    'url' => yii\helpers\Url::to(['/patient/ajax/list-tmb'])
+                ]
+            ]);
+            ?>
         </div>
         <div class="col">
             <?= $form->field($model, 'addr_moo')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'addr_tmb')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'addr_road')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'addr_amp')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'addr_no')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col">
-            <?= $form->field($model, 'addr_chw')->textInput(['maxlength' => true]) ?>
-        </div>
+
+
     </div>
 
     <div class="row">

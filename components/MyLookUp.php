@@ -7,6 +7,27 @@ use yii\helpers\ArrayHelper;
 
 class MyLookUp extends Component {
 
+    public static function chw() {
+        $sql = "select code, name from c_changwat order by name asc";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $items = ArrayHelper::map($raw, 'code', 'name');
+        return $items;
+    }
+
+    public static function amp($chw_code) {
+        $sql = "select codefull code, name from c_amp where changwat = '$chw_code'";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $items = ArrayHelper::map($raw, 'code', 'name');
+        return $items;
+    }
+
+    public static function tmb($amp_code) {
+        $sql = "select codefull code, name from c_tmb where ampurcode = '$amp_code'";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $items = ArrayHelper::map($raw, 'code', 'name');
+        return $items;
+    }
+
     public static function byear() {
         $max = date('Y') + 543;
         $min = $max - 120;
