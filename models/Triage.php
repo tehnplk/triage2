@@ -26,6 +26,7 @@ use Yii;
  * @property string|null $lab_result
  * @property string|null $risk
  * @property string|null $color
+ * @property string|null $family
  * @property string|null $refer_to
  * @property string|null $created_at
  * @property string|null $created_by
@@ -49,7 +50,7 @@ class Triage extends \yii\db\ActiveRecord {
             [['visit_id', 'patient_id'], 'integer'],
             [['triage_date', 'triage_time', 'lab_date'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'patient_age', 'patient_gender', 'inscl_code', 'claim_code', 'spo2', 'lab_kind', 'lab_result', 'risk', 'color', 'refer_to', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
-            [['patient_cid'], 'string', 'max' => 13],
+            [['patient_cid', 'family'], 'string', 'max' => 13],
         ];
     }
 
@@ -77,6 +78,7 @@ class Triage extends \yii\db\ActiveRecord {
             'lab_result' => 'การตรวจ',
             'risk' => 'ปัจจัยเสี่ยง',
             'color' => 'สี',
+            'family' => 'ครอบครัว',
             'refer_to' => 'ส่งต่อ',
             'created_at' => 'Created At',
             'created_by' => 'Created By',

@@ -9,24 +9,23 @@ use app\models\Triage;
 /**
  * TriageSearch represents the model behind the search form of `app\models\Triage`.
  */
-class TriageSearch extends Triage
-{
+class TriageSearch extends Triage {
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['id', 'visit_id', 'patient_id'], 'integer'],
             [['hoscode', 'hosname', 'patient_cid', 'patient_fullname', 'patient_age', 'patient_gender', 'triage_date', 'triage_time', 'inscl_code', 'claim_code', 'spo2', 'lab_date', 'lab_kind', 'lab_result', 'risk', 'color', 'refer_to', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
+            [['family'], 'safe']
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -38,8 +37,7 @@ class TriageSearch extends Triage
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
+    public function search($params) {
         $query = Triage::find();
 
         // add conditions that should always apply here
@@ -67,24 +65,26 @@ class TriageSearch extends Triage
         ]);
 
         $query->andFilterWhere(['like', 'hoscode', $this->hoscode])
-            ->andFilterWhere(['like', 'hosname', $this->hosname])
-            ->andFilterWhere(['like', 'patient_cid', $this->patient_cid])
-            ->andFilterWhere(['like', 'patient_fullname', $this->patient_fullname])
-            ->andFilterWhere(['like', 'patient_age', $this->patient_age])
-            ->andFilterWhere(['like', 'patient_gender', $this->patient_gender])
-            ->andFilterWhere(['like', 'inscl_code', $this->inscl_code])
-            ->andFilterWhere(['like', 'claim_code', $this->claim_code])
-            ->andFilterWhere(['like', 'spo2', $this->spo2])
-            ->andFilterWhere(['like', 'lab_kind', $this->lab_kind])
-            ->andFilterWhere(['like', 'lab_result', $this->lab_result])
-            ->andFilterWhere(['like', 'risk', $this->risk])
-            ->andFilterWhere(['like', 'color', $this->color])
-            ->andFilterWhere(['like', 'refer_to', $this->refer_to])
-            ->andFilterWhere(['like', 'created_at', $this->created_at])
-            ->andFilterWhere(['like', 'created_by', $this->created_by])
-            ->andFilterWhere(['like', 'updated_at', $this->updated_at])
-            ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
+                ->andFilterWhere(['like', 'hosname', $this->hosname])
+                ->andFilterWhere(['like', 'patient_cid', $this->patient_cid])
+                ->andFilterWhere(['like', 'patient_fullname', $this->patient_fullname])
+                ->andFilterWhere(['like', 'patient_age', $this->patient_age])
+                ->andFilterWhere(['like', 'patient_gender', $this->patient_gender])
+                ->andFilterWhere(['like', 'inscl_code', $this->inscl_code])
+                ->andFilterWhere(['like', 'claim_code', $this->claim_code])
+                ->andFilterWhere(['like', 'spo2', $this->spo2])
+                ->andFilterWhere(['like', 'lab_kind', $this->lab_kind])
+                ->andFilterWhere(['like', 'lab_result', $this->lab_result])
+                ->andFilterWhere(['like', 'risk', $this->risk])
+                ->andFilterWhere(['like', 'color', $this->color])
+                ->andFilterWhere(['like', 'family', $this->family])
+                ->andFilterWhere(['like', 'refer_to', $this->refer_to])
+                ->andFilterWhere(['like', 'created_at', $this->created_at])
+                ->andFilterWhere(['like', 'created_by', $this->created_by])
+                ->andFilterWhere(['like', 'updated_at', $this->updated_at])
+                ->andFilterWhere(['like', 'updated_by', $this->updated_by]);
 
         return $dataProvider;
     }
+
 }

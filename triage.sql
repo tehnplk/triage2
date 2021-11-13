@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-12 17:01:14
+Date: 2021-11-13 15:44:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -72,13 +72,13 @@ CREATE TABLE `lab` (
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx` (`patient_id`,`lab_date`,`lab_kind`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of lab
 -- ----------------------------
-INSERT INTO `lab` VALUES ('4', '00051', '', '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '', 'ATK', 'Positive', null, null, null, null);
 INSERT INTO `lab` VALUES ('5', '07477', '', '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '', 'PCR', 'Positive', '2021-11-11 23:16:43', '100', '2021-11-12 09:13:37', '100');
+INSERT INTO `lab` VALUES ('9', '00051', '', '18', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-13', '15:35:05', '', '', 'PCR-Positive', '2021-11-13 15:39:16', null, '2021-11-13 15:40:13', null);
 
 -- ----------------------------
 -- Table structure for patient
@@ -146,11 +146,12 @@ CREATE TABLE `refer` (
   `updated_at` varchar(255) DEFAULT NULL,
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of refer
 -- ----------------------------
+INSERT INTO `refer` VALUES ('6', '', '', null, '3', '', '', '2021-11-13', '13:30:35', 'ddddd', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for risk
@@ -183,13 +184,13 @@ CREATE TABLE `risk` (
   `updated_at` varchar(255) DEFAULT NULL,
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of risk
 -- ----------------------------
-INSERT INTO `risk` VALUES ('10', '00051', null, '13', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-11', '22:55:25', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', null, null, '2021-11-12 15:14:42', '100');
 INSERT INTO `risk` VALUES ('11', '07477', null, '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '1', '1', '', '', '', '', '', '', '', '', '', null, '2021-11-11 23:16:43', '100', '2021-11-11 23:16:43', '100');
+INSERT INTO `risk` VALUES ('15', '00051', null, '18', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-13', '15:35:05', '0', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2021-11-13 15:39:16', null, '2021-11-13 15:41:49', null);
 
 -- ----------------------------
 -- Table structure for triage
@@ -215,17 +216,19 @@ CREATE TABLE `triage` (
   `lab_result` varchar(255) DEFAULT '',
   `risk` varchar(255) DEFAULT '',
   `color` varchar(255) DEFAULT NULL,
+  `family` varchar(255) DEFAULT NULL,
   `refer_to` varchar(255) DEFAULT NULL,
   `created_at` varchar(255) DEFAULT NULL,
   `created_by` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of triage
 -- ----------------------------
+INSERT INTO `triage` VALUES ('3', '', null, '18', '3', null, null, null, null, '2021-11-13', '15:35:05', null, null, '95', null, null, 'PCR-Positive', '', null, null, null, '2021-11-13 15:39:16', null, '2021-11-13 15:40:13', null);
 
 -- ----------------------------
 -- Table structure for user
@@ -258,7 +261,7 @@ INSERT INTO `user` VALUES ('1', '99788', null, 'vacc', '112233', null, null, nul
 INSERT INTO `user` VALUES ('2', '99788', null, 'admin', '11223344', null, null, null, 'adm', '', 'งาน Admin', '', '2021-11-08 13:09:28', '1h9kj4ardpqft332if9beevpcr', '110.77.172.237');
 INSERT INTO `user` VALUES ('3', '99788', null, 'regis', '112233', null, null, null, 'vac', '', '', '', '2021-09-03 11:32:09', null, null);
 INSERT INTO `user` VALUES ('4', '99788', null, 'rxrx', '112233', null, null, null, 'rxx', '', 'งานเภสัชกรรม', '', '2021-11-05 10:30:38', 'ua9ss9404vl0h2dopgdhk73g2e', '182.53.170.43');
-INSERT INTO `user` VALUES ('5', '99788', null, 'sasa', '112233', null, null, null, 'saa', '', 'Sa Sa', 'yes', '2021-11-08 14:35:13', 'bs2fikjfpdae6pl3746e8puh7v', '182.232.245.52');
+INSERT INTO `user` VALUES ('5', '99788', null, 'sasa', '112233', null, null, null, 'saa', '', 'Sa Sa', 'yes', '2021-11-12 17:01:43', 'h59loadp3m480v8e74k4p16mq3', '::1');
 INSERT INTO `user` VALUES ('6', '11251', null, 'sa', '112233', null, null, null, 'saa', null, null, null, '2021-09-03 11:09:58', null, null);
 INSERT INTO `user` VALUES ('21', '99788', null, '201', '12345', null, null, null, 'vac', '', 'นายตุลย์  สุขะตุงคะ', 'no', '2021-11-08 13:06:40', 'qaruo9sg69l720p08cje4lengc', '110.77.172.237');
 INSERT INTO `user` VALUES ('22', '99788', null, '202', '12345', null, null, null, 'vac', '', 'นางจรีย์ภัสร์  วัฒนกุลชัย', 'no', '2021-11-08 07:53:21', 'rdj24gk9tfv9hn1g2ir8na3p53', '110.77.172.237');
@@ -332,13 +335,13 @@ CREATE TABLE `visit` (
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx` (`hoscode`,`patient_id`,`visit_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of visit
 -- ----------------------------
-INSERT INTO `visit` VALUES ('13', '00051', null, '3', '3650100810887', 'นายอุเทน จาดยางโทน', '41', '6', '2021-11-11', '22:55:25', '92', '163', '34.6', '36.5', '98', '120', '80', '99', 'ไข้ ไอ', null, null, '2021-11-11 23:16:06', '100');
 INSERT INTO `visit` VALUES ('14', '07477', null, '4', '3650100810887', 'นายทดสอบ ระบบ', '64', '10', '2021-11-11', '23:15:30', '90', '63', '226.8', '37.0', '96', null, null, null, '', '2021-11-11 23:16:43', '100', '2021-11-11 23:16:43', '100');
+INSERT INTO `visit` VALUES ('18', '00051', null, '3', '3650100810887', 'นายอุเทน จาดยางโทน', '41', '6', '2021-11-13', '15:35:05', '98', '168', '34.7', null, '95', null, null, null, '', '2021-11-13 15:39:16', null, '2021-11-13 15:39:16', null);
 
 -- ----------------------------
 -- Table structure for xray
@@ -368,9 +371,10 @@ CREATE TABLE `xray` (
   `updated_by` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx` (`patient_id`,`xray_date`,`xray_result`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of xray
 -- ----------------------------
 INSERT INTO `xray` VALUES ('7', '', '', null, '4', '', '', '2021-11-12', '16:45:35', '', '', '', '', '', '', '', null, '2021-11-12 16:46:42', '100', '2021-11-12 16:46:49', '100');
+INSERT INTO `xray` VALUES ('8', '', '', null, '3', '', '', '2021-11-13', '12:53:08', '', '', '', 'Negative', '', 'None', '', null, '2021-11-13 12:53:11', null, '2021-11-13 12:53:40', null);
