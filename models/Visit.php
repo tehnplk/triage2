@@ -27,6 +27,7 @@ use app\models\Lab;
  * @property int|null $bpd
  * @property int|null $pulse
  * @property string|null $cc อาการ
+ * @property string|null $family
  * @property int|null $age_y
  * @property int|null $age_m
  * @property string|null $created_at
@@ -49,7 +50,7 @@ class Visit extends \yii\db\ActiveRecord {
     public function rules() {
         return [
             [['patient_id', 'bw', 'bh', 'spo2', 'bps', 'bpd', 'pulse', 'age_y', 'age_m'], 'integer'],
-            [['visit_date', 'visit_time'], 'safe'],
+            [['visit_date', 'visit_time', 'family'], 'safe'],
             [['bmi', 'temperature'], 'number'],
             [['hoscode', 'hosname', 'patient_fullname', 'cc', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
@@ -82,6 +83,7 @@ class Visit extends \yii\db\ActiveRecord {
             'cc' => 'อาการเจ็บป่วย',
             'age_y' => 'อายุ(ปี)',
             'age_m' => 'เดือน',
+            'family' => 'ครอบครัว',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',

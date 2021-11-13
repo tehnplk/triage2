@@ -96,9 +96,7 @@ use app\components\MyLookUp;
         <div class="col-3">
             <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-3">
-            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
-        </div>
+
 
     </div>
 

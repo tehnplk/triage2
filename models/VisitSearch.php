@@ -19,6 +19,7 @@ class VisitSearch extends Visit {
             [['id', 'patient_id', 'bw', 'bh', 'spo2', 'bps', 'bpd', 'pulse', 'age_y', 'age_m'], 'integer'],
             [['hoscode', 'hosname', 'patient_cid', 'patient_fullname', 'visit_date', 'visit_time', 'cc', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
             [['bmi', 'temperature'], 'number'],
+            [['family'], 'safe']
         ];
     }
 
@@ -77,6 +78,7 @@ class VisitSearch extends Visit {
                 ->andFilterWhere(['like', 'patient_cid', $this->patient_cid])
                 ->andFilterWhere(['like', 'patient_fullname', $this->patient_fullname])
                 ->andFilterWhere(['like', 'cc', $this->cc])
+                ->andFilterWhere(['like', 'family', $this->family])
                 ->andFilterWhere(['like', 'created_at', $this->created_at])
                 ->andFilterWhere(['like', 'created_by', $this->created_by])
                 ->andFilterWhere(['like', 'updated_at', $this->updated_at])

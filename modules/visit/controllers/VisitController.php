@@ -79,13 +79,18 @@ class VisitController extends Controller {
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
 
+
                 $triage = new Triage();
                 $triage->patient_id = $model->patient_id;
+                $triage->patient_cid = $model->patient_cid;
+                $triage->patient_fullname = $model->patient_fullname;
+                $triage->patient_age = $model->age_y;
                 $triage->visit_id = $model->id;
 
                 $triage->triage_date = $model->visit_date;
                 $triage->triage_time = $model->visit_time;
                 $triage->spo2 = $model->spo2;
+                $triage->family = $model->family;
                 $triage->save(false);
 
                 return $this->redirect(['success']);
@@ -108,12 +113,16 @@ class VisitController extends Controller {
      */
     public function actionUpdate($id) {
         $this->layout = 'off';
+
+
         $model = $this->findModel($id);
+        $patient = \app\models\Patient::findOne($model->patient_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
             $triage = Triage::find()->where(['visit_id' => $model->id])->one();
             $triage->spo2 = $model->spo2;
+            $triage->family = $model->family;
             $triage->save(false);
 
             return $this->redirect(['success']);

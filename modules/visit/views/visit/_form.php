@@ -99,6 +99,12 @@ use kartik\time\TimePicker;
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
