@@ -42,7 +42,7 @@ class Lab extends \yii\db\ActiveRecord {
             [['lab_date', 'lab_time'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'lab_place', 'lab_kind', 'lab_result', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
-            [['patient_id', 'lab_date', 'lab_kind'], 'unique', 'targetAttribute' => ['patient_id', 'lab_date', 'lab_kind']],
+            [['lab_result'], 'unique', 'targetAttribute' => ['visit_id', 'lab_result'], 'message' => 'ข้อมูลซ้ำซ้อน'],
         ];
     }
 
@@ -62,7 +62,7 @@ class Lab extends \yii\db\ActiveRecord {
             'lab_time' => 'เวลาตรวจ',
             'lab_place' => 'สถานที่ตรวจ',
             'lab_kind' => 'ชนิดการตรวจ',
-            'lab_result' => 'ผลตรวจ',
+            'lab_result' => 'ผลการตรวจ',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',

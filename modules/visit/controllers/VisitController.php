@@ -82,6 +82,9 @@ class VisitController extends Controller {
                 $triage = new Triage();
                 $triage->patient_id = $model->patient_id;
                 $triage->visit_id = $model->id;
+
+                $triage->triage_date = $model->visit_date;
+                $triage->triage_time = $model->visit_time;
                 $triage->spo2 = $model->spo2;
                 $triage->save(false);
 

@@ -7,6 +7,7 @@ use app\models\LabSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Triage;
 
 /**
  * LabController implements the CRUD actions for Lab model.
@@ -92,6 +93,11 @@ class LabController extends Controller {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+            $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
+            $triage->lab_result = $model->lab_result;
+            $triage->save(false);
+
             return $this->redirect(['success']);
         }
 

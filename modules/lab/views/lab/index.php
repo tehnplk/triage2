@@ -36,7 +36,7 @@ $this->title = 'Labs';
             'lab_date:date:วันตรวจ',
             'lab_time',
             'lab_place',
-            'lab_kind',
+            //'lab_kind',
             'lab_result',
             //'created_at',
             //'created_by',

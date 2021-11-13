@@ -12,27 +12,45 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-   
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'triage_date')->textInput() ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'triage_time')->textInput() ?>
+        </div>
 
-    <?= $form->field($model, 'triage_date')->textInput() ?>
+    </div>
 
-    <?= $form->field($model, 'triage_time')->textInput() ?>
 
-   
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'spo2')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'lab_result')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'spo2')->textInput(['maxlength' => true]) ?>
+    </div>
 
-   
 
-    <?= $form->field($model, 'lab_result')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'risk')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
+        </div>
 
-    <?= $form->field($model, 'risk')->textInput(['maxlength' => true]) ?>
+    </div>
 
-    <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
+
 
     <?= $form->field($model, 'refer_to')->textInput(['maxlength' => true]) ?>
 
-    
+
+
+
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

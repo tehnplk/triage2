@@ -60,9 +60,11 @@ class MyLookUp extends Component {
     public static function covid_test_result() {
 
         return [
-            'Negative' => 'Negative(-)',
-            'Positive' => 'Positive(+)',
-            'Inconclusive' => 'Inconclusive(สรุปผลไม่ได้)'
+            'ATK-Negative' => 'ATK-Negative(-)',
+            'ATK-Positive' => 'ATK-Positive(+)',
+            'PCR-Negative' => 'PCR-Negative(-)',
+            'PCR-Positive' => 'PCR-Positive(+)',
+            'PCR-Inconclusive' => 'PCR-Inconclusive'
         ];
     }
 

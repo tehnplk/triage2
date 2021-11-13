@@ -64,9 +64,7 @@ use kartik\time\TimePicker;
         <div class="col">
             <?= $form->field($model, 'lab_place')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col">
-            <?= $form->field($model, 'lab_kind')->dropDownList(['ATK' => 'ATK', 'PCR' => 'PCR'], ['prompt' => '']) ?>
-        </div>
+
         <div class="col">
             <?= $form->field($model, 'lab_result')->dropDownList(MyLookUp::covid_test_result(), ['prompt' => '']) ?>
         </div>
