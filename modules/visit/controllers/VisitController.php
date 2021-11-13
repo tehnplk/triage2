@@ -91,6 +91,11 @@ class VisitController extends Controller {
                 $triage->triage_time = $model->visit_time;
                 $triage->spo2 = $model->spo2;
                 $triage->family = $model->family;
+
+                if ($model->age_y >= 60 || $model->bmi >= 30 || $model->bw >= 90) {
+                    $triage->risk = 'มี';
+                }
+
                 $triage->save(false);
 
                 return $this->redirect(['success']);
@@ -124,6 +129,11 @@ class VisitController extends Controller {
             $triage->triage_date = $model->visit_date;
             $triage->triage_time = $model->visit_time;
             $triage->patient_age = $model->age_y;
+            if ($model->age_y >= 60 || $model->bmi >= 30 || $model->bw >= 90) {
+                $triage->risk = 'มี';
+            } else {
+                $triage->risk = 'ไม่มี';
+            }
             $triage->spo2 = $model->spo2;
             $triage->family = $model->family;
             $triage->save(false);

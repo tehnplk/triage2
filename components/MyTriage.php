@@ -16,7 +16,7 @@ class MyTriage extends Component {
         if ($lab_pos) {
             $model->color = 'เขียว';
         }
-        if ($lab_pos && $model->risk) {
+        if ($lab_pos && $model->risk == 'มี') {
             $model->color = 'เหลือง';
         }
         if ($lab_pos && in_array($model->xray, ['Positive', 'Suspicious'])) {

@@ -7,6 +7,7 @@ use app\models\RiskSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Triage;
 
 /**
  * RiskController implements the CRUD actions for Risk model.
@@ -70,6 +71,16 @@ class RiskController extends Controller {
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+
+                $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
+                if ($model->stroke == '1' || $model->suppress == '1' || $model->aging == '1' || $model->bmi == 1 || $model->cancer == 1 || $model->cancer == 1 || $model->cirrhosis == 1 || $model->copd == 1 || $model->dm == 1 || $model->hiv == 1 || $model->ihd == 1 || $model->preg == 1) {
+                    $triage->risk = 'มี';
+                } else {
+                    $triage->risk = 'ไม่มี';
+                }
+
+                $triage->save(false);
+
                 return $this->redirect(['success']);
             }
         } else {
@@ -93,6 +104,16 @@ class RiskController extends Controller {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+            $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
+            if ($model->stroke == 1 || $model->suppress == 1 || $model->aging == 1 || $model->bmi == 1 || $model->cancer == 1 || $model->cancer == 1 || $model->cirrhosis == 1 || $model->copd == 1 || $model->dm == 1 || $model->hiv == 1 || $model->ihd == 1 || $model->preg == 1) {
+                $triage->risk = 'มี';
+            } else {
+                $triage->risk = 'ไม่มี';
+            }
+
+            $triage->save(false);
+
             return $this->redirect(['success']);
         }
 
