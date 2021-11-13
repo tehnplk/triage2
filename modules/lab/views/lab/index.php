@@ -38,12 +38,13 @@ $this->title = 'Labs';
             'lab_place',
             //'lab_kind',
             'lab_result',
+            'doi',
             //'created_at',
             //'created_by',
             //'updated_at',
             //'updated_by',
             ['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
-            //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
+        //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
     ?>

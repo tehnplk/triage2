@@ -42,6 +42,7 @@ $this->title = 'Triages';
             'lab_result:text:LAB',
             'risk:text:ปัจจัยเสี่ยง',
             'color:text:สี',
+            'family',
             'refer_to:text:ส่งต่อ',
             //'created_at',
             //'created_by',

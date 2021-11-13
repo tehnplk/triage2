@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2021-11-13 15:44:44
+Date: 2021-11-13 15:55:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -66,6 +66,7 @@ CREATE TABLE `lab` (
   `lab_place` varchar(255) DEFAULT NULL,
   `lab_kind` varchar(255) DEFAULT '',
   `lab_result` varchar(255) DEFAULT NULL,
+  `doi` int(11) DEFAULT NULL,
   `created_at` varchar(255) DEFAULT NULL,
   `created_by` varchar(255) DEFAULT NULL,
   `updated_at` varchar(255) DEFAULT NULL,
@@ -77,8 +78,8 @@ CREATE TABLE `lab` (
 -- ----------------------------
 -- Records of lab
 -- ----------------------------
-INSERT INTO `lab` VALUES ('5', '07477', '', '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '', 'PCR', 'Positive', '2021-11-11 23:16:43', '100', '2021-11-12 09:13:37', '100');
-INSERT INTO `lab` VALUES ('9', '00051', '', '18', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-13', '15:35:05', '', '', 'PCR-Positive', '2021-11-13 15:39:16', null, '2021-11-13 15:40:13', null);
+INSERT INTO `lab` VALUES ('5', '07477', '', '14', '4', '3650100810887', 'นายทดสอบ ระบบ', '2021-11-11', '23:15:30', '', 'PCR', 'Positive', null, '2021-11-11 23:16:43', '100', '2021-11-12 09:13:37', '100');
+INSERT INTO `lab` VALUES ('9', '00051', '', '18', '3', '3650100810887', 'นายอุเทน จาดยางโทน', '2021-11-13', '15:35:05', '', '', 'PCR-Positive', null, '2021-11-13 15:39:16', null, '2021-11-13 15:40:13', null);
 
 -- ----------------------------
 -- Table structure for patient
@@ -215,6 +216,7 @@ CREATE TABLE `triage` (
   `lab_kind` varchar(255) DEFAULT NULL,
   `lab_result` varchar(255) DEFAULT '',
   `risk` varchar(255) DEFAULT '',
+  `doi` int(11) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `family` varchar(255) DEFAULT NULL,
   `refer_to` varchar(255) DEFAULT NULL,
@@ -228,7 +230,7 @@ CREATE TABLE `triage` (
 -- ----------------------------
 -- Records of triage
 -- ----------------------------
-INSERT INTO `triage` VALUES ('3', '', null, '18', '3', null, null, null, null, '2021-11-13', '15:35:05', null, null, '95', null, null, 'PCR-Positive', '', null, null, null, '2021-11-13 15:39:16', null, '2021-11-13 15:40:13', null);
+INSERT INTO `triage` VALUES ('3', '', null, '18', '3', null, null, null, null, '2021-11-13', '15:35:05', null, null, '95', null, null, 'PCR-Positive', '', null, null, null, null, '2021-11-13 15:39:16', null, '2021-11-13 15:40:13', null);
 
 -- ----------------------------
 -- Table structure for user

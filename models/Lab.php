@@ -19,6 +19,7 @@ use Yii;
  * @property string|null $lab_place
  * @property string|null $lab_kind
  * @property string|null $lab_result
+ * @property int|null $doi
  * @property string|null $created_at
  * @property string|null $created_by
  * @property string|null $updated_at
@@ -38,7 +39,7 @@ class Lab extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['visit_id', 'patient_id'], 'integer'],
+            [['visit_id', 'patient_id', 'doi'], 'integer'],
             [['lab_date', 'lab_time'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'lab_place', 'lab_kind', 'lab_result', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
@@ -63,6 +64,7 @@ class Lab extends \yii\db\ActiveRecord {
             'lab_place' => 'สถานที่ตรวจ',
             'lab_kind' => 'ชนิดการตรวจ',
             'lab_result' => 'ผลการตรวจ',
+            'doi' => 'DOI',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
