@@ -121,6 +121,9 @@ class VisitController extends Controller {
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
             $triage = Triage::find()->where(['visit_id' => $model->id])->one();
+            $triage->triage_date = $model->visit_date;
+            $triage->triage_time = $model->visit_time;
+            $triage->patient_age = $model->age_y;
             $triage->spo2 = $model->spo2;
             $triage->family = $model->family;
             $triage->save(false);
