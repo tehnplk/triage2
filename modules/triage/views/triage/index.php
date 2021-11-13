@@ -41,6 +41,7 @@ $this->title = 'Triages';
             //'lab_kind',
             'lab_result:text:LAB',
             'risk:text:ปัจจัยเสี่ยง',
+            'xray',
             'color:text:สี',
             'doi',
             'family',

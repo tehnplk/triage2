@@ -7,6 +7,7 @@ use app\models\XraySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Triage;
 
 /**
  * XrayController implements the CRUD actions for Xray model.
@@ -65,7 +66,9 @@ class XrayController extends Controller {
     public function actionCreate($patient_id = NULL) {
         $this->layout = 'off';
         $patient = \app\models\Patient::findOne($patient_id);
+        $max_visit = \app\models\Visit::find()->where(['patient_id' => $patient_id])->max('id');
         $model = new Xray();
+        $model->visit_id = $max_visit;
         $model->patient_id = $patient_id;
         $model->xray_date = date('Y-m-d');
         $model->xray_time = date('H:i:s');
@@ -73,6 +76,11 @@ class XrayController extends Controller {
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+
+                $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
+                $triage->xray = $model->covid19_pneumonia_cat;
+                $triage->save(false);
+
                 return $this->redirect(['success']);
             }
         } else {
@@ -96,6 +104,10 @@ class XrayController extends Controller {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+
+            $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
+            $triage->xray = $model->covid19_pneumonia_cat;
+            $triage->save(false);
             return $this->redirect(['success']);
         }
 

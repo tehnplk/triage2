@@ -18,7 +18,7 @@ class TriageSearch extends Triage {
         return [
             [['id', 'visit_id', 'patient_id', 'doi'], 'integer'],
             [['hoscode', 'hosname', 'patient_cid', 'patient_fullname', 'patient_age', 'patient_gender', 'triage_date', 'triage_time', 'inscl_code', 'claim_code', 'spo2', 'lab_date', 'lab_kind', 'lab_result', 'risk', 'color', 'refer_to', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
-            [['family'], 'safe']
+            [['family', 'xray'], 'safe']
         ];
     }
 
@@ -77,6 +77,7 @@ class TriageSearch extends Triage {
                 ->andFilterWhere(['like', 'lab_kind', $this->lab_kind])
                 ->andFilterWhere(['like', 'lab_result', $this->lab_result])
                 ->andFilterWhere(['like', 'risk', $this->risk])
+                ->andFilterWhere(['like', 'xray', $this->xray])
                 ->andFilterWhere(['like', 'color', $this->color])
                 ->andFilterWhere(['like', 'family', $this->family])
                 ->andFilterWhere(['like', 'refer_to', $this->refer_to])
