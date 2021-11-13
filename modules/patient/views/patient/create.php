@@ -21,3 +21,11 @@ $this->title = 'Create Patient';
     ?>
 
 </div>
+
+<?php
+$js = <<<JS
+        
+        $('#sel-chw').val('65').trigger("change");
+        console.log('js');
+JS;
+$this->registerJs($js);
