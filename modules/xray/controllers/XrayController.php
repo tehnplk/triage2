@@ -125,7 +125,13 @@ class XrayController extends Controller {
      */
     public function actionDelete($id) {
         $model = $this->findModel($id);
+
+        $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
+        $triage->xray = '';
+        $triage->save(false);
+
         $model->delete();
+
         return $this->redirect(['index', 'patient_id' => $model->patient_id]);
     }
 
