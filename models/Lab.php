@@ -44,6 +44,7 @@ class Lab extends \yii\db\ActiveRecord {
             [['hoscode', 'hosname', 'patient_fullname', 'lab_place', 'lab_kind', 'lab_result', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
             [['lab_result'], 'unique', 'targetAttribute' => ['visit_id', 'lab_result'], 'message' => 'ข้อมูลซ้ำซ้อน'],
+            [['lab_result'], 'required']
         ];
     }
 
@@ -97,6 +98,8 @@ class Lab extends \yii\db\ActiveRecord {
 
         if (in_array($this->lab_result, ['PCR-Positive', 'ATK-Positive'])) {
             $this->doi = $diff->d + 1;
+        } else {
+            $this->doi = new \yii\db\Expression('NULL');
         }
 
         if ($insert) {
