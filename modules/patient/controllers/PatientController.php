@@ -7,6 +7,7 @@ use app\models\PatientSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\components\MyRole;
 
 /**
  * PatientController implements the CRUD actions for Patient model.
@@ -52,6 +53,9 @@ class PatientController extends Controller {
      */
     public function actionIndex() {
         $searchModel = new PatientSearch();
+        if (MyRole::is_reg()) {
+            $searchModel->hoscode = \Yii::$app->user->identity->hoscode;
+        }
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [

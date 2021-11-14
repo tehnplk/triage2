@@ -19,7 +19,7 @@ $this->title = 'Patients';
         <?= Html::a('<i class="far fa-plus"></i> เพิ่มรายชื่อ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <?=
     GridView::widget([
@@ -28,7 +28,10 @@ $this->title = 'Patients';
         'columns' => [
             // ['class' => 'yii\grid\SerialColumn'],
             'id',
-            'hoscode',
+            [
+                'attribute' => 'hoscode',
+                'filter' => !app\components\MyRole::is_reg()
+            ],
             // 'hosname',
             [
                 'attribute' => 'cid',

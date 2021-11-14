@@ -55,6 +55,16 @@ class MyRole extends Component {
         return FALSE;
     }
 
+    public static function is_reg() {
+        $allow_group = ['reg'];
+
+        $user_group = substr(self::getRole(), 0, 3);
+        if (in_array($user_group, $allow_group)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
     public static function can_reg() {
         $allow_group = ['reg', 'tri', 'med', 'adm'];
 
@@ -76,7 +86,7 @@ class MyRole extends Component {
     }
 
     public static function is_med() {
-        $allow_group = ['adm','med'];
+        $allow_group = ['adm', 'med'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -86,7 +96,7 @@ class MyRole extends Component {
     }
 
     public static function can_med() {
-        $allow_group = ['adm','med'];
+        $allow_group = ['adm', 'med'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
