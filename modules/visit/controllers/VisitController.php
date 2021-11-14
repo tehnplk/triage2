@@ -81,12 +81,23 @@ class VisitController extends Controller {
 
 
                 $triage = new Triage();
+                $triage->hoscode = $patient->hoscode;
+                $hos = \app\models\Hos::findOne($patient->hoscode);
+                if ($hos) {
+                    $triage->hosname = $hos->name;
+                }
                 $triage->patient_id = $model->patient_id;
                 $triage->patient_cid = $model->patient_cid;
                 $triage->patient_fullname = $model->patient_fullname;
+                $triage->patient_gender = $patient->gender;
                 $triage->patient_age = $model->age_y;
-                $triage->visit_id = $model->id;
 
+                $chw = \app\models\Changwat::findOne($patient->addr_chw);
+                $triage->patient_chw = $chw->name;
+                $amp = \app\models\Amphur::find()->where(['codefull' => $patient->addr_amp])->one();
+                $triage->patient_amp = $amp->name;
+
+                $triage->visit_id = $model->id;
                 $triage->triage_date = $model->visit_date;
                 $triage->triage_time = $model->visit_time;
                 $triage->spo2 = $model->spo2;
@@ -126,9 +137,27 @@ class VisitController extends Controller {
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
             $triage = Triage::find()->where(['visit_id' => $model->id])->one();
+
+            $triage->hoscode = $patient->hoscode;
+            $hos = \app\models\Hos::findOne($patient->hoscode);
+            if ($hos) {
+                $triage->hosname = $hos->name;
+            }
+
+            $triage->patient_id = $model->patient_id;
+            $triage->patient_cid = $model->patient_cid;
+            $triage->patient_fullname = $model->patient_fullname;
+            $triage->patient_gender = $patient->gender;
+            $triage->patient_age = $model->age_y;
+
+            $chw = \app\models\Changwat::findOne($patient->addr_chw);
+            $triage->patient_chw = $chw->name;
+            $amp = \app\models\Amphur::find()->where(['codefull' => $patient->addr_amp])->one();
+            $triage->patient_amp = $amp->name;
+
             $triage->triage_date = $model->visit_date;
             $triage->triage_time = $model->visit_time;
-            $triage->patient_age = $model->age_y;
+
             if ($model->age_y >= 60 || $model->bmi >= 30 || $model->bw >= 90) {
                 $triage->risk = 'มี';
             } else {
@@ -136,6 +165,13 @@ class VisitController extends Controller {
             }
             $triage->spo2 = $model->spo2;
             $triage->family = $model->family;
+
+
+            $chw = \app\models\Changwat::findOne($patient->addr_chw);
+            $triage->patient_chw = $chw->name;
+            $amp = \app\models\Amphur::find()->where(['codefull' => $patient->addr_amp])->one();
+            $triage->patient_amp = $amp->name;
+
             $triage->save(false);
 
             return $this->redirect(['success']);
