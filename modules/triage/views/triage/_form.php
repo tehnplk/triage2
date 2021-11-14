@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\components\MyLookUp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Triage */
@@ -39,7 +40,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'risk')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'color')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
 
     </div>

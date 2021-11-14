@@ -3,6 +3,9 @@
 namespace app\models;
 
 use Yii;
+use app\models\Changwat;
+use app\models\Amphur;
+use app\models\Tmb;
 
 /**
  * This is the model class for table "patient".
@@ -31,8 +34,11 @@ use Yii;
  * @property string|null $addr_road
  * @property string|null $addr_moo
  * @property string|null $addr_tmb
+ * @property string|null $addr_tmb_name
  * @property string|null $addr_amp
+ * @property string|null $addr_amp_name
  * @property string|null $addr_chw
+ * @property string|null $addr_chw_name
  * @property string|null $tel
  * @property string|null $created_at
  * @property string|null $created_by
@@ -61,7 +67,8 @@ class Patient extends \yii\db\ActiveRecord {
             [['hoscode', 'cid', 'prefix', 'first_name', 'last_name', 'gender', 'bdate', 'bmon', 'byear'], 'required'],
             [['cid'], 'unique', 'targetAttribute' => ['hoscode', 'cid'], 'message' => 'เลขบัตรนี้มีในระบบอยู่แล้ว'],
             [['cid'], 'my_validate_cid'],
-            [['hoscode'], 'my_validate_hoscode']
+            [['hoscode'], 'my_validate_hoscode'],
+            [['addr_tmb_name', 'addr_amp_name', 'addr_chw_name',], 'string']
         ];
     }
 
@@ -96,6 +103,9 @@ class Patient extends \yii\db\ActiveRecord {
             'addr_tmb' => 'ตำบล',
             'addr_amp' => 'อำเภอ',
             'addr_chw' => 'จังหวัด',
+            'addr_tmb_name' => 'ตำบล',
+            'addr_amp_name' => 'อำเภอ',
+            'addr_chw_name' => 'จังหวัด',
             'tel' => 'เบอร์ติดต่อ',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
@@ -154,17 +164,29 @@ class Patient extends \yii\db\ActiveRecord {
         $this->age_m = $diff->m;
         $this->age_d = $diff->d;
         //จบอายุ
+        //ที่อยู่
+        $tmb = Tmb::find()->where(['codefull' => $this->addr_tmb])->one();
+        $this->addr_tmb_name = $tmb->name;
 
+        $amp = Amphur::find()->where(['codefull' => $this->addr_amp])->one();
+        $this->addr_amp_name = $amp->name;
+
+        $chw = Changwat::findOne($this->addr_chw);
+        $this->addr_chw_name = $chw->name;
+
+        //ชื่อ
         $this->full_name = "$this->prefix$this->first_name $this->last_name";
 
         if ($insert) {
             $this->updateAttributes(['birth']);
             $this->updateAttributes(['age_y', 'age_m', 'age_d']);
             $this->updateAttributes(['full_name']);
+            $this->updateAttributes(['addr_tmb_name', 'addr_amp_name', 'addr_chw_name']);
         } else {
             $this->updateAttributes(['birth']);
             $this->updateAttributes(['age_y', 'age_m', 'age_d']);
             $this->updateAttributes(['full_name']);
+            $this->updateAttributes(['addr_tmb_name', 'addr_amp_name', 'addr_chw_name']);
         }
     }
 

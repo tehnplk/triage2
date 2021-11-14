@@ -89,7 +89,7 @@ class MyLookUp extends Component {
         ];
     }
 
-    public static function patient_color() {
+    public static function trigger_color() {
         return [
             'ฟ้า' => 'ฟ้า',
             'เขียว' => 'เขียว',

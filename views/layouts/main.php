@@ -45,7 +45,7 @@ AppAsset::register($this);
             <?php
             $mnu_items = [
                 ['label' => '<i class="far fa-address-card"></i> รายชื่อ', 'url' => ['/patient/patient/index']],
-                ['label' => '<span style="color:lime"><i class="far fa-circle"></i></span> แยกสี', 'url' => ['/patient/patient/index']],
+                ['label' => '<span style="color:lime"><i class="far fa-circle"></i></span> คัดแยกสี', 'url' => ['/triage/triage/list']],
             ];
 
             if (!\Yii::$app->user->isGuest) {

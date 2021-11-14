@@ -34,6 +34,16 @@ class TriageController extends Controller {
      * Lists all Triage models.
      * @return mixed
      */
+    public function actionList() {
+        $searchModel = new TriageSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('list', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
+
     public function actionIndex($patient_id = NULL) {
         $searchModel = new TriageSearch();
         $searchModel->patient_id = $patient_id;
@@ -90,6 +100,18 @@ class TriageController extends Controller {
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['index', 'patient_id' => $model->patient_id]);
+        }
+
+        return $this->renderAjax('update', [
+                    'model' => $model,
+        ]);
+    }
+
+    public function actionUpdateList($id) {
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            return $this->redirect(['list']);
         }
 
         return $this->renderAjax('update', [
