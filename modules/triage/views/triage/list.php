@@ -138,6 +138,9 @@ $this->title = 'Triages';
                 'label' => 'เลข13หลัก',
                 'format' => 'raw',
                 'value' => function($model) {
+                    if(MyRole::is_reg() && !MyRole::isHoscodeMatch($model->hoscode)){
+                        return $model->patient_cid;
+                    }
                     return Html::a($model->patient_cid, ['/patient/patient/update', 'id' => $model->patient_id], ['target' => '_blank']);
                 }
             ],
