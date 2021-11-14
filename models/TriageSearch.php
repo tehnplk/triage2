@@ -67,6 +67,13 @@ class TriageSearch extends Triage {
             'patient_amp' => $this->patient_amp
         ]);
 
+        if ($this->color == 'none') {
+            $query->andFilterWhere(['is', 'color', new \yii\db\Expression('null')])
+                    ->orFilterWhere(['=', 'color', '']);
+        } else {
+            $query->andFilterWhere(['color' => $this->color]);
+        }
+
         $query->andFilterWhere(['like', 'hoscode', $this->hoscode])
                 ->andFilterWhere(['like', 'hosname', $this->hosname])
                 ->andFilterWhere(['like', 'patient_cid', $this->patient_cid])
@@ -80,7 +87,7 @@ class TriageSearch extends Triage {
                 ->andFilterWhere(['like', 'lab_result', $this->lab_result])
                 ->andFilterWhere(['like', 'risk', $this->risk])
                 ->andFilterWhere(['like', 'xray', $this->xray])
-                ->andFilterWhere(['like', 'color', $this->color])
+                //->andFilterWhere(['like', 'color', $this->color])
                 ->andFilterWhere(['like', 'family', $this->family])
                 ->andFilterWhere(['like', 'refer_to', $this->refer_to])
                 ->andFilterWhere(['like', 'created_at', $this->created_at])
