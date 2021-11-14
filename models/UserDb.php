@@ -28,7 +28,7 @@ class UserDb extends ActiveRecord implements IdentityInterface {
      * @inheritdoc
      */
     public static function tableName() {
-        return 'user';
+        return 'c_user';
     }
 
     /**
