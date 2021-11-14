@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap4\Modal;
+use app\components\MyRole;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TriageSearch */
@@ -50,7 +51,11 @@ $this->title = 'Triages';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
+            [
+                'class' => 'yii\grid\ActionColumn', 
+                'template' => "{update}",
+                'visible' => MyRole::can_tri()
+            ],
         //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
