@@ -18,6 +18,8 @@ class AjaxController extends Controller {
 
         if (empty($triage_date)) {
             $date = date('Y-m-d');
+        } else {
+            $date = $triage_date;
         }
         $sql = "select t.id from triage t where t.triage_date = '$date' ";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();

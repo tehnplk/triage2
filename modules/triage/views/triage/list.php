@@ -5,6 +5,10 @@ use yii\grid\GridView;
 use yii\bootstrap4\Modal;
 use app\components\MyLookUp;
 use yii\helpers\Url;
+use kartik\date\DatePicker;
+use yii\helpers\ArrayHelper;
+use app\components\MyDate;
+use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TriageSearch */
@@ -50,11 +54,52 @@ $this->title = 'Triages';
 </style>
 <div class="triage-index mt-2">
 
-    <p class="text-center">
-        <button class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
-    </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <div class="triage-search">
+
+        <?php
+        $form = ActiveForm::begin([
+                    'action' => ['list'],
+                    'method' => 'get',
+        ]);
+        ?>
+
+
+        <div class="row">
+            <div class="col-3">
+                <?php //echo $form->field($searchModel, 'triage_date') ?>
+                <?php
+                echo $form->field($searchModel, 'triage_date')->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => ''],
+                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                    //'pickerButton' => false,
+                    'pluginOptions' => [
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                        'format' => 'yyyy-mm-dd'
+                    ]
+                ]);
+                ?>
+            </div>
+            <div class="col-1">
+                <p style="margin-top: 30px">
+                    <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger']) ?>
+                </p>
+            </div>
+            <div class="col">
+                <p style="margin-top: 30px">
+                    <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
+                </p>
+            </div>
+        </div>
+
+
+
+        <?php ActiveForm::end(); ?>
+
+    </div>
+
 
     <?=
     GridView::widget([
@@ -67,7 +112,25 @@ $this->title = 'Triages';
             //'hosname',
             //'visit_id',
             'patient_id',
-            'triage_date:date:วันที่',
+            [
+                'attribute' => 'triage_date',
+                'value' => 'triage_date',
+                'format' => 'date',
+            /* 'label' => "วันมา",
+              'filter' => DatePicker::widget([
+              'type' => DatePicker::TYPE_INPUT,
+              'model' => $searchModel,
+              'name' => 'TriageSearch[triage_date]',
+              'value' => ArrayHelper::getValue($_GET, "TriageSearch.triage_date"),
+              'pluginOptions' => [
+              'format' => 'yyyy-mm-dd',
+              'autoclose' => true,
+              ]
+              ]),
+              'value' => function($model) {
+              return MyDate::thaiDate($model->triage_date);
+              } */
+            ],
             'triage_time:time:เวลา',
             [
                 'attribute' => 'patient_cid',
