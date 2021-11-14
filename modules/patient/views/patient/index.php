@@ -34,7 +34,7 @@ $this->title = 'Patients';
                 'attribute' => 'cid',
                 'format' => 'raw',
                 'value' => function($model) {
-                    $link1 = Html::a($model->cid, ['update', 'id' => $model->id], ['class' => 'text-dark a-update']);
+                    $link1 = Html::a($model->cid, ['update', 'id' => $model->id], []);
                     $link2 = Html::a('<i class="far fa-external-link-alt"></i>', ['update', 'id' => $model->id], ['class' => 'text-dark', 'target' => '_blank']);
                     return "<a class='d-flex justify-content-between'>" . $link1 . "</a>";
                 }

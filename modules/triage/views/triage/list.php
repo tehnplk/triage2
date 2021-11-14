@@ -108,10 +108,10 @@ $this->title = 'Triages';
         'columns' => [
             //['class' => 'yii\grid\SerialColumn'],
             //'id',
-            //'hoscode',
+            'hoscode',
             //'hosname',
             //'visit_id',
-            'patient_id',
+            'patient_id:text:ลำดับ',
             [
                 'attribute' => 'triage_date',
                 'value' => 'triage_date',
@@ -134,6 +134,7 @@ $this->title = 'Triages';
             'triage_time:time:เวลา',
             [
                 'attribute' => 'patient_cid',
+                'label' => 'เลข13หลัก',
                 'format' => 'raw',
                 'value' => function($model) {
                     return Html::a($model->patient_cid, ['/patient/patient/update', 'id' => $model->patient_id], ['target' => '_blank']);

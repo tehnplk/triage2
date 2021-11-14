@@ -15,10 +15,10 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'triage_date')->textInput() ?>
+            <?= $form->field($model, 'triage_date')->textInput(['disabled' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'triage_time')->textInput() ?>
+            <?= $form->field($model, 'triage_time')->textInput(['disabled' => true]) ?>
         </div>
 
     </div>
@@ -26,10 +26,10 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'spo2')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'spo2')->textInput(['disabled' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'lab_result')->dropDownList(MyLookUp::covid_test_result(), ['prompt' => '']) ?>
+            <?= $form->field($model, 'lab_result')->dropDownList(MyLookUp::covid_test_result(), ['prompt' => '', 'disabled' => true]) ?>
         </div>
 
     </div>
@@ -37,17 +37,30 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'risk')->dropDownList(['มี' => 'มี', 'ไม่มี' => 'ไม่มี'], ['prompt' => '']) ?>
+            <?= $form->field($model, 'risk')->dropDownList(['มี' => 'มี', 'ไม่มี' => 'ไม่มี'], ['prompt' => '', 'disabled' => true]) ?>
         </div>
+        <div class="col">
+            <?= $form->field($model, 'xray')->dropDownList(MyLookUp::covid19_pneumonia_cat(), ['prompt' => '', 'disabled' => true]) ?>
+        </div>
+
+
+    </div>
+
+    <div class="row">
         <div class="col">
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
+        <div class="col">
+            <?= $form->field($model, 'refer_to')->textInput(['maxlength' => true]) ?>
 
+
+        </div>
+        <div class="col">
+            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
+
+
+        </div>
     </div>
-
-
-
-    <?= $form->field($model, 'refer_to')->textInput(['maxlength' => true]) ?>
 
 
 
