@@ -29,7 +29,7 @@ use app\components\MyLookUp;
             <?= $form->field($model, 'spo2')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'lab_result')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'lab_result')->dropDownList(MyLookUp::covid_test_result(), ['prompt' => '']) ?>
         </div>
 
     </div>
@@ -37,7 +37,7 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
-            <?= $form->field($model, 'risk')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'risk')->dropDownList(['มี' => 'มี', 'ไม่มี' => 'ไม่มี'], ['prompt' => '']) ?>
         </div>
         <div class="col">
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>

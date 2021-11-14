@@ -69,7 +69,13 @@ $this->title = 'Triages';
             'patient_id',
             'triage_date:date:วันที่',
             'triage_time:time:เวลา',
-            'patient_cid:text:เลข13หลัก',
+            [
+                'attribute' => 'patient_cid',
+                'format' => 'raw',
+                'value' => function($model) {
+                    return Html::a($model->patient_cid, ['/patient/patient/update', 'id' => $model->patient_id], ['target' => '_blank']);
+                }
+            ],
             'patient_fullname:text:ชื่อ-สกุล',
             'patient_gender:text:เพศ',
             'patient_age:integer:อายุ(ปี)',
