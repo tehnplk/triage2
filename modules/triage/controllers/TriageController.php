@@ -20,6 +20,27 @@ class TriageController extends Controller {
         return array_merge(
                 parent::behaviors(),
                 [
+                    'access' => [
+                        'class' => \yii\filters\AccessControl::className(),
+                        'only' => ['list', 'index', 'view', 'create', 'update', 'update-list', 'delete'],
+                        'rules' => [
+                            [
+                                'actions' => ['list', 'index', 'view',],
+                                'allow' => \app\components\MyRole::can_reg(),
+                                'roles' => ['@'],
+                            ],
+                            [
+                                'actions' => ['create', 'update', 'update-list'],
+                                'allow' => \app\components\MyRole::can_tri(),
+                                'roles' => ['@'],
+                            ],
+                            [
+                                'actions' => ['delete'],
+                                'allow' => \app\components\MyRole::can_tri(),
+                                'roles' => ['@'],
+                            ],
+                        ],
+                    ],
                     'verbs' => [
                         'class' => VerbFilter::className(),
                         'actions' => [

@@ -16,7 +16,7 @@ class MyRole extends Component {
     }
 
     public static function is_adm() {
-        $allow_group = ['saa', 'adm'];
+        $allow_group = ['adm'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -26,7 +26,7 @@ class MyRole extends Component {
     }
 
     public static function can_adm() {
-        $allow_group = ['saa', 'adm'];
+        $allow_group = ['adm'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -46,7 +46,7 @@ class MyRole extends Component {
     }
 
     public static function can_rxx() {
-        $allow_group = ['saa', 'rxx'];
+        $allow_group = ['adm', 'rxx'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -56,7 +56,7 @@ class MyRole extends Component {
     }
 
     public static function can_reg() {
-        $allow_group = ['saa', 'reg', 'vac', 'adm'];
+        $allow_group = ['reg', 'tri', 'med', 'adm'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -65,8 +65,8 @@ class MyRole extends Component {
         return FALSE;
     }
 
-    public static function can_vac() {
-        $allow_group = ['saa', 'vac', 'adm'];
+    public static function can_tri() {
+        $allow_group = ['tri', 'adm', 'med'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -75,8 +75,8 @@ class MyRole extends Component {
         return FALSE;
     }
 
-    public static function can_root() {
-        $allow_group = ['saa'];
+    public static function is_med() {
+        $allow_group = ['adm','med'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {
@@ -85,12 +85,8 @@ class MyRole extends Component {
         return FALSE;
     }
 
-    public static function can_pt() {
-        return self::can_reg();
-    }
-
-    public static function can_box() {
-        $allow_group = ['box'];
+    public static function can_med() {
+        $allow_group = ['adm','med'];
 
         $user_group = substr(self::getRole(), 0, 3);
         if (in_array($user_group, $allow_group)) {

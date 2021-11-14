@@ -94,7 +94,7 @@ class SiteController extends Controller {
             $u->last_session = \Yii::$app->session->id;
             $u->last_ip = \Yii::$app->getRequest()->getUserIP();
             $u->save(FALSE);
-            return $this->goBack();
+            return $this->redirect(['/triage/triage/list']);
         }
 
         $model->password = '';

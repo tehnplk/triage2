@@ -20,6 +20,22 @@ class PatientController extends Controller {
         return array_merge(
                 parent::behaviors(),
                 [
+                    'access' => [
+                        'class' => \yii\filters\AccessControl::className(),
+                        'only' => ['index', 'view', 'create', 'update', 'delete'],
+                        'rules' => [
+                            [
+                                'actions' => ['index', 'view', 'create', 'update'],
+                                'allow' => \app\components\MyRole::can_reg(),
+                                'roles' => ['@'],
+                            ],
+                            [
+                                'actions' => ['delete'],
+                                'allow' => \app\components\MyRole::can_adm(),
+                                'roles' => ['@'],
+                            ],
+                        ],
+                    ],
                     'verbs' => [
                         'class' => VerbFilter::className(),
                         'actions' => [

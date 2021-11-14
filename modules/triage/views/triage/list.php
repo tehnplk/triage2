@@ -9,6 +9,7 @@ use kartik\date\DatePicker;
 use yii\helpers\ArrayHelper;
 use app\components\MyDate;
 use yii\widgets\ActiveForm;
+use app\components\MyRole;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TriageSearch */
@@ -87,7 +88,7 @@ $this->title = 'Triages';
                     <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger']) ?>
                 </p>
             </div>
-            <div class="col">
+            <div class="col" style="display: <?= MyRole::can_tri() ? '' : 'none' ?>">
                 <p style="margin-top: 30px">
                     <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
                 </p>
@@ -187,7 +188,8 @@ $this->title = 'Triages';
                 'label' => '',
                 'value' => function($model) {
                     return Html::a('<i class="fas fa-pen"></i>', ['update-list', 'id' => $model->id], ['class' => 'btn-update']);
-                }
+                },
+                'visible' => MyRole::can_tri()
             ]
         //['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
         //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
