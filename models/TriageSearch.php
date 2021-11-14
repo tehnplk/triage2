@@ -44,6 +44,7 @@ class TriageSearch extends Triage {
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['patient_id' => SORT_DESC]],
         ]);
 
         $this->load($params);

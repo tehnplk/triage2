@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\bootstrap4\Modal;
 use app\components\MyLookUp;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TriageSearch */
@@ -12,9 +13,46 @@ use app\components\MyLookUp;
 $this->title = 'Triages';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
+
+    .blue {
+        height: 22px;
+        width: 22px;
+        background-color: blue;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .green {
+        height: 22px;
+        width: 22px;
+        background-color: limegreen;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .yellow {
+        height: 22px;
+        width: 22px;
+        background-color: yellow;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .red {
+        height: 22px;
+        width: 22px;
+        background-color: #ff4500;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+</style>
 <div class="triage-index mt-2">
 
-
+    <p class="text-center">
+        <button class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
+    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -23,12 +61,12 @@ $this->title = 'Triages';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            //['class' => 'yii\grid\SerialColumn'],
             //'id',
             //'hoscode',
             //'hosname',
             //'visit_id',
-            //'patient_id',
+            'patient_id',
             'triage_date:date:วันที่',
             'triage_time:time:เวลา',
             'patient_cid:text:เลข13หลัก',
@@ -45,7 +83,26 @@ $this->title = 'Triages';
             'xray',
             [
                 'attribute' => 'color',
-                'filter' => MyLookUp::trigger_color()
+                'format' => 'raw',
+                'filter' => MyLookUp::trigger_color(),
+                'value' => function($model) {
+                    if ($model->color == 'ฟ้า') {
+                        return "<div class='blue'><div>";
+                    }
+                    if ($model->color == 'เขียว') {
+                        return "<div class='green'><div>";
+                    }
+                    if ($model->color == 'เหลือง') {
+                        return "<div class='yellow'><div>";
+                    }
+                    if ($model->color == 'แดง') {
+                        return "<div class='red'><div>";
+                    }
+                    return "<div>-<div>";
+                },
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'text-align:center'];
+                }
             ],
             'doi',
             'family',
@@ -94,6 +151,8 @@ Modal::end();
 <?php
 $this->registerJsFile('@web/js/popup.js');
 
+$url_color = Url::to(['/triage/ajax/auto-triage', 'triage_date' => $searchModel->triage_date]);
+
 $js = <<<JS
     $(function(){
           
@@ -120,6 +179,19 @@ $js = <<<JS
                 return false;
             }
             
+        });
+        
+        $('.btn-auto').click(function(){
+            if(!confirm('ยืนยันการจัดกลุ่มอัตโนมัติ')){
+                return false;
+            }
+            //$('.label-auto').show();
+            $.get('$url_color',function(data){
+                alert(data);
+                //$('.label-auto').hide();
+                window.location.reload();
+            });
+       
         });
         
         

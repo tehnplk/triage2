@@ -7,7 +7,7 @@ use app\models\Triage;
 
 class MyTriage extends Component {
 
-    public static function auto_level_update($triage_id) {
+    public static function triage($triage_id) {
 
         $model = Triage::findOne($triage_id);
         $model->color = 'ฟ้า';
