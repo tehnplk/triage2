@@ -11,7 +11,7 @@ $this->title = 'Create Patient';
 ?>
 <div class="d-flex justify-content-between mb-1">
     <span class="bg-primary text-light px-3"> ข้อมูลผู้ป่วย </span>
-    <span><a href="http://plkprom.plkhealth.go.th/plkprom/web/index.php?r=regis/util/gen-cid" target="_blank">สร้าง13หลักคนต่างด้าว</a></span>
+    <span><a href="http://plkprom.plkhealth.go.th/plkprom/web/index.php?r=regis/util/gen-cid" target="_blank">เลข13หลัก-คนต่างด้าว</a></span>
 </div>
 <div class="patient-create">
     <?=
