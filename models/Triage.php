@@ -17,6 +17,8 @@ use Yii;
  * @property string|null $patient_fullname
  * @property string|null $patient_age
  * @property string|null $patient_gender
+ * @property string|null $patient_chw
+ * @property string|null $patient_amp
  * @property string|null $triage_date
  * @property string|null $triage_time
  * @property string|null $inscl_code
@@ -53,7 +55,7 @@ class Triage extends \yii\db\ActiveRecord {
             [['triage_date', 'triage_time', 'lab_date'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'patient_age', 'patient_gender', 'inscl_code', 'claim_code', 'spo2', 'lab_kind', 'lab_result', 'risk', 'color', 'refer_to', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid',], 'string', 'max' => 13],
-            [['family', 'xray'], 'string']
+            [['family', 'xray', 'patient_chw', 'patient_amp'], 'string']
         ];
     }
 
@@ -71,6 +73,8 @@ class Triage extends \yii\db\ActiveRecord {
             'patient_fullname' => 'Patient Fullname',
             'patient_age' => 'Patient Age',
             'patient_gender' => 'Patient Gender',
+            'patient_chw' => 'จังหวัด',
+            'patient_amp' => 'อำเภอ',
             'triage_date' => 'วันที่',
             'triage_time' => 'เวลา',
             'inscl_code' => 'Inscl Code',
