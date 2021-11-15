@@ -27,12 +27,12 @@ class XrayController extends Controller {
                         'rules' => [
                             [
                                 'actions' => ['index', 'view', 'create', 'update'],
-                                'allow' => \app\components\MyRole::can_med(),
+                                'allow' => \app\components\MyRole::can_med() || \app\components\MyRole::isOneStop(),
                                 'roles' => ['@'],
                             ],
                             [
                                 'actions' => ['delete'],
-                                'allow' => \app\components\MyRole::can_med(),
+                                'allow' => \app\components\MyRole::can_med() || \app\components\MyRole::isOneStop(),
                                 'roles' => ['@'],
                             ],
                         ],
