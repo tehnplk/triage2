@@ -128,4 +128,11 @@ class MyLookUp extends Component {
         ];
     }
 
+    public static function refer_place() {
+        $sql = "select name as id,name from c_refer_place";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $items = ArrayHelper::map($raw, 'id', 'name');
+        return $items;
+    }
+
 }

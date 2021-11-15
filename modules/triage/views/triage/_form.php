@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use app\components\MyLookUp;
+use kartik\select2\Select2;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Triage */
@@ -56,8 +57,16 @@ use app\components\MyLookUp;
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
         <div class="col">
-            <?= $form->field($model, 'refer_to')->textInput(['maxlength' => true]) ?>
-
+            <?php //$form->field($model, 'refer_to')->textInput(['maxlength' => true]) ?>
+            <?php
+            $items = MyLookUp::refer_place();
+            echo $form->field($model, 'refer_to')->widget(Select2::className(), [
+                'data' => $items,
+                'options' => [
+                    'placeholder' => 'ค้นหา...',
+                ],
+            ]);
+            ?>
 
         </div>
 
