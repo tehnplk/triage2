@@ -71,7 +71,7 @@ $this->title = 'Triages';
     echo GridView::widget([
         'responsiveWrap' => false,
         'panel' => [
-            'heading' => 'Dashboard',
+            'heading' => '<span style="color:blue"><i class="fas fa-circle"></i></span> <span style="color:limegreen"><i class="fas fa-circle"></i></span> <span style="color:yellow"><i class="fas fa-circle"></i></span> <span style="color:#ff4500"><i class="fas fa-circle"></i></span> Dashboard',
             'before' => $this->render('_search', ['searchModel' => $searchModel])
         //'type' => 'success',
         ],
