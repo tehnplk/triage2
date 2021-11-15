@@ -58,48 +58,9 @@ $this->title = 'Triages';
 
 
 
-    <div class="triage-search">
-
-        <?php
-        $form = ActiveForm::begin([
-                    'action' => ['list'],
-                    'method' => 'get',
-        ]);
-        ?>
-
-
-        <div class="row">
-            <div class="col-3">
-                <?php //echo $form->field($searchModel, 'triage_date') ?>
-                <?php
-                echo $form->field($searchModel, 'triage_date')->widget(DatePicker::classname(), [
-                    'options' => ['placeholder' => ''],
-                    'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                    //'pickerButton' => false,
-                    'pluginOptions' => [
-                        'autoclose' => true,
-                        'todayHighlight' => true,
-                        'format' => 'yyyy-mm-dd'
-                    ],
-                    'pluginEvents' => ['changeDate' => "function(e){
-                                        $(e.target).closest('form').submit();
-                    }"]
-                ]);
-                ?>
-            </div>
-           
-            <div class="col" style="display: <?= MyRole::can_tri() ? '' : 'none' ?>">
-                <p style="margin-top: 30px">
-                    <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
-                </p>
-            </div>
-        </div>
-
-
-
-        <?php ActiveForm::end(); ?>
-
-    </div>
+    <?php
+    //echo $this->render('_search', ['searchModel' => $searchModel]);
+    ?>
 
 
     <?php
@@ -111,6 +72,7 @@ $this->title = 'Triages';
         'responsiveWrap' => false,
         'panel' => [
             'heading' => 'Dashboard',
+            'before' => $this->render('_search', ['searchModel' => $searchModel])
         //'type' => 'success',
         ],
         'dataProvider' => $dataProvider,

@@ -44,15 +44,16 @@ $this->title = 'Patients';
         border-radius: 50%;
         display: inline-block;
     }
+    .btn-center{
+        position: relative;
+        left: 42%;
+    }
 
 </style>
 
 <div class="patient-index">
 
 
-    <p class="text-center">
-        <?= Html::a('<i class="far fa-plus"></i> เพิ่มรายชื่อ', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
@@ -61,14 +62,15 @@ $this->title = 'Patients';
         'responsiveWrap' => false,
         'panel' => [
             'heading' => 'รายชื่อผู้ป้วย',
+            'before' => Html::a('<i class="far fa-plus"></i> เพิ่มรายชื่อ', ['create'], ['class' => 'btn btn-success btn-center'])
         //'type' => 'success',
         ],
         'toolbar' => [
             [
                 'content' => ''
             ],
-            //'{export}',
-            //'{toggleData}'
+        //'{export}',
+        //'{toggleData}'
         ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
