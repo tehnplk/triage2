@@ -62,7 +62,7 @@ $this->title = 'Patients';
             'addr_tmb_name',
             'addr_amp_name',
             'addr_chw_name',
-            'family',
+            //'family',
         //'tel',
         //'created_at',
         //'created_by',
