@@ -21,22 +21,22 @@ class XrayController extends Controller {
         return array_merge(
                 parent::behaviors(),
                 [
-                    'access' => [
-                        'class' => \yii\filters\AccessControl::className(),
-                        'only' => ['index', 'view', 'create', 'update', 'delete'],
-                        'rules' => [
-                            [
-                                'actions' => ['index', 'view', 'create', 'update'],
-                                'allow' => \app\components\MyRole::can_med() || \app\components\MyRole::isOneStop(),
-                                'roles' => ['@'],
-                            ],
-                            [
-                                'actions' => ['delete'],
-                                'allow' => \app\components\MyRole::can_med() || \app\components\MyRole::isOneStop(),
-                                'roles' => ['@'],
-                            ],
-                        ],
-                    ],
+                    /* 'access' => [
+                      'class' => \yii\filters\AccessControl::className(),
+                      'only' => ['index', 'view', 'create', 'update', 'delete'],
+                      'rules' => [
+                      [
+                      'actions' => ['index', 'view', 'create', 'update'],
+                      'allow' => \app\components\MyRole::can_med() || \app\components\MyRole::isOneStop(),
+                      'roles' => ['@'],
+                      ],
+                      [
+                      'actions' => ['delete'],
+                      'allow' => \app\components\MyRole::can_med() || \app\components\MyRole::isOneStop(),
+                      'roles' => ['@'],
+                      ],
+                      ],
+                      ], */
                     'verbs' => [
                         'class' => VerbFilter::className(),
                         'actions' => [

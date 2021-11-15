@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\components\MyRole;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\XraySearch */
@@ -11,6 +12,12 @@ $this->title = 'Xrays';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="mt-2"></div>
+<?php
+if (!(MyRole::can_med() || MyRole::isOneStop())) {
+    echo "คุณไม่ได้รับอนุญาตให้ดำเนินการนี้";
+    return;
+}
+?>
 <div class="xray-index">
 
 
