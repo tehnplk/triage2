@@ -14,7 +14,7 @@ $this->title = 'Xrays';
 <div class="mt-2"></div>
 <?php
 if (!(MyRole::can_med() || MyRole::isOneStop())) {
-    echo "คุณไม่ได้รับอนุญาตให้ดำเนินการนี้";
+    echo '<div class="p-2 bg-info">คุณไม่ได้รับอนุญาตให้ดำเนินการนี้</div>';
     return;
 }
 ?>
