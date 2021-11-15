@@ -39,12 +39,13 @@ echo Tabs::widget([
             'url' => Url::to(['/xray/xray/index', 'patient_id' => $patient->id]),
         ],
         [
-            'label' => '<i class="far fa-circle"></i> Triage',
+            'label' => '<i class="far fa-circle"></i> Triage/ส่งต่อ',
             'url' => Url::to(['/triage/triage/index', 'patient_id' => $patient->id]),
         ],
         [
             'label' => '<i class = "far fa-ambulance"></i> ส่งต่อ',
             'url' => Url::to(['/refer/refer/index', 'patient_id' => $patient->id]),
+            'visible' => false
         ],
     ],
 ]);
