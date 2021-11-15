@@ -135,4 +135,11 @@ class MyLookUp extends Component {
         return $items;
     }
 
+    public static function claim_code() {
+        $sql = "select code as id,name from c_claim";
+        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
+        $items = ArrayHelper::map($raw, 'id', 'name');
+        return $items;
+    }
+
 }

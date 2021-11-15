@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use kartik\time\TimePicker;
+use app\components\MyLookUp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Visit */
@@ -100,6 +101,9 @@ use kartik\time\TimePicker;
     </div>
 
     <div class="row">
+        <div class="col">
+            <?= $form->field($model, 'claim_code')->dropDownList(MyLookUp::claim_code(), ['prompt' => '']) ?>
+        </div>
         <div class="col">
             <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
         </div>

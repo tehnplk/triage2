@@ -27,6 +27,8 @@ use app\models\Lab;
  * @property int|null $bpd
  * @property int|null $pulse
  * @property string|null $cc อาการ
+ * @property string|null $claim_code
+ * @property string|null $claim_name
  * @property string|null $family
  * @property int|null $age_y
  * @property int|null $age_m
@@ -56,6 +58,7 @@ class Visit extends \yii\db\ActiveRecord {
             [['patient_cid'], 'string', 'max' => 13],
             [['visit_date'], 'unique', 'targetAttribute' => ['hoscode', 'patient_id', 'visit_date'], 'message' => 'ข้อมูลซ้ำซ้อนในวันเดียวกัน'],
             [['patient_id', 'visit_date', 'visit_time', 'bw', 'bh', 'spo2'], 'required'],
+            [['claim_code', 'claim_name'], 'string']
         ];
     }
 
@@ -84,6 +87,8 @@ class Visit extends \yii\db\ActiveRecord {
             'age_y' => 'อายุ(ปี)',
             'age_m' => 'เดือน',
             'family' => 'ชื่อครอบครัว',
+            'claim_code' => 'รหัสสิทธิ',
+            'claim_name' => 'ชื่อสิทธิรักษา',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
