@@ -98,6 +98,7 @@ $this->title = 'Patients';
             'addr_chw_name',
             [
                 'label' => 'สี',
+                'format' => 'raw',
                 'value' => function($model) {
                     $patient_id = $model->id;
                     $sql = "select color from triage where patient_id = '$patient_id' order by id DESC limit 1 ";
