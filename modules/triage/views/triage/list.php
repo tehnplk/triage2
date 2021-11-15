@@ -153,7 +153,7 @@ $this->title = 'Triages';
             //'lab_date',
             //'lab_kind',
             'lab_result:text:LAB',
-            'risk:text:ปัจจัยเสี่ยง',
+            'risk:text:RISK',
             'xray',
             [
                 'attribute' => 'color',
