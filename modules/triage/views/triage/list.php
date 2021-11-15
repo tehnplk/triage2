@@ -80,15 +80,14 @@ $this->title = 'Triages';
                         'autoclose' => true,
                         'todayHighlight' => true,
                         'format' => 'yyyy-mm-dd'
-                    ]
+                    ],
+                    'pluginEvents' => ['changeDate' => "function(e){
+                                        $(e.target).closest('form').submit();
+                    }"]
                 ]);
                 ?>
             </div>
-            <div class="col-1">
-                <p style="margin-top: 30px">
-                    <?= Html::submitButton('ตกลง', ['class' => 'btn btn-danger']) ?>
-                </p>
-            </div>
+           
             <div class="col" style="display: <?= MyRole::can_tri() ? '' : 'none' ?>">
                 <p style="margin-top: 30px">
                     <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
