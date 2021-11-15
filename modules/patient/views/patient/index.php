@@ -61,7 +61,7 @@ $this->title = 'Patients';
     GridView::widget([
         'responsiveWrap' => false,
         'panel' => [
-            'heading' => 'รายชื่อผู้ป้วย',
+            'heading' => 'รายชื่อผู้ป่วย',
             'before' => Html::a('<i class="far fa-plus"></i> เพิ่มรายชื่อ', ['create'], ['class' => 'btn btn-success btn-center'])
         //'type' => 'success',
         ],
