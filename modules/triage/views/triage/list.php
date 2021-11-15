@@ -112,6 +112,10 @@ $this->title = 'Triages';
         //'toggleData' => false,
         //'export' => false,
         'responsiveWrap' => false,
+        'panel' => [
+            'heading' => 'Dashboard',
+            //'type' => 'success',
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [

@@ -59,6 +59,10 @@ $this->title = 'Patients';
     <?=
     GridView::widget([
         'responsiveWrap' => false,
+        'panel' => [
+            'heading' => 'รายชื่อผู้ป้วย',
+        //'type' => 'success',
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
