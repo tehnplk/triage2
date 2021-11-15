@@ -10,7 +10,41 @@ use yii\grid\GridView;
 $this->title = 'Patients';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+<style>
 
+    .blue {
+        height: 22px;
+        width: 22px;
+        background-color: blue;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .green {
+        height: 22px;
+        width: 22px;
+        background-color: limegreen;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .yellow {
+        height: 22px;
+        width: 22px;
+        background-color: yellow;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .red {
+        height: 22px;
+        width: 22px;
+        background-color: #ff4500;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+</style>
 
 <div class="patient-index">
 
@@ -54,7 +88,7 @@ $this->title = 'Patients';
             'age_m',
             //'age_d',
             //'marital',
-            'nation',
+            //'nation',
             //'personal_disease',
             //'addr_no',
             //'addr_road',
@@ -62,7 +96,31 @@ $this->title = 'Patients';
             'addr_tmb_name',
             'addr_amp_name',
             'addr_chw_name',
-            //'family',
+            [
+                'label' => 'สี',
+                'value' => function($model) {
+                    $patient = $model->id;
+                    $sql = "select color from triage where patient_id = '$id' order by id DESC limit 1 ";
+                    $color = \Yii::$app->db->createCommand($sql)->queryScalar();
+                    if ($color == 'ฟ้า') {
+                        return "<div class='blue'><div>";
+                    }
+                    if ($color == 'เขียว') {
+                        return "<div class='green'><div>";
+                    }
+                    if ($color == 'เหลือง') {
+                        return "<div class='yellow'><div>";
+                    }
+                    if ($color == 'แดง') {
+                        return "<div class='red'><div>";
+                    }
+                    return "<div>-<div>";
+                },
+                'contentOptions' => function ($model, $key, $index, $column) {
+                    return ['style' => 'text-align:center'];
+                }
+            ]
+        //'family',
         //'tel',
         //'created_at',
         //'created_by',
