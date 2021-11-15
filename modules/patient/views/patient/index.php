@@ -128,7 +128,7 @@ $this->title = 'Patients';
                     $patient_id = $model->id;
                     $sql = "select refer_to from triage where patient_id = '$patient_id' order by id DESC limit 1 ";
                     $refer_to = \Yii::$app->db->createCommand($sql)->queryScalar();
-                    return $refer_to;
+                    return '<span style="font-size:8px">' . $refer_to . '</span>';
                 }
             ]
         //'family',
