@@ -53,7 +53,7 @@ use kartik\select2\Select2;
 
 
         </div>
-        <div class="col">
+        <div class="col-2">
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
         <div class="col">
@@ -65,6 +65,7 @@ use kartik\select2\Select2;
                 'options' => [
                     'placeholder' => 'ค้นหา...',
                 ],
+                'pluginOptions' => ['allowClear' => true]
             ]);
             ?>
 
