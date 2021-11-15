@@ -127,7 +127,9 @@ class PatientController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->delete();
+        \app\models\Triage::deleteAll(['patient_id' => $model->id]);
 
         return $this->redirect(['index']);
     }

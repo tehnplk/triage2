@@ -130,20 +130,60 @@ $this->title = 'Patients';
                     $refer_to = \Yii::$app->db->createCommand($sql)->queryScalar();
                     return '<span style="font-size:8px">' . $refer_to . '</span>';
                 }
-            ]
-        //'family',
-        //'tel',
-        //'created_at',
-        //'created_by',
-        //'updated_at',
-        //'updated_by',
-        /* [
-          'class' => 'yii\grid\ActionColumn',
-          'template'=>"{update} {delete}"
-          ], */
+            ],
+            //'family',
+            //'tel',
+            //'created_at',
+            //'created_by',
+            //'updated_at',
+            //'updated_by',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => "{delete}",
+            //'visible' => app\components\MyRole::can_adm()
+            ],
         ],
     ]);
     ?>
 
 
 </div>
+<?php
+$this->registerJsFile('@web/js/popup.js');
+
+$js = <<<JS
+    $(function(){
+          
+        $('.btn-create').click(function(e){
+            e.preventDefault();
+            a = $(this).attr('href');
+            //$('#modal-create').modal('show').find('#modalContent').load(a);
+            win = popup(a,65,90);
+            return false;
+        }); 
+        
+         $("a[title='ปรับปรุง']").click(function(e){ 
+            e.preventDefault();
+            a = $(this).attr('href');
+            //$('#modal-update').modal('show').find('#modalContent').load(a);
+             win = popup(a,65,90);
+           return false;
+        });
+        
+        $("a[title='ลบ']").click(function(e){   
+            e.preventDefault();
+            val = prompt('ระบุเหตุผล');
+            if(!val || val==''){
+                return false;
+            }
+            
+        });
+        
+        
+   
+    }); 
+       
+        
+JS;
+$this->registerJs($js);
+
