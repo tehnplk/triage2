@@ -183,7 +183,7 @@ $this->title = 'Triages';
             [
                 'label' => 'สิทธิ',
                 'value' => function($model) {
-                    $vsit_id = $model->visit_id;
+                    $visit_id = $model->visit_id;
                     $sql = "select claim_code from visit where id = '$visit_id'";
                     $claim = \Yii::$app->db->createCommand($sql)->queryScalar();
                     return $claim;
