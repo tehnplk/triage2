@@ -42,6 +42,7 @@ $this->title = 'Visits';
             'bpd',
             'pulse',
             'cc',
+            'claim_code',
             //'created_at',
             //'created_by',
             //'updated_at',
