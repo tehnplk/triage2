@@ -54,7 +54,7 @@ $this->title = 'Patients';
             'age_m',
             //'age_d',
             //'marital',
-            //'nation',
+            'nation',
             //'personal_disease',
             //'addr_no',
             //'addr_road',
