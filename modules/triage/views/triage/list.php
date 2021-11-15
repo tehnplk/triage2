@@ -117,19 +117,19 @@ $this->title = 'Triages';
                 'attribute' => 'triage_date',
                 'value' => 'triage_date',
                 'format' => 'date',
-            /* 'label' => "วันมา",
-              'filter' => DatePicker::widget([
-              'type' => DatePicker::TYPE_INPUT,
-              'model' => $searchModel,
-              'name' => 'TriageSearch[triage_date]',
-              'value' => ArrayHelper::getValue($_GET, "TriageSearch.triage_date"),
-              'pluginOptions' => [
-              'format' => 'yyyy-mm-dd',
-              'autoclose' => true,
-              ]
-              ]),
-              'value' => function($model) {
-              return MyDate::thaiDate($model->triage_date);
+                'label' => "วันที่",
+                'filter' => DatePicker::widget([
+                    'type' => DatePicker::TYPE_INPUT,
+                    'model' => $searchModel,
+                    'name' => 'TriageSearch[triage_date]',
+                    'value' => ArrayHelper::getValue($_GET, "TriageSearch.triage_date"),
+                    'pluginOptions' => [
+                        'format' => 'yyyy-mm-dd',
+                        'autoclose' => true,
+                    ]
+                ]),
+            /* 'value' => function($model) {
+              return MyDate::thaiDateCc($model->triage_date);
               } */
             ],
             'triage_time:time:เวลา',
@@ -138,7 +138,7 @@ $this->title = 'Triages';
                 'label' => 'เลข13หลัก',
                 'format' => 'raw',
                 'value' => function($model) {
-                    if(MyRole::is_reg() && !MyRole::isHoscodeMatch($model->hoscode)){
+                    if (MyRole::is_reg() && !MyRole::isHoscodeMatch($model->hoscode)) {
                         return $model->patient_cid;
                     }
                     return Html::a($model->patient_cid, ['/patient/patient/update', 'id' => $model->patient_id], ['target' => '_blank']);

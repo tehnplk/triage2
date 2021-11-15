@@ -24,6 +24,24 @@ class MyDate extends Component {
         return "$strDay $strMonthThai $strYear";
     }
 
+    public static function thaiDateCc($date) {
+
+        if (empty($date)) {
+            return "-";
+        }
+
+        $strYear = date("Y", strtotime($date));
+        $strMonth = date("n", strtotime($date));
+        $strDay = date("j", strtotime($date));
+        if (strlen($strDay) == 1) {
+            $strDay = "0" . $strDay;
+        }
+
+        $strMonthCut = Array("", "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค.");
+        $strMonthThai = $strMonthCut[$strMonth];
+        return "$strDay $strMonthThai $strYear";
+    }
+
     public static function shortDate($date) {
 
         if (empty($date)) {
