@@ -64,7 +64,7 @@ $this->title = 'Triages';
 
 
     <?php
-    $dataProvider->pagination = ['pageSize' => 50];
+    $dataProvider->pagination = ['pageSize' => 25];
     if (!empty($searchModel->triage_date)) {
         $dataProvider->pagination = false;
     }
