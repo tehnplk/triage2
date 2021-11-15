@@ -93,7 +93,7 @@ $this->title = 'Patients';
             //'addr_no',
             //'addr_road',
             //'addr_moo',
-            'addr_tmb_name',
+            //'addr_tmb_name',
             'addr_amp_name',
             'addr_chw_name',
             [
