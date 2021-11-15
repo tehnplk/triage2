@@ -87,7 +87,7 @@ class Triage extends \yii\db\ActiveRecord {
             'xray' => 'CXR',
             'doi' => 'DOI',
             'color' => 'สี',
-            'family' => 'ครอบครัว',
+            'family' => 'ชื่อครอบครัว',
             'refer_to' => 'ส่งต่อ',
             'created_at' => 'Created At',
             'created_by' => 'Created By',

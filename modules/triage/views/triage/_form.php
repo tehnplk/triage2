@@ -48,6 +48,11 @@ use app\components\MyLookUp;
 
     <div class="row">
         <div class="col">
+            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
+
+
+        </div>
+        <div class="col">
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
         <div class="col">
@@ -55,11 +60,7 @@ use app\components\MyLookUp;
 
 
         </div>
-        <div class="col">
-            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
 
-
-        </div>
     </div>
 
 
