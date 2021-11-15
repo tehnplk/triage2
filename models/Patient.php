@@ -78,7 +78,7 @@ class Patient extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'hoscode' => 'รหัสหน่วยงาน',
+            'hoscode' => 'รหัสหน่วยงาน5หลัก',
             'hosname' => 'Hosname',
             'cid' => 'เลข13หลัก',
             'prefix' => 'คำนำหน้า',
