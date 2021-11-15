@@ -16,6 +16,15 @@ class MyRole extends Component {
         return $patient_hoscode == $user_hoscode;
     }
 
+    public static function isOneStop() {
+
+        if (!empty(\Yii::$app->user->identity->onestop) && \Yii::$app->user->identity->onestop == 'yes') {
+            return true;
+        }
+
+        return false;
+    }
+
     public static function getRole() {
         $role = empty(\Yii::$app->user->identity->role) ? '' : \Yii::$app->user->identity->role;
         return $role;

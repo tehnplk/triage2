@@ -31,7 +31,7 @@ class TriageController extends Controller {
                             ],
                             [
                                 'actions' => ['create', 'update', 'update-list'],
-                                'allow' => \app\components\MyRole::can_tri(),
+                                'allow' => \app\components\MyRole::can_tri() || \app\components\MyRole::isOneStop(),
                                 'roles' => ['@'],
                             ],
                             [

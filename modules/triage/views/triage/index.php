@@ -112,9 +112,8 @@ $this->title = 'Triages';
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => "{update}",
-                'visible' => MyRole::can_tri()
+                'visible' => MyRole::can_tri() || MyRole::isOneStop()
             ],
-        //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
     ?>
