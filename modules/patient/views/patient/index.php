@@ -120,6 +120,16 @@ $this->title = 'Patients';
                 'contentOptions' => function ($model, $key, $index, $column) {
                     return ['style' => 'text-align:center'];
                 }
+            ],
+            [
+                'label' => 'ส่งต่อ',
+                'format' => 'raw',
+                'value' => function($model) {
+                    $patient_id = $model->id;
+                    $sql = "select refer_to from triage where patient_id = '$patient_id' order by id DESC limit 1 ";
+                    $refer_to = \Yii::$app->db->createCommand($sql)->queryScalar();
+                    return $refer_to;
+                }
             ]
         //'family',
         //'tel',
