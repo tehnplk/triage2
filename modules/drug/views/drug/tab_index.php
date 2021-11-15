@@ -45,6 +45,7 @@ echo Tabs::widget([
         [
             'label' => '<i class = "far fa-ambulance"></i> ส่งต่อ',
             'url' => Url::to(['/refer/refer/index', 'patient_id' => $patient->id]),
+            'visible' => false
         ],
     ],
 ]);
