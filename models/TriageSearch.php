@@ -69,8 +69,8 @@ class TriageSearch extends Triage {
         ]);
 
         if ($this->color == 'none') {
-            $query->andFilterWhere(['is', 'color', new \yii\db\Expression('null')])
-                    ->orFilterWhere(['=', 'color', '']);
+            $query->andFilterWhere(['is', 'color', new \yii\db\Expression('null')]);
+                    //->orFilterWhere(['=', 'color', '']);
         } else {
             $query->andFilterWhere(['color' => $this->color]);
         }
