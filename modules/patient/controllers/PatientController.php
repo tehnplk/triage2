@@ -32,7 +32,7 @@ class PatientController extends Controller {
                             ],
                             [
                                 'actions' => ['delete'],
-                                'allow' => \app\components\MyRole::can_adm(),
+                                'allow' => \app\components\MyRole::can_reg(),
                                 'roles' => ['@'],
                             ],
                         ],
