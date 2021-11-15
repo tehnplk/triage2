@@ -112,7 +112,7 @@ $this->title = 'Triages';
             'hoscode',
             //'hosname',
             //'visit_id',
-            'patient_id:text:ลำดับ',
+            'patient_id:text:ID',
             [
                 'attribute' => 'triage_date',
                 'value' => 'triage_date',
