@@ -18,7 +18,7 @@ use kartik\depdrop\DepDrop;
 
     <div class="row">
         <div class="col-1">
-            <?= $form->field($model, 'hoscode')->textInput(['maxlength' => 5, 'placeholder' => 'รหัสหน่วยงาน 5 หลัก']) ?>
+            <?= $form->field($model, 'hoscode')->textInput(['maxlength' => 5, 'placeholder' => 'รหัส5หลัก']) ?>
         </div>
         <div class="col-2">
             <?= $form->field($model, 'cid')->textInput(['maxlength' => 13]) ?>
