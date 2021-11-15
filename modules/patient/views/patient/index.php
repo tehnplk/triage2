@@ -63,6 +63,13 @@ $this->title = 'Patients';
             'heading' => 'รายชื่อผู้ป้วย',
         //'type' => 'success',
         ],
+        'toolbar' => [
+            [
+                'content' => ''
+            ],
+            //'{export}',
+            //'{toggleData}'
+        ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [

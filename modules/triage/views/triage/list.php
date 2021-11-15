@@ -109,12 +109,10 @@ $this->title = 'Triages';
         $dataProvider->pagination = false;
     }
     echo GridView::widget([
-        //'toggleData' => false,
-        //'export' => false,
         'responsiveWrap' => false,
         'panel' => [
             'heading' => 'Dashboard',
-            //'type' => 'success',
+        //'type' => 'success',
         ],
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
