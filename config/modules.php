@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'gridview' => [
+        'class' => '\kartik\grid\Module'
+    ],
     'patient' => [
         'class' => 'app\modules\patient\Module',
     ],

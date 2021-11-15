@@ -1,7 +1,8 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\grid\GridView;
 use yii\bootstrap4\Modal;
 use app\components\MyLookUp;
 use yii\helpers\Url;
@@ -102,8 +103,15 @@ $this->title = 'Triages';
     </div>
 
 
-    <?=
-    GridView::widget([
+    <?php
+    $dataProvider->pagination = ['pageSize' => 50];
+    if (!empty($searchModel->triage_date)) {
+        $dataProvider->pagination = false;
+    }
+    echo GridView::widget([
+        //'toggleData' => false,
+        //'export' => false,
+        'responsiveWrap' => false,
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
