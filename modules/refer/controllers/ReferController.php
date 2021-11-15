@@ -7,6 +7,8 @@ use app\models\ReferSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Triage;
+use app\components\MyRole;
 
 /**
  * ReferController implements the CRUD actions for Refer model.

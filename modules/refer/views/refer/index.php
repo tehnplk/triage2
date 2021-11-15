@@ -16,7 +16,7 @@ $this->title = 'Refers';
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p class="text-center">
+    <p class="text-center" style="display: none">
         <?= Html::a('<i class="far fa-plus"></i> เพิ่มส่งต่อ', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
