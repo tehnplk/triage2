@@ -83,7 +83,7 @@ class Visit extends \yii\db\ActiveRecord {
             'cc' => 'อาการเจ็บป่วย',
             'age_y' => 'อายุ(ปี)',
             'age_m' => 'เดือน',
-            'family' => 'ครอบครัว',
+            'family' => 'ชื่อครอบครัว',
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',
