@@ -99,8 +99,8 @@ $this->title = 'Patients';
             [
                 'label' => 'สี',
                 'value' => function($model) {
-                    $patient = $model->id;
-                    $sql = "select color from triage where patient_id = '$id' order by id DESC limit 1 ";
+                    $patient_id = $model->id;
+                    $sql = "select color from triage where patient_id = '$patient_id' order by id DESC limit 1 ";
                     $color = \Yii::$app->db->createCommand($sql)->queryScalar();
                     if ($color == 'ฟ้า') {
                         return "<div class='blue'><div>";
