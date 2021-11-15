@@ -48,7 +48,7 @@ use kartik\select2\Select2;
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col-3">
             <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
 
 
