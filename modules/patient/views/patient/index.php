@@ -85,7 +85,7 @@ $this->title = 'Patients';
             //'byear',
             //'birth',
             'age_y',
-            'age_m',
+            //'age_m',
             //'age_d',
             //'marital',
             //'nation',
