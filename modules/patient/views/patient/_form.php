@@ -17,7 +17,7 @@ use kartik\depdrop\DepDrop;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-        <div class="col-1">
+        <div class="col-2">
             <?= $form->field($model, 'hoscode')->textInput(['maxlength' => 5, 'placeholder' => 'รหัส5หลัก']) ?>
         </div>
         <div class="col-2">
