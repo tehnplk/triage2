@@ -27,7 +27,8 @@ $this->title = 'Triages';
         background-color: blue;
         border-radius: 50%;
         display: inline-block;
-        font-size: 8px
+        font-size: 8px;
+        color: transparent
     }
 
     .green {
@@ -46,7 +47,8 @@ $this->title = 'Triages';
         background-color: yellow;
         border-radius: 50%;
         display: inline-block;
-        font-size: 8px
+        font-size: 8px;
+        color: transparent
     }
 
     .red {
@@ -55,7 +57,8 @@ $this->title = 'Triages';
         background-color: #ff4500;
         border-radius: 50%;
         display: inline-block;
-        font-size: 8px
+        font-size: 8px;
+        color: transparent
     }
 
 </style>
