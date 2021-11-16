@@ -27,6 +27,7 @@ $this->title = 'Triages';
         background-color: blue;
         border-radius: 50%;
         display: inline-block;
+        font-size: 8px
     }
 
     .green {
@@ -35,6 +36,7 @@ $this->title = 'Triages';
         background-color: limegreen;
         border-radius: 50%;
         display: inline-block;
+        font-size: 8px
     }
 
     .yellow {
@@ -43,6 +45,7 @@ $this->title = 'Triages';
         background-color: yellow;
         border-radius: 50%;
         display: inline-block;
+        font-size: 8px
     }
 
     .red {
@@ -51,6 +54,7 @@ $this->title = 'Triages';
         background-color: #ff4500;
         border-radius: 50%;
         display: inline-block;
+        font-size: 8px
     }
 
 </style>
@@ -131,17 +135,18 @@ $this->title = 'Triages';
                 'format' => 'raw',
                 'filter' => MyLookUp::trigger_color(),
                 'value' => function($model) {
+                    $color = $model->color;
                     if ($model->color == 'ฟ้า') {
-                        return "<div class='blue'><div>";
+                        return "<div class='blue'>$color<div>";
                     }
                     if ($model->color == 'เขียว') {
-                        return "<div class='green'><div>";
+                        return "<div class='green'>$color<div>";
                     }
                     if ($model->color == 'เหลือง') {
-                        return "<div class='yellow'><div>";
+                        return "<div class='yellow'>$color<div>";
                     }
                     if ($model->color == 'แดง') {
-                        return "<div class='red'><div>";
+                        return "<div class='red'>$color<div>";
                     }
                     return "<div>-<div>";
                 },
