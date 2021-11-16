@@ -36,7 +36,8 @@ $this->title = 'Triages';
         background-color: limegreen;
         border-radius: 50%;
         display: inline-block;
-        font-size: 8px
+        font-size: 8px;
+        color: transparent
     }
 
     .yellow {
