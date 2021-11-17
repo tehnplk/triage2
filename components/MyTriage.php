@@ -34,7 +34,7 @@ class MyTriage extends Component {
         }
 
         if (empty($model->lab_result)) {
-            $model->color = '';
+            $model->color = null;
         }
 
 
