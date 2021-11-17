@@ -79,7 +79,7 @@ $this->title = 'Patients';
             'id',
             [
                 'attribute' => 'hoscode',
-                'label'=>'รหัส5หลัก',
+                'label' => 'รหัส5หลัก',
                 'filter' => !app\components\MyRole::is_reg()
             ],
             // 'hosname',
@@ -112,6 +112,7 @@ $this->title = 'Patients';
             //'addr_tmb_name',
             'addr_amp_name',
             'addr_chw_name',
+            'tel:text:เบอร์โทร',
             [
                 'label' => 'สี',
                 'format' => 'raw',
@@ -148,7 +149,6 @@ $this->title = 'Patients';
                 }
             ],
             //'family',
-            //'tel',
             //'created_at',
             //'created_by',
             //'updated_at',
