@@ -111,14 +111,14 @@ class PatientController extends Controller {
         $visit = \app\models\Visit::find()->where(['patient_id' => $model->id])->one();
         if ($visit) {
             $visit->patient_cid = $model->cid;
-            $visit->patient_full_name = "$model->prefix$model->first_name $model->last_name";
+            $visit->patient_fullname = "$model->prefix$model->first_name $model->last_name";
         }
 
 
         $triage = \app\models\Triage::find()->where(['patient_id' => $model->id])->one();
         if ($triage) {
             $triage->patient_cid = $model->cid;
-            $triage->patient_full_name = "$model->prefix$model->first_name $model->last_name";
+            $triage->patient_fullname = "$model->prefix$model->first_name $model->last_name";
         }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
