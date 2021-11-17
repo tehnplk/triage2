@@ -4,6 +4,7 @@ namespace app\components;
 
 use yii\base\Component;
 use app\models\Triage;
+use yii\db\Expression;
 
 class MyTriage extends Component {
 
@@ -31,6 +32,11 @@ class MyTriage extends Component {
         if ($lab_pos && $model->spo2 <= 96) {
             $model->color = 'แดง';
         }
+
+        if (empty($model->lab_result)) {
+            $model->color = new Expression('NULL');
+        }
+
 
         $model->update();
     }
