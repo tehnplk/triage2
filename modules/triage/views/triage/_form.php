@@ -54,7 +54,7 @@ use kartik\select2\Select2;
 
     <div class="row">
 
-        <div class="col-2">
+        <div class="col">
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
         <div class="col">
