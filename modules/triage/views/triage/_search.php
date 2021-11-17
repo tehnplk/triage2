@@ -21,13 +21,6 @@ use app\components\MyRole;
 
 
     <div class="row">
-
-        <div class="col-2" style="display: <?= MyRole::can_tri() ? '' : 'none' ?>">
-
-            <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มอัตโนมัติ</button>
-
-        </div>
-
         <div class="col-3">
             <?php //echo $form->field($searchModel, 'triage_date') ?>
             <?php
@@ -47,7 +40,11 @@ use app\components\MyRole;
             ?>
         </div>
 
+        <div class="col" style="display: <?= MyRole::can_tri() ? '' : 'none' ?>">
 
+            <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
+
+        </div>
     </div>
 
 
