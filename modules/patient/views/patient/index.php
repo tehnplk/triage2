@@ -79,6 +79,7 @@ $this->title = 'Patients';
             'id',
             [
                 'attribute' => 'hoscode',
+                'labe'=>'รหัส5หลัก',
                 'filter' => !app\components\MyRole::is_reg()
             ],
             // 'hosname',
