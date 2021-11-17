@@ -46,13 +46,14 @@ use kartik\select2\Select2;
 
 
     </div>
+    <div>
+        <div class="col">
+            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <div class="row">
-        <div class="col-3">
-            <?= $form->field($model, 'family')->textInput(['maxlength' => true]) ?>
 
-
-        </div>
         <div class="col-2">
             <?= $form->field($model, 'color')->dropDownList(MyLookUp::trigger_color(), ['prompt' => '']) ?>
         </div>
