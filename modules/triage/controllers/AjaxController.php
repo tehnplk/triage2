@@ -21,7 +21,7 @@ class AjaxController extends Controller {
         } else {
             $date = $triage_date;
         }
-        $sql = "select t.id from triage t where (t.color is null or trim(t.color)='') and t.triage_date = '$date' ";
+        $sql = "select t.id from triage t where (t.color is null or trim(t.color)='' or t.color='ฟ้า') and t.triage_date = '$date' ";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();
         $n = 0;
         foreach ($raw as $p) {
