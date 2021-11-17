@@ -109,22 +109,26 @@ class PatientController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
         $visit = \app\models\Visit::find()->where(['patient_id' => $model->id])->one();
-        if ($visit) {
-            $visit->patient_cid = $model->cid;
-            $visit->patient_fullname = "$model->prefix$model->first_name $model->last_name";
-        }
-
-
         $triage = \app\models\Triage::find()->where(['patient_id' => $model->id])->one();
-        if ($triage) {
-            $triage->patient_cid = $model->cid;
-            $triage->patient_fullname = "$model->prefix$model->first_name $model->last_name";
-        }
+
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
-            $visit->save(false);
-            $triage->save(false);
+            if ($visit) {
+                $visit->patient_cid = $model->cid;
+                $visit->patient_fullname = "$model->prefix$model->first_name $model->last_name";
+                $visit->age_y = $model->age_y;
+                $visit->age_m = $model->age_m;
+                $visit->save(false);
+            }
+
+            if ($triage) {
+                $triage->patient_cid = $model->cid;
+                $triage->patient_fullname = "$model->prefix$model->first_name $model->last_name";
+                $triage->patient_age = $model->age_y;
+                $triage->save(false);
+            }
+
 
             \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");
             return $this->redirect(['update', 'id' => $model->id]);
