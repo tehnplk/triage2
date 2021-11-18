@@ -15,7 +15,7 @@ echo Tabs::widget([
             'url' => Url::to(['/patient/patient/update', 'id' => $patient->id]),
         ],
         [
-            'label' => '<i class="far fa-stethoscope"></i> สัญญาณชีพ',
+            'label' => '<i class="far fa-stethoscope"></i> เพิ่มคัดกรอง/สัญญาณชีพ',
             'content' => $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,

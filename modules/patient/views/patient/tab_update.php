@@ -15,7 +15,7 @@ echo Tabs::widget([
             'active' => true
         ],
         [
-            'label' => '<i class="far fa-stethoscope"></i> สัญญาณชีพ',
+            'label' => '<i class="far fa-stethoscope"></i> เพิ่มคัดกรอง/สัญญาณชีพ',
             'url' => Url::to(['/visit/visit/index', 'patient_id' => $patient->id]),
         ],
         [
