@@ -66,7 +66,7 @@ AppAsset::register($this);
         </header>
 
         <main role="main" class="flex-shrink-0">
-            <div class="head-area" style="margin-top: 62px"></div>
+            <div class="head-area" style="margin-top: 65px"></div>
             <div class="container-fluid">
                 <?=
                 Breadcrumbs::widget([
