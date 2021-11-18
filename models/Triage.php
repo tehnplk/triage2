@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\Patient;
+use app\models\Visit;
 
 /**
  * This is the model class for table "triage".
@@ -110,6 +112,14 @@ class Triage extends \yii\db\ActiveRecord {
                 'updatedByAttribute' => 'updated_by',
             ],
         ];
+    }
+
+    public function getPatient() {
+        return $this->hasOne(Patient::class, ['id' => 'patient_id']);
+    }
+
+    public function getVisit() {
+        return $this->hasOne(Visit::class, ['id' => 'visit_id']);
     }
 
 }

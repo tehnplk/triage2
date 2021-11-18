@@ -176,17 +176,22 @@ class Patient extends \yii\db\ActiveRecord {
 
         //ชื่อ
         $this->full_name = "$this->prefix$this->first_name $this->last_name";
+        
+        //tel
+        $this->tel = "'".$this->tel;
 
         if ($insert) {
             $this->updateAttributes(['birth']);
             $this->updateAttributes(['age_y', 'age_m', 'age_d']);
             $this->updateAttributes(['full_name']);
             $this->updateAttributes(['addr_tmb_name', 'addr_amp_name', 'addr_chw_name']);
+            $this->updateAttributes(['tel']);
         } else {
             $this->updateAttributes(['birth']);
             $this->updateAttributes(['age_y', 'age_m', 'age_d']);
             $this->updateAttributes(['full_name']);
             $this->updateAttributes(['addr_tmb_name', 'addr_amp_name', 'addr_chw_name']);
+            //$this->updateAttributes(['tel']);
         }
     }
 

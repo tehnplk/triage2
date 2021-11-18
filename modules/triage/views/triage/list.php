@@ -86,10 +86,10 @@ $this->title = 'Triages';
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn'],
             //'id',
             'hoscode',
-            //'hosname',
+            'hosname',
             //'visit_id',
             'patient_id:text:ID',
             [
@@ -160,15 +160,8 @@ $this->title = 'Triages';
             ],
             'doi',
             'family',
-            [
-                'label' => 'สิทธิ',
-                'value' => function($model) {
-                    $visit_id = $model->visit_id;
-                    $sql = "select claim_code from visit where id = '$visit_id'";
-                    $claim = \Yii::$app->db->createCommand($sql)->queryScalar();
-                    return $claim;
-                }
-            ],
+            'visit.claim_code:text:สิทธิ',
+            'patient.tel',
             'refer_to:text:ส่งต่อ',
             //'created_at',
             //'created_by',
