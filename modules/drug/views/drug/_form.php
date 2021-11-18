@@ -27,6 +27,7 @@ use kartik\time\TimePicker;
 
         <?= $form->field($model, 'patient_fullname')->textInput(['maxlength' => true]) ?>
     </div>
+
     <div class="row">
         <div class="col">
             <?php
@@ -84,6 +85,9 @@ use kartik\time\TimePicker;
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+    <div>
+        <span>*** คำแนะนำ น้ำหนักตัวน้อยกว่า 90 กก. 50เม็ด , น้ำหนักตัวมากกว่า 90 กก. 64เม็ด</span>
     </div>
 
     <?php ActiveForm::end(); ?>

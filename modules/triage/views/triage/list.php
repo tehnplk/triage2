@@ -21,6 +21,14 @@ $this->title = 'Triages';
 ?>
 <style>
 
+    .grid-view table tbody tr{
+        font-size: 11px !important;
+        /*        cursor: pointer;*/
+    }
+    .grid-view table tbody tr:hover {
+        /*        background-color: wheat;*/
+    }
+
     .blue {
         height: 22px;
         width: 22px;
@@ -78,6 +86,7 @@ $this->title = 'Triages';
     }
     echo GridView::widget([
         'responsiveWrap' => false,
+        //'export' => false,
         'panel' => [
             'heading' => '<span style="color:blue"><i class="fas fa-circle"></i></span> <span style="color:limegreen"><i class="fas fa-circle"></i></span> <span style="color:yellow"><i class="fas fa-circle"></i></span> <span style="color:#ff4500"><i class="fas fa-circle"></i></span> Dashboard',
             'before' => $this->render('_search', ['searchModel' => $searchModel])
@@ -91,7 +100,7 @@ $this->title = 'Triages';
             'hoscode',
             'hosname',
             //'visit_id',
-            'patient_id:text:ID',
+            //'patient_id:text:ID',
             [
                 'attribute' => 'triage_date',
                 'value' => 'triage_date',
@@ -159,14 +168,12 @@ $this->title = 'Triages';
                 }
             ],
             'doi',
+            'visit.bw:text:BW(กก)',
+            'drug.drug_amount:text:RX(เม็ด)',
             'family',
             'visit.claim_code:text:สิทธิ',
             'patient.tel',
             'refer_to:text:ส่งต่อ',
-            //'created_at',
-            //'created_by',
-            //'updated_at',
-            //'updated_by',
             [
                 'attribute' => 'id',
                 'format' => 'raw',
@@ -175,7 +182,11 @@ $this->title = 'Triages';
                     return Html::a('<i class="fas fa-pen"></i>', ['update-list', 'id' => $model->id], ['class' => 'btn-update']);
                 },
                 'visible' => MyRole::can_tri()
-            ]
+            ],
+        //'created_at',
+        //'created_by',
+        //'updated_at',
+        //'updated_by',
         //['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
         //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],

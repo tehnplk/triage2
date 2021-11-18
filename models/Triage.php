@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\Patient;
 use app\models\Visit;
+use app\models\Drug;
 
 /**
  * This is the model class for table "triage".
@@ -120,6 +121,10 @@ class Triage extends \yii\db\ActiveRecord {
 
     public function getVisit() {
         return $this->hasOne(Visit::class, ['id' => 'visit_id']);
+    }
+
+    public function getDrug() {
+        return $this->hasOne(Drug::class, ['visit_id' => 'visit_id']);
     }
 
 }

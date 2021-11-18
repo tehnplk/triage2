@@ -65,8 +65,10 @@ class DrugController extends Controller {
     public function actionCreate($patient_id = NULL) {
         $this->layout = 'off';
         $patient = \app\models\Patient::findOne($patient_id);
+        $max_visit = \app\models\Visit::find()->where(['patient_id' => $patient_id])->max('id');
 
         $model = new Drug();
+        $model->visit_id = $max_visit;
 
         $model->patient_id = $patient_id;
         $model->hoscode = $patient->hoscode;
@@ -74,6 +76,9 @@ class DrugController extends Controller {
         $model->patient_fullname = $patient->full_name;
         $model->drug_date = date('Y-m-d');
         $model->drug_time = date('H:i:s');
+
+        $model->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
+        $model->drug_unit = "เม็ด";
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

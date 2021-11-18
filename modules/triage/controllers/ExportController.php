@@ -3,33 +3,37 @@
 namespace app\modules\triage\controllers;
 
 use yii\web\Controller;
-use app\components\MyTriage;
+use app\models\TriageSearch;
+use yii2tech\csvgrid\CsvGrid;
 
 /**
  * Default controller for the `triage` module
  */
-class AjaxController extends Controller {
+class ExportController extends Controller {
 
     /**
      * Renders the index view for the module
      * @return string
      */
-    public function actionAutoTriage($triage_date = NULL) {
+    public function actionExcel() {
 
-        if (empty($triage_date)) {
-            $date = date('Y-m-d');
-        } else {
-            $date = $triage_date;
-        }
-        $sql = "select t.id from triage t where (t.color is null or trim(t.color)='' or t.color='ฟ้า') and t.triage_date = '$date' ";
-        $raw = \Yii::$app->db->createCommand($sql)->queryAll();
-        $n = 0;
-        foreach ($raw as $p) {
-            $triage_id = $p['id'];
-            MyTriage::triage($triage_id);
-            $n++;
-        }
-        return "จัดกลุ่มทั้งหมด $n คน เรียบร้อยแล้ว!!!  ($date)";
+        $triage_search = \Yii::$app->session->get('triage_search');
+        $searchModel = new TriageSearch();
+        $dataProvider = $searchModel->search($triage_search);
+        //\Yii::$app->session->remove('patient_search');
+
+        $exporter = new CsvGrid([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+               
+                'hoscode',
+                'hosname',
+                'patient_id',
+                'patient_fullname:text:ชื่อ-สกุล'
+            ]
+        ]);
+        $file_name = "รายชื่อ_ผู้ป่วย.csv";
+        return $exporter->export()->send($file_name);
     }
 
 }

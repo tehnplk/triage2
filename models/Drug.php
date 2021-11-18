@@ -45,6 +45,7 @@ class Drug extends \yii\db\ActiveRecord {
             [['drug_date', 'drug_time'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'drug_id', 'drug_name', 'drug_unit', 'drug_usage', 'drug_dispenser', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
+            [['drug_date'], 'unique', 'targetAttribute' => ['hoscode', 'patient_id', 'drug_date'], 'message' => 'ข้อมูลซ้ำซ้อนในวันเดียวกัน'],
         ];
     }
 

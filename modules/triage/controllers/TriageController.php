@@ -59,6 +59,9 @@ class TriageController extends Controller {
         $searchModel = new TriageSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+        //$params = \Yii::$app->request->queryParams;
+        \Yii::$app->session->set('triage_search', $this->request->queryParams);
+
         return $this->render('list', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
