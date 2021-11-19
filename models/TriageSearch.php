@@ -44,7 +44,7 @@ class TriageSearch extends Triage {
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['patient_id' => SORT_DESC]],
+            'sort' => ['defaultOrder' => ['triage_date' => SORT_DESC, 'triage_time' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -70,7 +70,7 @@ class TriageSearch extends Triage {
 
         if ($this->color == 'none') {
             $query->andFilterWhere(['is', 'color', new \yii\db\Expression('null')]);
-                    //->orFilterWhere(['=', 'color', '']);
+            //->orFilterWhere(['=', 'color', '']);
         } else {
             $query->andFilterWhere(['color' => $this->color]);
         }
