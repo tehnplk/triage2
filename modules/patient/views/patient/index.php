@@ -158,6 +158,20 @@ $this->title = 'Patients';
                 'template' => "{delete}",
             //'visible' => app\components\MyRole::can_adm()
             ],
+            //'created_at',
+            //'created_by',
+            [
+                'attribute' => 'created_at',
+                'visible' => \app\components\MyRole::can_adm()
+            ],
+            [
+                'attribute' => 'created_by',
+                'visible' => \app\components\MyRole::can_adm(),
+                'value' => function ($model) {
+                    $user = \app\models\UserDb::findOne($model->created_by);
+                    return $user->username;
+                }
+            ]
         ],
     ]);
     ?>
