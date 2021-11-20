@@ -15,13 +15,6 @@ function smlog(msg) {
     console.log(msg);
 }
 
-$('.btn-get-addr').click(function () {
-    if (!chw_name) {
-        alert('กรุณากดอ่านข้อมูลบัตรประชาชนก่อน');
-        return;
-    }
-    get_all_addr(chw_name, amp_name, tmb_name, moo, address, 2500, 2500);
-});
 
 $('.btn-addr-en').click(function () {
     //console.log('ok');
@@ -44,7 +37,7 @@ $('.btn-addr-en').click(function () {
 
 });
 
-function get_all_addr(chw_name, amp_name, tmb_name, moo, address, sec1, sec2) {
+function get_all_addr(chw_name, amp_name, tmb_name, moo, addr, road, sec1, sec2) {
     console.log('get_all_addr');
     $.get("../ajax/addr-code", {
         'chw_name': chw_name,
@@ -69,17 +62,18 @@ function get_all_addr(chw_name, amp_name, tmb_name, moo, address, sec1, sec2) {
                 //console.log(tmb);
                 $('#sel-tmb').val(tmb);
                 $('#sel-tmb').trigger('change');
-                $('#patient-address_full_english').val(address + ' ,Moo ' + moo + ' ,' + data.tmb_en + ', ' + data.amp_en + ', ' + data.chw_en + ', ' + data.post_code);
-                $('#patient-mobile_phone').focus();
+
+                //$('#patient-address_full_english').val(address + ' ,Moo ' + moo + ' ,' + data.tmb_en + ', ' + data.amp_en + ', ' + data.chw_en + ', ' + data.post_code);
+                //$('#patient-mobile_phone').focus();
             }, sec2);
         }, sec1);
 
 
     });
 
-    $('#patient-road').val(road);
-    $('#patient-moo').val(moo);
-    $('#patient-address').val(address);
+    $('#patient-addr_road').val(road);
+    $('#patient-addr_moo').val(moo);
+    $('#patient-addr_no').val(addr);
 
 }
 
@@ -146,15 +140,18 @@ function initSmartCard() {
                         $('#patient-cid').val(json.CID);
 
                         $('#patient-prefix').val(json.Pname_Thai);
-                        $('#patient-prefix_eng').val(json.Pname_Eng);
+                        //$('#patient-prefix_eng').val(json.Pname_Eng);
 
                         $('#patient-first_name').val(json.FName_Thai);
-                        $('#patient-first_name_eng').val(json.FName_Eng);
+                        //$('#patient-first_name_eng').val(json.FName_Eng);
 
                         $('#patient-last_name').val(json.LName_Thai);
-                        $('#patient-last_name_eng').val(json.LName_Eng);
-
-                        $('#patient-gender').val(json.sex);
+                        //$('#patient-last_name_eng').val(json.LName_Eng);
+                        sex = 'ชาย';
+                        if (json.sex == 2) {
+                            sex = 'หญิง';
+                        }
+                        $('#patient-gender').val(sex);
 
                         birth = json.BirthDate;
                         birth = birth.split("-");
@@ -170,17 +167,11 @@ function initSmartCard() {
                         //console.log(y);
                         age_y = y - by;
                         $('#patient-age_y').val(age_y);
-                        if (age_y >= 60) {
-                            $('#sel-person-type').val('2');
-                        }
-                        if (age_y < 60) {
-                            $('#sel-person-type').val('5');
-                        }
-                        $('#sel-person-type').trigger('change');
 
 
-                        $('#patient-nationality').val('099');
-                        $('#patient-nationality').trigger("change");
+
+                        $('#patient-nation').val('ไทย');
+                        $('#patient-marital').val('ไม่ทราบ');
 
                         road = '--';
                         if (json.Road && json.Road != '') {
@@ -194,44 +185,14 @@ function initSmartCard() {
                         chw_name = json.ProvinceName;
                         amp_name = json.AmphurName;
                         tmb_name = json.TambolName;
-                        address = json.AddrPart;
+                        addr = json.AddrPart;
 
-                        //get_all_addr();
-
-                        $('#patient-address_full_thai').val(json.AddrPart + " " + road + " หมู่ " + json.MooPart + " ตำบล" + json.TambolName + " อำเภอ" + json.AmphurName + " จังหวัด" + json.ProvinceName);
-
-                        $("#patient-mobile_phone").focus();
-
-                        //alert("Read SmartCard Success!!");
 
                         $('#smc-error').hide();
                         $('#smc-success').show();
                         $('#smc-warning').hide();
 
-                        setTimeout(() => {
-                            $.get("../ajax/find-patient", {
-                                'cid': json.CID,
-                            }, function (data) {
-                                console.log(data);
-                                if (data.cid !== '0') {
-                                    alert(data.cid + ' เลขบัตรนี้นี้มีชื่อในระบบแล้ว');
-                                    window.location = '../patient/update?id=' + data.id;
-                                }
-                            });
-                        }, 1000);
-
-
-                        // $("ptimage").src = 'data:image/jpeg;base64,'+json.PersonPictureJPEGString;
-
-                        // ajaxRequest(PersonSmartCardReaderForm.UniHTMLFrame1, 'ciddata', ['data='+msg.data]);
-                        //  ajaxRequest(UniHospitalPersonListFrame.EditButton, 'ciddata', ['data='+msg.data]);
-
-
-                        //smlog("Call AjaxRequest " + window.currentCIDAjaxEventName + " = " + eval(window.currentCIDAjaxEventName));
-
-                        //ajaxRequest(eval(window.currentCIDAjaxEventName), 'ciddata', ['data=' + msg.data]);
-
-
+                        setTimeout(get_all_addr(chw_name, amp_name, tmb_name, moo, addr, road ,500, 500), 1000);
                     }
 
 

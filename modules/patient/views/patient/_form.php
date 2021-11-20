@@ -17,11 +17,17 @@ use kartik\depdrop\DepDrop;
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="row">
-        <div class="col-2">
-            <?= $form->field($model, 'hoscode')->textInput(['maxlength' => 5, 'placeholder' => '']) ?>
+        <div class="col-1">
+            <?= $form->field($model, 'hoscode')->textInput(['maxlength' => 5, 'placeholder' => ''])->label('รหัส5หลัก') ?>
         </div>
-        <div class="col-2">
-            <?= $form->field($model, 'cid')->textInput(['maxlength' => 13]) ?>
+        <div class="col-3">
+            <?=
+            $form->field($model, 'cid', [
+                'template' => '{label}<div class="input-group">{input}'
+                . '<a href="#" class="input-group-addon btn btn-secondary btn-read-card"><i class="far fa-id-card"></i></a>'
+                . '</div>{error}'
+            ])->textInput(['maxlength' => 13, 'autocomplete' => 'off']);
+            ?>
         </div>
 
         <div class="col-2">
