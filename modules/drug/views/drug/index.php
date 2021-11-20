@@ -15,7 +15,7 @@ $this->title = 'Drugs';
 
 
 
-    <p class="text-center">
+    <p class="text-center" style="display: none">
         <?= Html::a('<i class="far fa-plus"></i> เพิ่มจ่ายยา', ['create', 'patient_id' => $searchModel->patient_id], ['class' => 'btn btn-warning btn-create']) ?>
     </p>
 
@@ -46,8 +46,8 @@ $this->title = 'Drugs';
             //'created_by',
             //'updated_at',
             //'updated_by',
-            ['class' => 'yii\grid\ActionColumn', 'template' => "{update}"],
-            ['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
+            ['class' => 'yii\grid\ActionColumn', 'template' => "{update}", 'header' => 'จ่ายยา'],
+        //['class' => 'yii\grid\ActionColumn', 'template' => "{delete}"],
         ],
     ]);
     ?>

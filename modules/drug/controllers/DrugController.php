@@ -103,6 +103,8 @@ class DrugController extends Controller {
     public function actionUpdate($id) {
         $this->layout = 'off';
         $model = $this->findModel($id);
+        $model->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
+        $model->drug_unit = "เม็ด";
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['success']);

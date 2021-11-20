@@ -6,6 +6,7 @@ use Yii;
 use app\models\Risk;
 use app\models\Patient;
 use app\models\Lab;
+use app\models\Drug;
 
 /**
  * This is the model class for table "visit".
@@ -132,11 +133,23 @@ class Visit extends \yii\db\ActiveRecord {
         $lab->lab_date = $this->visit_date;
         $lab->lab_time = $this->visit_time;
 
+        //Drug
+        $drug = new Drug();
+        $drug->hoscode = $this->hoscode;
+        $drug->patient_id = $this->patient_id;
+        $drug->patient_cid = $this->patient_cid;
+        $drug->patient_fullname = $this->patient_fullname;
+        $drug->visit_id = $this->id;
+        $drug->drug_date = $this->visit_date;
+        $drug->drug_time = $this->visit_time;
+        //$drug->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
+        //$drug->drug_unit = "เม็ด";
 
         if ($insert) {
             $this->updateAttributes(['bmi', 'age_y', 'age_m']);
             $risk->save(false);
             $lab->save(false);
+            $drug->save(false);
         } else {
             $this->updateAttributes(['bmi']);
         }
