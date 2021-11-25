@@ -10,6 +10,12 @@ class MyRole extends Component {
         return \Yii::$app->user->id;
     }
 
+    public static function getUserHosCode() {
+        $user_hoscode = empty(\Yii::$app->user->identity->hoscode) ? '00000' : \Yii::$app->user->identity->hoscode;
+
+        return $user_hoscode;
+    }
+
     public static function isHoscodeMatch($patient_hoscode) {
         $user_hoscode = empty(\Yii::$app->user->identity->hoscode) ? '' : \Yii::$app->user->identity->hoscode;
 

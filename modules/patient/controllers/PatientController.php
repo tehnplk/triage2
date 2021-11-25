@@ -84,6 +84,7 @@ class PatientController extends Controller {
     public function actionCreate() {
         $model = new Patient();
         //$model->addr_chw = '65';
+        $model->hoscode = MyRole::getUserHosCode();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
