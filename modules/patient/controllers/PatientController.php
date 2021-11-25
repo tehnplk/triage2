@@ -115,6 +115,7 @@ class PatientController extends Controller {
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
             if ($visit) {
+                $visit->hoscode = $model->hoscode;
                 $visit->patient_cid = $model->cid;
                 $visit->patient_fullname = "$model->prefix$model->first_name $model->last_name";
                 $visit->age_y = $model->age_y;
@@ -123,6 +124,11 @@ class PatientController extends Controller {
             }
 
             if ($triage) {
+                $triage->hoscode = $model->hoscode;
+                $hos = \app\models\Hos::findOne($triage->hoscode);
+                if ($hos) {
+                    $triage->hosname = $hos->name;
+                }
                 $triage->patient_cid = $model->cid;
                 $triage->patient_fullname = "$model->prefix$model->first_name $model->last_name";
                 $triage->patient_age = $model->age_y;

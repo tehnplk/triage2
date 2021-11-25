@@ -125,6 +125,8 @@ $this->title = 'Triages';
                 'attribute' => 'patient_cid',
                 'label' => 'เลข13หลัก',
                 'format' => 'raw',
+                'stripTagsFromExport' => true,
+                //'xlFormat' => '@',
                 'value' => function($model) {
                     if (MyRole::is_reg() && !MyRole::isHoscodeMatch($model->hoscode)) {
                         return $model->patient_cid;
