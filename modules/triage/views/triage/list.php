@@ -128,6 +128,9 @@ $this->title = 'Triages';
                 'stripTagsFromExport' => true,
                 //'xlFormat' => '@',
                 'value' => function($model) {
+                    if (MyRole::is_vww()) {
+                        return $model->patient_cid;
+                    }
                     if (MyRole::is_reg() && !MyRole::isHoscodeMatch($model->hoscode)) {
                         return $model->patient_cid;
                     }

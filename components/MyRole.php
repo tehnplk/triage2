@@ -125,5 +125,15 @@ class MyRole extends Component {
         }
         return FALSE;
     }
+    
+    public static function is_vww() {
+        $allow_group = ['vww'];
+
+        $user_group = substr(self::getRole(), 0, 3);
+        if (in_array($user_group, $allow_group)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
 
 }

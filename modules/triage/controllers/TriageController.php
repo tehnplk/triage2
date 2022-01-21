@@ -26,7 +26,7 @@ class TriageController extends Controller {
                         'rules' => [
                             [
                                 'actions' => ['list', 'index', 'view',],
-                                'allow' => \app\components\MyRole::can_reg(),
+                                'allow' => \app\components\MyRole::can_reg() || \app\components\MyRole::is_vww(),
                                 'roles' => ['@'],
                             ],
                             [
