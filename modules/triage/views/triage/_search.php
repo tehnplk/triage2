@@ -45,6 +45,9 @@ use app\components\MyRole;
             <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
 
         </div>
+        <div class="col-1">
+            <?= Html::a("Excel", ['/triage/export/excel'], ['class' => 'btn btn-info']) ?>
+        </div>
     </div>
 
 

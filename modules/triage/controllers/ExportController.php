@@ -25,11 +25,63 @@ class ExportController extends Controller {
         $exporter = new CsvGrid([
             'dataProvider' => $dataProvider,
             'columns' => [
-               
-                'hoscode',
+                'hoscode:text:hoscode',
                 'hosname',
-                'patient_id',
-                'patient_fullname:text:ชื่อ-สกุล'
+                'triage_date',
+                'triage_time',
+                'patient_cid',
+                'patient_fullname:text:ชื่อ-สกุล',
+                'patient_gender:text:เพศ',
+                'patient_age:text:อายุ(ปี)',
+                'patient_chw:text:จังหวัด',
+                'patient_amp:text:อำเภอ',
+                [
+                    'label' => 'ตำบล',
+                    'value' => function($model) {
+                        $pt_id = $model->patient_id;
+                        $sql = "select addr_tmb_name from patient where id = '$pt_id'";
+                        $row = \Yii::$app->db->createCommand($sql)->queryScalar();
+                        return $row;
+                    }
+                ],
+                [
+                    'label' => 'หมู่',
+                    'value' => function($model) {
+                        $pt_id = $model->patient_id;
+                        $sql = "select addr_moo from patient where id = '$pt_id'";
+                        $row = \Yii::$app->db->createCommand($sql)->queryScalar();
+                        return $row;
+                    }
+                ],
+                [
+                    'label' => 'ถนน',
+                    'value' => function($model) {
+                        $pt_id = $model->patient_id;
+                        $sql = "select addr_road from patient where id = '$pt_id'";
+                        $row = \Yii::$app->db->createCommand($sql)->queryScalar();
+                        return $row;
+                    }
+                ],
+                [
+                    'label' => 'บ้านเลขที่',
+                    'value' => function($model) {
+                        $pt_id = $model->patient_id;
+                        $sql = "select addr_no from patient where id = '$pt_id'";
+                        $row = \Yii::$app->db->createCommand($sql)->queryScalar();
+                        return $row;
+                    }
+                ],
+                'claim_code',
+                'spo2',
+                'lab_date',
+                'lab_kind',
+                'lab_result',
+                'risk',
+                'xray',
+                'doi',
+                'color',
+                'family',
+                'refer_to',
             ]
         ]);
         $file_name = "รายชื่อ_ผู้ป่วย.csv";
