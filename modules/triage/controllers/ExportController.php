@@ -71,7 +71,15 @@ class ExportController extends Controller {
                         return $row;
                     }
                 ],
-                'claim_code',
+                [
+                    'label' => 'สิทธิรักษา',
+                    'value' => function($model) {
+                        $pt_id = $model->patient_id;
+                        $sql = "select claim_code from visit where patient_id = '$pt_id'";
+                        $row = \Yii::$app->db->createCommand($sql)->queryScalar();
+                        return $row;
+                    }
+                ],
                 'spo2',
                 'lab_date',
                 'lab_kind',
