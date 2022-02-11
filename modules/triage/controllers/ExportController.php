@@ -18,6 +18,9 @@ class ExportController extends Controller {
     public function actionExcel() {
 
         $triage_search = \Yii::$app->session->get('triage_search');
+        if (empty($triage_search)) {
+            return "<h2>กรุณาเลือกวันที่ ที่ต้องการส่งออก</h2>";
+        }
         $searchModel = new TriageSearch();
         $dataProvider = $searchModel->search($triage_search);
         //\Yii::$app->session->remove('patient_search');

@@ -46,7 +46,7 @@ use app\components\MyRole;
 
         </div>
         <div class="col-1">
-            <?= Html::a("Excel", ['/triage/export/excel'], ['class' => 'btn btn-info']) ?>
+            <?= Html::a("Excel", ['/triage/export/excel'], ['class' => 'btn btn-info', 'target' => '_blank']) ?>
         </div>
     </div>
 
