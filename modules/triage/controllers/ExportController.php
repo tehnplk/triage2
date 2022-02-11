@@ -18,6 +18,11 @@ class ExportController extends Controller {
     public function actionExcel() {
 
         $triage_search = \Yii::$app->session->get('triage_search');
+        /*
+         * return $this->render('excel', [
+          'triage_search' => $triage_search
+          ]);
+         */
         if (empty($triage_search)) {
             return "<h2>กรุณาเลือกวันที่ หรือ กรองด้วยรหัสหน่วยบริการ ที่ต้องการส่งออก</h2>";
         }
