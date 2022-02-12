@@ -41,6 +41,15 @@ class ExportController extends Controller {
                 'patient_fullname:text:ชื่อ-สกุล',
                 'patient_gender:text:เพศ',
                 'patient_age:text:อายุ(ปี)',
+                [
+                    'label' => 'เบอร์โทร',
+                    'value' => function($model) {
+                        $pt_id = $model->patient_id;
+                        $sql = "select tel from patient where id = '$pt_id'";
+                        $row = \Yii::$app->db->createCommand($sql)->queryScalar();
+                        return $row;
+                    }
+                ],
                 'patient_chw:text:จังหวัด',
                 'patient_amp:text:อำเภอ',
                 [
@@ -89,8 +98,8 @@ class ExportController extends Controller {
                     }
                 ],
                 'spo2',
-                'lab_date',
-                'lab_kind',
+                //'lab_date',
+                //'lab_kind',
                 'lab_result',
                 'risk',
                 'xray',
