@@ -25,7 +25,7 @@ use app\components\MyLookUp;
         <div class="col-2">
             <?php echo $form->field($searchModel, 'ampcode')->dropDownList(MyLookUp::amp_plk(), ['prompt' => '-- อำเภอ --'])->label(false) ?>
         </div>
-        <div class="col-3">
+        <div class="col-2">
             <?php //echo $form->field($searchModel, 'triage_date') ?>
             <?php
             echo $form->field($searchModel, 'triage_date')->widget(DatePicker::classname(), [
