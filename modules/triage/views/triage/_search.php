@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\date\DatePicker;
 use app\components\MyRole;
+use app\components\MyLookUp;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TriageSearch */
@@ -21,6 +22,9 @@ use app\components\MyRole;
 
 
     <div class="row">
+        <div class="col-2">
+            <?php echo $form->field($searchModel, 'ampcode')->dropDownList(MyLookUp::amp_plk(), ['prompt' => '-- อำเภอ --'])->label(false) ?>
+        </div>
         <div class="col-3">
             <?php //echo $form->field($searchModel, 'triage_date') ?>
             <?php
@@ -42,7 +46,7 @@ use app\components\MyRole;
 
         <div class="col" style="display: <?= MyRole::can_tri() ? '' : 'none' ?>">
 
-            <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มผู้ป่วยอัตโนมัติ</button>
+            <button type="button" class="btn btn-primary btn-auto"><i class="far fa-check-circle"></i> จัดกลุ่มสีผู้ป่วย</button>
 
         </div>
         <div class="col-1">
@@ -55,3 +59,12 @@ use app\components\MyRole;
     <?php ActiveForm::end(); ?>
 
 </div>
+<?php
+$js = <<<JS
+        
+        $('#triagesearch-ampcode').change(function(){
+            $('#w0').submit();
+        });
+        
+JS;
+$this->registerJs($js);

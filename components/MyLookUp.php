@@ -21,6 +21,21 @@ class MyLookUp extends Component {
         return $items;
     }
 
+    public static function amp_plk() {
+        $items = [
+            '01' => 'เมือง',
+            '02' => 'นครไทย',
+            '03' => 'ชาติตระการ',
+            '04' => 'บางระกำ',
+            '05' => 'บางกระทุ่ม',
+            '06' => 'พรหมพิราม',
+            '07' => 'วัดโบสถ์',
+            '08' => 'วังทอง',
+            '09' => 'เนินมะปราง'
+        ];
+        return $items;
+    }
+
     public static function tmb($amp_code) {
         $sql = "select codefull code, name from c_tmb where ampurcode = '$amp_code'";
         $raw = \Yii::$app->db->createCommand($sql)->queryAll();

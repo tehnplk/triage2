@@ -13,6 +13,8 @@ use app\models\Drug;
  * @property int $id
  * @property string|null $hoscode
  * @property string|null $hosname
+ * @property string|null $ampcode
+ * @property string|null $ampname
  * @property int|null $visit_id
  * @property int|null $patient_id
  * @property int|null $doi
@@ -58,7 +60,7 @@ class Triage extends \yii\db\ActiveRecord {
             [['triage_date', 'triage_time', 'lab_date'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'patient_age', 'patient_gender', 'inscl_code', 'claim_code', 'spo2', 'lab_kind', 'lab_result', 'risk', 'color', 'refer_to', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid',], 'string', 'max' => 13],
-            [['family', 'xray', 'patient_chw', 'patient_amp'], 'string']
+            [['family', 'xray', 'patient_chw', 'patient_amp', 'ampcode', 'ampname'], 'string']
         ];
     }
 
@@ -70,6 +72,8 @@ class Triage extends \yii\db\ActiveRecord {
             'id' => 'ID',
             'hoscode' => 'Hoscode',
             'hosname' => 'Hosname',
+            'ampcode' => 'รหัสอำเภอ',
+            'ampname' => 'อำเภอ',
             'visit_id' => 'Visit ID',
             'patient_id' => 'Patient ID',
             'patient_cid' => 'Patient Cid',
