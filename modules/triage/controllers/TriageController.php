@@ -25,12 +25,12 @@ class TriageController extends Controller {
                         'only' => ['list', 'index', 'view', 'create', 'update', 'update-list', 'delete'],
                         'rules' => [
                             [
-                                'actions' => ['list', 'index', 'view',],
+                                'actions' => ['list', 'index', 'view','update',],
                                 'allow' => \app\components\MyRole::can_reg() || \app\components\MyRole::is_vww(),
                                 'roles' => ['@'],
                             ],
                             [
-                                'actions' => ['create', 'update', 'update-list'],
+                                'actions' => ['create',  'update-list'],
                                 'allow' => \app\components\MyRole::can_tri() || \app\components\MyRole::isOneStop(),
                                 'roles' => ['@'],
                             ],
