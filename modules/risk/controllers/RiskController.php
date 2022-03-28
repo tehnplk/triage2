@@ -73,7 +73,7 @@ class RiskController extends Controller {
             if ($model->load($this->request->post()) && $model->save()) {
 
                 $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
-                if ($model->stroke == '1' || $model->suppress == '1' || $model->aging == '1' || $model->bmi == 1 || $model->cancer == 1 || $model->cancer == 1 || $model->cirrhosis == 1 || $model->copd == 1 || $model->dm == 1 || $model->hiv == 1 || $model->ihd == 1 || $model->preg == 1) {
+                if ($model->stroke == '1' || $model->suppress == '1' || $model->aging == '1' || $model->bmi == 1 || $model->cancer == 1 || $model->cancer == 1 || $model->cirrhosis == 1 || $model->copd == 1 || $model->dm == 1 || $model->hiv == 1 || $model->ihd == 1 || $model->preg == 1 || $model->kidney == 1 || $model->vacless == 1) {
                     $triage->risk = 'มี';
                 } else {
                     $triage->risk = 'ไม่มี';
@@ -106,7 +106,7 @@ class RiskController extends Controller {
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
 
             $triage = Triage::find()->where(['visit_id' => $model->visit_id])->one();
-            if ($model->stroke == 1 || $model->suppress == 1 || $model->aging == 1 || $model->bmi == 1 || $model->cancer == 1 || $model->cancer == 1 || $model->cirrhosis == 1 || $model->copd == 1 || $model->dm == 1 || $model->hiv == 1 || $model->ihd == 1 || $model->preg == 1) {
+            if ($model->stroke == 1 || $model->suppress == 1 || $model->aging == 1 || $model->bmi == 1 || $model->cancer == 1 || $model->cancer == 1 || $model->cirrhosis == 1 || $model->copd == 1 || $model->dm == 1 || $model->hiv == 1 || $model->ihd == 1 || $model->preg == 1 || $model->kidney == 1 || $model->vacless == 1) {
                 $triage->risk = 'มี';
             } else {
                 $triage->risk = 'ไม่มี';

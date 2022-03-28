@@ -27,6 +27,8 @@ use Yii;
  * @property string|null $cancer CANCER
  * @property string|null $suppress กินยากดภูมิคุ้มกัน
  * @property string|null $preg กำลังตั้งครรภ์
+ * @property string|null $kidney
+ * @property string|null $vacless
  * @property string|null $non_risk ไม่มีความเสี่ยง
  * @property string|null $created_at
  * @property string|null $created_by
@@ -51,6 +53,7 @@ class Risk extends \yii\db\ActiveRecord {
             [['risk_date', 'risk_time'], 'safe'],
             [['hoscode', 'hosname', 'patient_fullname', 'aging', 'bmi', 'dm', 'copd', 'cirrhosis', 'stroke', 'ihd', 'hiv', 'cancer', 'suppress', 'preg', 'non_risk', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'string', 'max' => 255],
             [['patient_cid'], 'string', 'max' => 13],
+            [['kidney', 'vacless'], 'safe'],
         ];
     }
 
@@ -79,6 +82,8 @@ class Risk extends \yii\db\ActiveRecord {
             'cancer' => 'Cancer',
             'suppress' => 'กินยากดภูมิคุ้มกัน',
             'preg' => 'กำลังตั้งครรภ์',
+            'kidney'=>'CKD/ฟอกไต',
+            'vacless'=>'ไม่ฉีดวัคซีน/ฉีดไม่ครบ2เข็ม',
             'non_risk' => 'ไม่มีปัจจัยเสี่ยง',
             'created_at' => 'Created At',
             'created_by' => 'Created By',

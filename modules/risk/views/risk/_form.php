@@ -108,7 +108,10 @@ use yii\widgets\ActiveForm;
         </div>
 
     </div>
-
+    <div class="row">
+        <div class="col-md-3"><?= $form->field($model, 'kidney')->checkbox() ?></div>
+        <div class="col-md-3"><?= $form->field($model, 'vacless')->checkbox() ?></div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
