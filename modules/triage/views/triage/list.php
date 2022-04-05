@@ -82,7 +82,7 @@ $this->title = 'Triages';
     <?php
     $dataProvider->pagination = ['pageSize' => 25];
     if (!empty($searchModel->triage_date)) {
-        $dataProvider->pagination = false;
+        //$dataProvider->pagination = false;
     }
     echo GridView::widget([
         'responsiveWrap' => false,
