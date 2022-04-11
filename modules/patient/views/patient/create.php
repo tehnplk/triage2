@@ -20,7 +20,7 @@ $this->title = 'Create Patient';
     </div>
 
     <div class="mr-1">
-        <span><a href="http://plkvac.plkhealth.go.th/plkvac/web/patient/util/gen-cid" target="_blank">เลข13หลัก-คนต่างด้าว</a></span>
+        <span><?= Html::a('เลข13หลัก-คนต่างด้าว', ['gen-cid'], ['target' => '_blank']) ?></span>
     </div>
 
 

@@ -23,10 +23,10 @@ class PatientController extends Controller {
                 [
                     'access' => [
                         'class' => \yii\filters\AccessControl::className(),
-                        'only' => ['index', 'view', 'create', 'update', 'delete'],
+                        'only' => ['index', 'view', 'create', 'update', 'delete', 'gen-cid'],
                         'rules' => [
                             [
-                                'actions' => ['index', 'view', 'create', 'update'],
+                                'actions' => ['index', 'view', 'create', 'update', 'gen-cid'],
                                 'allow' => \app\components\MyRole::can_reg(),
                                 'roles' => ['@'],
                             ],
@@ -174,6 +174,32 @@ class PatientController extends Controller {
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public static function gen_cid() {
+        $tt = time();
+        $ran = '65' . $tt;
+        $arr = str_split($ran);
+        $n = 13;
+        $t = 0;
+        foreach ($arr as $c) {
+            $s = $c * $n;
+            $n--;
+            $t += $s;
+        }
+
+        $mod = 11 - $t % 11;
+
+
+        $cid = $ran . $mod;
+        return $cid;
+    }
+
+    public function actionGenCid() {
+        $cid = $this->gen_cid();
+        return $this->renderPartial('gen-cid', [
+                    'cid' => $cid
+        ]);
     }
 
 }
