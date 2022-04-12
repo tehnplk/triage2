@@ -178,7 +178,7 @@ class PatientController extends Controller {
 
     public static function gen_cid() {
         $tt = time();
-        $ran = '65' . $tt;
+        $ran = '60' . $tt;
         $arr = str_split($ran);
         $n = 13;
         $t = 0;
