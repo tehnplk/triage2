@@ -10,12 +10,36 @@ use kartik\depdrop\DepDrop;
 /* @var $model app\models\Patient */
 /* @var $form yii\widgets\ActiveForm */
 ?>
+<style>
+
+
+
+    input[type=checkbox]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        padding: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }  
+    .chk{
+        font-size: 14px;
+    }
+
+
+</style>
 
 
 <div style="padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <div class="row">
+        <div class="col-md">1) ข้อมูลส่วนตัว</div>
+    </div>
     <div class="row">
 
         <div class="col-md-3">
@@ -74,8 +98,9 @@ use kartik\depdrop\DepDrop;
             <?= $form->field($model, 'marital')->dropDownList(MyLookUp::marital(), ['prompt' => '']) ?>
         </div>
     </div>
+    <hr>
     <div class="row">
-        <div class="col-md">*ที่อยู่ปัจจุบัน ไม่จำเป็นต้องตามบัตรประชาชน</div>
+        <div class="col-md">2) ที่อยู่ปัจจุบัน (ไม่จำเป็นต้องตรงตามบัตรประชาชน)</div>
     </div>
     <div class="row">
         <div class="col-md">
@@ -124,15 +149,16 @@ use kartik\depdrop\DepDrop;
 
 
     </div>
+    <hr>
     <div class="row">
-        <div class="col-md">*ข้อมูลสุขภาพ</div>
+        <div class="col-md">3) ข้อมูลสุขภาพ</div>
     </div>
 
     <div class="row">
         <div class="col-md">
             <div class="form-group field-patient-bw has-success">
                 <label class="control-label" for="patient-bw">น้ำหนัก(กก)</label>
-                <input type="number" id="patient-bw" class="form-control" name="bw" value="" maxlength="3" aria-invalid="false">
+                <input type="number" id="patient-bw" class="form-control" name="bw" value="" maxlength="3" aria-invalid="false" required>
             </div>
 
         </div>
@@ -140,7 +166,7 @@ use kartik\depdrop\DepDrop;
         <div class="col-md">
             <div class="form-group field-patient-bh has-success">
                 <label class="control-label" for="patient-bh">ส่วนสูง(ซม)</label>
-                <input type="number" id="patient-bh" class="form-control" name="bh" value="" maxlength="3" aria-invalid="false">
+                <input type="number" id="patient-bh" class="form-control" name="bh" value="" maxlength="3" aria-invalid="false" required>
             </div>
 
         </div>
@@ -166,17 +192,80 @@ use kartik\depdrop\DepDrop;
 
 
     </div>
+    <hr>
+    <div class="row">
+        <div class="col-md">
+            4) ปัจจัยเสี่ยงของท่าน (หากไม่มีให้ข้ามไปข้อ 5 )
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md">
-            *เลือกโรงพยาบาลที่ท่านต้องการให้ดูแล
+            <label class="chk"><input type="checkbox"  name="risk[]" value="vac"> ไม่ฉีดวัคซีน/ฉีดไม่ครบ2เข็ม</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="age"> อายุมากกว่า 60 ปี</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="bmi"> น้ำหนักมากกว่า 90</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="dm"> เป็นโรคเบาหวาน</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="copd"> เป็นโรคหลอดลมอุดกั้นเริ้อรัง</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="liver"> เป็นโรคตับแข็ง</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="stroke"> เป็นโรคหลอดเลือดสมอง</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="ihd"> เป็นโรคหัวใจขาดเลือด</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="hiv"> เป็นโรคภูมิคุ้มกันบกพร่อง(HIV)</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="cancer"> เป็นโรคมะเร็ง</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="ckd"> เป็นโรคไต/กำลังฟอกไต</label>         
+        </div>
+
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="preg"> กำลังตั้งครรภ์</label>         
+        </div>
+        
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="suppress"> กินยากดภูมิคุ้มกัน</label>         
+        </div>
+
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md">
+            5) เลือกโรงพยาบาลใกล้บ้านท่าน
         </div>
     </div>
+
+
     <div class="row">
         <div class="col-md">
 
             <div class="form-group field-sel-amp-hos required has-error">
-                <label class="control-label" for="sel-amp-hos">ท่านอยู่ในพื้นที่อำเภอ</label>
+                <label class="control-label" for="sel-amp-hos">อำเภอ</label>
                 <select id="sel-amp-hos" class="form-control" name="sel-amp-hos" aria-required="true" aria-invalid="true">
                     <option value=""></option>
                     <option value="01">เมือง</option>
@@ -205,7 +294,7 @@ use kartik\depdrop\DepDrop;
                     //'initialize' => TRUE,
                     'url' => yii\helpers\Url::to(['/patient/ajax/list-hos'])
                 ]
-            ])->label("โรงพยาบาลที่ต้องการให้ดูแล");
+            ])->label("โรงพยาบาล");
             ?>
         </div>
     </div>

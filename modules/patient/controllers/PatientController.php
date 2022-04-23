@@ -106,11 +106,11 @@ class PatientController extends Controller {
                 $visit->save();
 
                 //lab
-                $lab = \app\models\Lab::find()->where(['visit_id'=>$visit->id])->one();
+                $lab = \app\models\Lab::find()->where(['visit_id' => $visit->id])->one();
                 $lab->lab_place = "-";
                 $lab->lab_result = "ATK-Positive";
                 $lab->save(false);
-                
+
                 //triage
                 $triage = new \app\models\Triage();
                 $triage->hoscode = $model->hoscode;
@@ -131,9 +131,11 @@ class PatientController extends Controller {
                 $triage->triage_date = $visit->visit_date;
                 $triage->triage_time = $visit->visit_time;
                 $triage->spo2 = $visit->spo2;
-                $triage->risk = "ไม่มี";
                 $triage->lab_result = $lab->lab_result;
-                $triage->color = "เขียว";
+
+                $risk = $this->request->post('risk');
+                //$triage->risk = empty($risk) ? 'ไม่มี' : 'มี';
+                $triage->color = empty($risk) ? 'เขียว' : 'เหลือง';               
                 $triage->save(false);
 
                 \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");
