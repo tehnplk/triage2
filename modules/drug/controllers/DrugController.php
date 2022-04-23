@@ -77,8 +77,8 @@ class DrugController extends Controller {
         $model->drug_date = date('Y-m-d');
         $model->drug_time = date('H:i:s');
 
-        $model->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
-        $model->drug_unit = "เม็ด";
+        //$model->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
+        //$model->drug_unit = "เม็ด";
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -103,8 +103,8 @@ class DrugController extends Controller {
     public function actionUpdate($id) {
         $this->layout = 'off';
         $model = $this->findModel($id);
-        $model->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
-        $model->drug_unit = "เม็ด";
+        //$model->drug_name = "ฟาวิพิราเวียร์ (Favipiravir)";
+        //$model->drug_unit = "เม็ด";
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['success']);
