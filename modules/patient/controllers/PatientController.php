@@ -81,6 +81,73 @@ class PatientController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    public function actionSelfCreate() {
+        $this->layout = 'self';
+        $model = new Patient();
+        //$model->addr_chw = '65';
+        //$model->hoscode = MyRole::getUserHosCode();
+
+        if ($this->request->isPost) {
+            if ($model->load($this->request->post()) && $model->save()) {
+                //visit
+                $visit = new \app\models\Visit();
+                $visit->hoscode = $model->hoscode;
+                $visit->patient_id = $model->id;
+                $visit->patient_cid = $model->cid;
+                $visit->patient_fullname = $model->prefix . "" . $model->first_name . " " . $model->last_name;
+                $visit->visit_date = date('Y-m-d');
+                $visit->visit_time = date('H:i:s');
+                $visit->spo2 = 98;
+                $visit->bw = $this->request->post('bw');
+                $visit->bh = $this->request->post('bh');
+                $visit->cc = $this->request->post('cc');
+                $visit->age_y = $model->age_y;
+                $visit->age_m = $model->age_m;
+                $visit->save();
+
+                //lab
+                $lab = \app\models\Lab::find()->where(['visit_id'=>$visit->id])->one();
+                $lab->lab_place = "-";
+                $lab->lab_result = "ATK-Positive";
+                $lab->save(false);
+                
+                //triage
+                $triage = new \app\models\Triage();
+                $triage->hoscode = $model->hoscode;
+                $hos = \app\models\Hos::findOne($model->hoscode);
+                if ($hos) {
+                    $triage->hosname = $hos->name;
+                }
+                $triage->patient_id = $model->id;
+                $triage->patient_cid = $model->cid;
+                $triage->patient_fullname = $visit->patient_fullname;
+                $triage->patient_gender = $model->gender;
+                $triage->patient_age = $model->age_y;
+                $chw = \app\models\Changwat::findOne($model->addr_chw);
+                $triage->patient_chw = $chw->name;
+                $amp = \app\models\Amphur::find()->where(['codefull' => $model->addr_amp])->one();
+                $triage->patient_amp = $amp->name;
+                $triage->visit_id = $visit->id;
+                $triage->triage_date = $visit->visit_date;
+                $triage->triage_time = $visit->visit_time;
+                $triage->spo2 = $visit->spo2;
+                $triage->risk = "ไม่มี";
+                $triage->lab_result = $lab->lab_result;
+                $triage->color = "เขียว";
+                $triage->save(false);
+
+                \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");
+                return $this->redirect(['self-update', 'id' => $model->id]);
+            }
+        } else {
+            $model->loadDefaultValues();
+        }
+
+        return $this->render('self-create', [
+                    'model' => $model,
+        ]);
+    }
+
     public function actionCreate() {
         $model = new Patient();
         //$model->addr_chw = '65';

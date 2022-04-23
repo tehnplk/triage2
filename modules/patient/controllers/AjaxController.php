@@ -49,6 +49,24 @@ class AjaxController extends Controller {
         return ['output' => '', 'selected' => ''];
     }
 
+    public function actionListHos() {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = [];
+        if (isset($_POST['depdrop_parents'])) {
+            $parents = $_POST['depdrop_parents'];
+            if ($parents != null) {
+                $cat_id = $parents[0];
+
+                $sql = "select id ,name from c_hos_sel where amp = '$cat_id'";
+                $out = \Yii::$app->db->createCommand($sql)->queryAll();
+
+
+                return ['output' => $out, 'selected' => ''];
+            }
+        }
+        return ['output' => '', 'selected' => ''];
+    }
+
     public function actionAddrCode($chw_name, $amp_name, $tmb_name) {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $sql = "select * from c_tmb_post where tmb_name_th_short = '$tmb_name' and amp_name_th_short = '$amp_name' and chw_name_th = '$chw_name'";
