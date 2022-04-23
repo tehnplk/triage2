@@ -81,6 +81,10 @@ class PatientController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+    public function actionSelfIndex() {
+        return $this->renderPartial('self-index');
+    }
+
     public function actionSelfCreate() {
         $this->layout = 'self';
         $model = new Patient();
@@ -135,7 +139,7 @@ class PatientController extends Controller {
 
                 $risk = $this->request->post('risk');
                 //$triage->risk = empty($risk) ? 'ไม่มี' : 'มี';
-                $triage->color = empty($risk) ? 'เขียว' : 'เหลือง';               
+                $triage->color = empty($risk) ? 'เขียว' : 'เหลือง';
                 $triage->save(false);
 
                 \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");

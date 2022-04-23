@@ -17,10 +17,10 @@ use kartik\depdrop\DepDrop;
     input[type=checkbox]
     {
         /* Double-sized Checkboxes */
-        -ms-transform: scale(2); /* IE */
-        -moz-transform: scale(2); /* FF */
-        -webkit-transform: scale(2); /* Safari and Chrome */
-        -o-transform: scale(2); /* Opera */
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
         padding: 10px;
         margin-right: 10px;
         margin-left: 10px;
@@ -177,7 +177,7 @@ use kartik\depdrop\DepDrop;
     </div>
 
     <div class="row">
-        <div class="col-md">
+        <div class="col-md" style="display: none">
             <?= $form->field($model, 'personal_disease')->textInput(['maxlength' => true]) ?>
         </div>
 
