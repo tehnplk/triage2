@@ -25,6 +25,20 @@ use kartik\depdrop\DepDrop;
         margin-right: 10px;
         margin-left: 10px;
     }  
+
+    input[type=radio]
+    {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(1.5); /* IE */
+        -moz-transform: scale(1.5); /* FF */
+        -webkit-transform: scale(1.5); /* Safari and Chrome */
+        -o-transform: scale(1.5); /* Opera */
+        padding: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }  
+
+
     .chk{
         font-size: 14px;
     }
@@ -35,7 +49,7 @@ use kartik\depdrop\DepDrop;
 
 <div style="padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
         <div class="col-md">1) ข้อมูลส่วนตัว</div>
@@ -192,6 +206,21 @@ use kartik\depdrop\DepDrop;
 
 
     </div>
+
+    <div class="row">
+        <div class="col-md">
+            ตรวจพบเชื้อโควิดด้วยวิธี  
+            <br>
+            <label class="chk" style="margin-right: 15px"><input type="radio"  name="lab_kind" value="ATK-Positive"> ATK</label> 
+            <label class="chk"><input type="radio"  name="lab_kind" value="PCR-Positive"> RT-PCR</label> 
+        </div>
+        <div class="col-md">
+            เมื่อวันที่ <input type="date" name="lab_date" class=""/>
+        </div>
+        <div class="col-md">
+            <label style="margin-top: 3px">รูปภาพผลตรวจ<input type="file"  name="lab_pic" accept="image/*"></label> 
+        </div>
+    </div>
     <hr>
     <div class="row">
         <div class="col-md">
@@ -244,7 +273,7 @@ use kartik\depdrop\DepDrop;
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="risk[]" value="preg"> กำลังตั้งครรภ์</label>         
         </div>
-        
+
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="risk[]" value="suppress"> กินยากดภูมิคุ้มกัน</label>         
         </div>

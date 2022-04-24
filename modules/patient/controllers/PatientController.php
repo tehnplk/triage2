@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\MyRole;
+use yii\web\UploadedFile;
 
 /**
  * PatientController implements the CRUD actions for Patient model.
@@ -85,6 +86,13 @@ class PatientController extends Controller {
         return $this->renderPartial('self-index');
     }
 
+    public function actionSelfSuccess($color = null) {
+        $this->layout = 'self';
+        return $this->render('self-success', [
+                    'color' => $color
+        ]);
+    }
+
     public function actionSelfCreate() {
         $this->layout = 'self';
         $model = new Patient();
@@ -112,7 +120,11 @@ class PatientController extends Controller {
                 //lab
                 $lab = \app\models\Lab::find()->where(['visit_id' => $visit->id])->one();
                 $lab->lab_place = "-";
-                $lab->lab_result = "ATK-Positive";
+                $lab->lab_date = $this->request->post('lab_date');
+                $lab_kind = $this->request->post('lab_kind');
+                $lab->lab_result = $lab_kind;
+                $lab_pic = UploadedFile::getInstanceByName('lab_pic');
+                $lab_pic->saveAs("./lab_pic/$visit->id.png");
                 $lab->save(false);
 
                 //triage
@@ -143,7 +155,7 @@ class PatientController extends Controller {
                 $triage->save(false);
 
                 \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");
-                return $this->redirect(['self-update', 'id' => $model->id]);
+                return $this->redirect(['self-success', 'color' => $triage->color]);
             }
         } else {
             $model->loadDefaultValues();
