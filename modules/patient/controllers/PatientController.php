@@ -83,7 +83,8 @@ class PatientController extends Controller {
      * @return mixed
      */
     public function actionSelfIndex() {
-        return $this->renderPartial('self-index');
+         $this->layout = 'self';
+        return $this->render('self-index');
     }
 
     public function actionSelfSuccess($color = null) {

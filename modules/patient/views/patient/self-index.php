@@ -2,6 +2,15 @@
 
 use yii\helpers\Html;
 ?>
-<h1>สำหรับผู้ป่วยมีผลตรวจโควิดพบว่าติดเชื้อ</h1>
-<?=
-Html::a('ลงทะเบียนเข้ารับการดูแล', ['self-create'])?>
+<div style="text-align: center">
+    <h3>ผู้ป่วยโควิดขอรับการรักษา</h3>
+    <?=
+    Html::img("@web/icon/ems.png", [
+        'width' => '250px',
+        'height' => '200px'
+    ])
+    ?>
+    <br>
+    <br>
+    <?= Html::a('คลิกเพื่อลงทะเบียน', ['self-create'], ['class' => 'btn btn-lg btn-success']) ?>
+</div>

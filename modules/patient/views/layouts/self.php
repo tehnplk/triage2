@@ -27,8 +27,8 @@ AppAsset::register($this);
         <header>
             <?php
             NavBar::begin([
-                'brandLabel' => '<i class="far fa-laptop-medical"></i>  ลงทะเบียนเข้ารับการรักษา',
-                'brandUrl' => Yii::$app->homeUrl,
+                'brandLabel' => '<i class="far fa-laptop-medical"></i>  ลงทะเบียนรับการรักษา',
+                'brandUrl' => '#',
                 'options' => [
                     'class' => 'navbar navbar-expand-md navbar-dark bg-secondary fixed-top',
                 ],

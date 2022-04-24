@@ -46,9 +46,9 @@ use kartik\depdrop\DepDrop;
 
 </style>
 
-
+<h4>โปรดกรอกข้อมูลที่เป็นจริง</h4>
 <div style="padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
-
+    
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
