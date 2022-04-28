@@ -83,7 +83,7 @@ class PatientController extends Controller {
      * @return mixed
      */
     public function actionSelfIndex() {
-         $this->layout = 'self';
+        $this->layout = 'self';
         return $this->render('self-index');
     }
 
@@ -101,6 +101,10 @@ class PatientController extends Controller {
         //$model->hoscode = MyRole::getUserHosCode();
 
         if ($this->request->isPost) {
+            /* $p = $this->request->post();
+              echo "<pre>";
+              print_r($p);
+              echo "<pre>"; */
             if ($model->load($this->request->post()) && $model->save()) {
                 //visit
                 $visit = new \app\models\Visit();
@@ -113,7 +117,10 @@ class PatientController extends Controller {
                 $visit->spo2 = 98;
                 $visit->bw = $this->request->post('bw');
                 $visit->bh = $this->request->post('bh');
-                $visit->cc = $this->request->post('cc');
+                $cc = $this->request->post('cc');
+                foreach ($cc as $c) {
+                    $visit->cc .= $c . " ";
+                }
                 $visit->age_y = $model->age_y;
                 $visit->age_m = $model->age_m;
                 $visit->save();
@@ -125,7 +132,9 @@ class PatientController extends Controller {
                 $lab_kind = $this->request->post('lab_kind');
                 $lab->lab_result = $lab_kind;
                 $lab_pic = UploadedFile::getInstanceByName('lab_pic');
-                $lab_pic->saveAs("./lab_pic/$visit->id.png");
+                if ($lab_pic) {
+                    $lab_pic->saveAs("./lab_pic/$visit->id.png");
+                }
                 $lab->save(false);
 
                 //triage
@@ -153,6 +162,9 @@ class PatientController extends Controller {
                 $risk = $this->request->post('risk');
                 //$triage->risk = empty($risk) ? 'ไม่มี' : 'มี';
                 $triage->color = empty($risk) ? 'เขียว' : 'เหลือง';
+                if (in_array('หายใจหอบเหนื่อย', $cc)) {
+                    $triage->color = "เหลือง";
+                }
                 $triage->save(false);
 
                 \Yii::$app->session->setFlash('warning', "ทำรายการสำเร็จ!!!");

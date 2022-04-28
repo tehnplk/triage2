@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use app\components\MyLookUp;
 use kartik\select2\Select2;
 use kartik\depdrop\DepDrop;
+use yii\bootstrap4\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Patient */
@@ -48,11 +49,11 @@ use kartik\depdrop\DepDrop;
 
 <h4>โปรดกรอกข้อมูลที่เป็นจริง</h4>
 <div style="padding: 15px;background-color: #CCFFFF;border: solid rosybrown 1px">
-    
+
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
-        <div class="col-md">1) ข้อมูลส่วนตัว</div>
+        <div class="col-md">ข้อมูลส่วนตัว</div>
     </div>
     <div class="row">
 
@@ -114,7 +115,7 @@ use kartik\depdrop\DepDrop;
     </div>
     <hr>
     <div class="row">
-        <div class="col-md">2) ที่อยู่ปัจจุบัน (ไม่จำเป็นต้องตรงตามบัตรประชาชน)</div>
+        <div class="col-md">ที่อยู่ปัจจุบัน (ไม่จำเป็นต้องตรงตามบัตรประชาชน)</div>
     </div>
     <div class="row">
         <div class="col-md">
@@ -165,7 +166,7 @@ use kartik\depdrop\DepDrop;
     </div>
     <hr>
     <div class="row">
-        <div class="col-md">3) ข้อมูลสุขภาพ</div>
+        <div class="col-md">ข้อมูลสุขภาพ</div>
     </div>
 
     <div class="row">
@@ -189,42 +190,66 @@ use kartik\depdrop\DepDrop;
 
 
     </div>
-
+    อาการเจ็บป่วยในขณะนี้ (เลือกได้มากกว่า 1 ข้อ)
     <div class="row">
-        <div class="col-md" style="display: none">
-            <?= $form->field($model, 'personal_disease')->textInput(['maxlength' => true]) ?>
-        </div>
-
-
         <div class="col-md">
-            <div class="form-group field-patient-cc has-success">
-                <label class="control-label" for="patient-cc">อาการป่วยจากโควิด เช่น ไข้ ไอ เจ็บคอ น้ำมูก</label>
-                <textarea id="patient-cc" class="form-control" name="cc" value="" maxlength="100" aria-invalid="false" ></textarea>
-            </div>
-
+            <label class="chk"><input type="checkbox"  name="cc[]" value="หายใจหอบเหนื่อย"> หายใจหอบเหนื่อย</label>         
         </div>
-
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="แน่นหน้าอก">แน่นหน้าอก</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="ไข้">ไข้</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="ไอ">ไอ</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="มีน้ำมูก">มีน้ำมูก</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="มีน้ำมูก">เจ็บคอ</label>         
+        </div>
 
     </div>
-
     <div class="row">
         <div class="col-md">
-            ตรวจพบเชื้อโควิดด้วยวิธี  
-            <br>
-            <label class="chk" style="margin-right: 15px"><input type="radio"  name="lab_kind" value="ATK-Positive"> ATK</label> 
-            <label class="chk"><input type="radio"  name="lab_kind" value="PCR-Positive"> RT-PCR</label> 
+            <label class="chk"><input type="checkbox"  name="cc[]" value="จมูกไม่ได้กลิ่น">จมูกไม่ได้กลิ่น</label>         
         </div>
         <div class="col-md">
-            เมื่อวันที่ <input type="date" name="lab_date" class=""/>
+            <label class="chk"><input type="checkbox"  name="cc[]" value="ถ่ายเหลว">ถ่ายเหลว</label>         
         </div>
         <div class="col-md">
-            <label style="margin-top: 3px">รูปภาพผลตรวจ<input type="file"  name="lab_pic" accept="image/*"></label> 
+            <label class="chk"><input type="checkbox"  name="cc[]" value="จมูกไม่ได้กลิ่น">จมูกไม่ได้กลิ่น</label>         
         </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="อื่นๆ">อื่นๆ ระบุ <input type="text" name="cc_other"/></label>         
+        </div>
+    </div>
+    <hr>
+    ตรวจพบเชื้อโควิดด้วยวิธี  
+    <div class="row">
+        <div class="col-md">
+            <label class="chk" style="margin-right: 15px"><input type="radio"  name="lab_kind" value="ATK-Positive" required> ATK</label> 
+            <label class="chk"><input type="radio"  name="lab_kind" value="PCR-Positive" required> RT-PCR</label> 
+        </div>
+        <div class="col-md">
+            เมื่อวันที่ <input type="date" name="lab_date" class="" required/>
+        </div>
+        <div class="col-md">
+            <label style="margin-top: 3px">ภาพถ่ายผลตรวจคู่บัตรประชาชน <input type="file"  name="lab_pic" accept="image/*"></label> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md" style="font-size: 12px">
+            <span style="margin-right: 15px"><a href="#" data-toggle="modal" data-target="#modal-pic-atk">ตัวอย่างภาพถ่าย ATK</a></span>  
+            <span><a href="#" data-toggle="modal" data-target="#modal-pic-pcr">ตัวอย่างภาพถ่าย RT-PCR</a></span></div>
+
     </div>
     <hr>
     <div class="row">
         <div class="col-md">
-            4) ปัจจัยเสี่ยงของท่าน (หากไม่มีให้ข้ามไปข้อ 5 )
+            ปัจจัยเสี่ยงของท่าน (เลือกได้มากกว่า 1 ข้อ)
         </div>
     </div>
 
@@ -233,7 +258,10 @@ use kartik\depdrop\DepDrop;
             <label class="chk"><input type="checkbox"  name="risk[]" value="vac"> ไม่ฉีดวัคซีน/ฉีดไม่ครบ2เข็ม</label>         
         </div>
         <div class="col-md">
-            <label class="chk"><input type="checkbox"  name="risk[]" value="age"> อายุมากกว่า 60 ปี</label>         
+            <label class="chk"><input type="checkbox"  name="risk[]" value="old"> อายุ 60 ปีขึ้นไป</label>         
+        </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="child"> อายุ 5 ปีหรือต่ำกว่า</label>         
         </div>
 
         <div class="col-md">
@@ -277,6 +305,10 @@ use kartik\depdrop\DepDrop;
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="risk[]" value="suppress"> กินยากดภูมิคุ้มกัน</label>         
         </div>
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk_refuse" value="refuse"> ไม่มีปัจจัยเสี่ยง</label>         
+        </div>
+
 
 
     </div>
@@ -285,7 +317,7 @@ use kartik\depdrop\DepDrop;
 
     <div class="row">
         <div class="col-md">
-            5) เลือกโรงพยาบาลใกล้บ้านท่าน
+            เลือกโรงพยาบาลใกล้บ้านท่าน
         </div>
     </div>
 
@@ -335,3 +367,31 @@ use kartik\depdrop\DepDrop;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+Modal::begin([
+    'id' => 'modal-pic-atk',
+    'title' => 'ตัวอย่างภาพถ่ายผลตรวจ ATK',
+    'size' => 'modal-xl',
+]);
+?>
+<div>
+    <?= Html::img('@web/icon/atk_pic.jpg',['style' => 'width:100%;height: auto']) ?>
+</div>
+<?php
+Modal::end();
+?>
+
+<?php
+Modal::begin([
+    'id' => 'modal-pic-pcr',
+    'title' => 'ตัวอย่างภาพถ่ายผลตรวจ PCR',
+    'size' => 'modal-xl',
+]);
+?>
+<div>
+    <?= Html::img('@web/icon/pcr_pic.jpg',['style' => 'width:100%;height: auto']) ?>
+</div>
+<?php
+Modal::end();
+?>
