@@ -207,21 +207,20 @@ use yii\bootstrap4\Modal;
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="cc[]" value="มีน้ำมูก">มีน้ำมูก</label>         
         </div>
-        <div class="col-md">
-            <label class="chk"><input type="checkbox"  name="cc[]" value="มีน้ำมูก">เจ็บคอ</label>         
-        </div>
+
 
     </div>
     <div class="row">
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="cc[]" value="เจ็บคอ">เจ็บคอ</label>         
+        </div>
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="cc[]" value="จมูกไม่ได้กลิ่น">จมูกไม่ได้กลิ่น</label>         
         </div>
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="cc[]" value="ถ่ายเหลว">ถ่ายเหลว</label>         
         </div>
-        <div class="col-md">
-            <label class="chk"><input type="checkbox"  name="cc[]" value="จมูกไม่ได้กลิ่น">จมูกไม่ได้กลิ่น</label>         
-        </div>
+
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="cc[]" value="อื่นๆ">อื่นๆ ระบุ <input type="text" name="cc_other"/></label>         
         </div>
@@ -376,7 +375,7 @@ Modal::begin([
 ]);
 ?>
 <div>
-    <?= Html::img('@web/icon/atk_pic.jpg',['style' => 'width:100%;height: auto']) ?>
+    <?= Html::img('@web/icon/atk_pic.jpg', ['style' => 'width:100%;height: auto']) ?>
 </div>
 <?php
 Modal::end();
@@ -390,7 +389,7 @@ Modal::begin([
 ]);
 ?>
 <div>
-    <?= Html::img('@web/icon/pcr_pic.jpg',['style' => 'width:100%;height: auto']) ?>
+    <?= Html::img('@web/icon/pcr_pic.jpg', ['style' => 'width:100%;height: auto']) ?>
 </div>
 <?php
 Modal::end();

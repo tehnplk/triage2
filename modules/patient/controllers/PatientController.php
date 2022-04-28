@@ -121,6 +121,7 @@ class PatientController extends Controller {
                 foreach ($cc as $c) {
                     $visit->cc .= $c . " ";
                 }
+                $visit->cc .= $this->request->post('cc_other');
                 $visit->age_y = $model->age_y;
                 $visit->age_m = $model->age_m;
                 $visit->save();
