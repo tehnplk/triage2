@@ -99,7 +99,7 @@ class MyLookUp extends Component {
             //'ATK-Negative' => 'ATK-Negative(-)',
             'ATK-Positive' => 'ATK-Positive(+)',
             //'PCR-Negative' => 'PCR-Negative(-)',
-            'PCR-Positive' => 'PCR-Positive(+)',
+            'PCR-Positive' => 'RT-PCR-Positive(+)',
             //'PCR-Inconclusive' => 'PCR-Inconclusive'
         ];
     }
