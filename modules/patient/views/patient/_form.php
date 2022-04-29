@@ -125,7 +125,10 @@ use kartik\depdrop\DepDrop;
         <div class="col">
             <?= $form->field($model, 'personal_disease')->textInput(['maxlength' => true]) ?>
         </div>
-        <div class="col-3">
+        <div class="col">
+            <?= $form->field($model, 'drug_allergy')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-4">
             <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
         </div>
 

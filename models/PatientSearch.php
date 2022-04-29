@@ -18,7 +18,8 @@ class PatientSearch extends Patient {
         return [
             [['id', 'age_y', 'age_m', 'age_d'], 'integer'],
             [['hoscode', 'hosname', 'cid', 'prefix', 'first_name', 'last_name', 'gender', 'bdate', 'bmon', 'byear', 'birth', 'marital', 'nation', 'family', 'personal_disease', 'addr_no', 'addr_road', 'addr_moo', 'addr_tmb', 'addr_amp', 'addr_chw', 'tel', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
-            [['addr_tmb_name', 'addr_amp_name', 'addr_chw_name',], 'safe']
+            [['addr_tmb_name', 'addr_amp_name', 'addr_chw_name',], 'safe'],
+            [['drug_allergy'], 'safe']
         ];
     }
 
@@ -78,6 +79,7 @@ class PatientSearch extends Patient {
                 ->andFilterWhere(['like', 'nation', $this->nation])
                 ->andFilterWhere(['like', 'family', $this->family])
                 ->andFilterWhere(['like', 'personal_disease', $this->personal_disease])
+                ->andFilterWhere(['like', 'drug_allergy', $this->drug_allergy])
                 ->andFilterWhere(['like', 'addr_no', $this->addr_no])
                 ->andFilterWhere(['like', 'addr_road', $this->addr_road])
                 ->andFilterWhere(['like', 'addr_moo', $this->addr_moo])

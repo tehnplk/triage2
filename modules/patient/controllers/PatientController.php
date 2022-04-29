@@ -105,7 +105,10 @@ class PatientController extends Controller {
               echo "<pre>";
               print_r($p);
               echo "<pre>"; */
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post())) {
+                
+                $model->drug_allergy .= $this->request->post('drug_allergy_name');
+                $model->save();
                 //visit
                 $visit = new \app\models\Visit();
                 $visit->hoscode = $model->hoscode;

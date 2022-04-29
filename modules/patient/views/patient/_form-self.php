@@ -52,9 +52,8 @@ use yii\bootstrap4\Modal;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <div class="row">
-        <div class="col-md">ข้อมูลส่วนตัว</div>
-    </div>
+    ข้อมูลส่วนตัว
+
     <div class="row">
 
         <div class="col-md-3">
@@ -114,9 +113,8 @@ use yii\bootstrap4\Modal;
         </div>
     </div>
     <hr>
-    <div class="row">
-        <div class="col-md">ที่อยู่ปัจจุบัน (ไม่จำเป็นต้องตรงตามบัตรประชาชน)</div>
-    </div>
+    ที่อยู่ปัจจุบัน (ไม่จำเป็นต้องตรงตามบัตรประชาชน)
+
     <div class="row">
         <div class="col-md">
             <?= $form->field($model, 'addr_chw')->dropDownList(MyLookUp::chw(), ['prompt' => '', 'id' => 'sel-chw']) ?>
@@ -165,9 +163,7 @@ use yii\bootstrap4\Modal;
 
     </div>
     <hr>
-    <div class="row">
-        <div class="col-md">ข้อมูลสุขภาพ</div>
-    </div>
+    ข้อมูลสุขภาพ    
 
     <div class="row">
         <div class="col-md">
@@ -190,6 +186,7 @@ use yii\bootstrap4\Modal;
 
 
     </div>
+    <hr>
     อาการเจ็บป่วยในขณะนี้ (เลือกได้มากกว่า 1 ข้อ)
     <div class="row">
         <div class="col-md">
@@ -246,11 +243,7 @@ use yii\bootstrap4\Modal;
 
     </div>
     <hr>
-    <div class="row">
-        <div class="col-md">
-            ปัจจัยเสี่ยงของท่าน (เลือกได้มากกว่า 1 ข้อ)
-        </div>
-    </div>
+    ปัจจัยเสี่ยงของท่าน (เลือกได้มากกว่า 1 ข้อ)
 
     <div class="row">
         <div class="col-md">
@@ -260,9 +253,11 @@ use yii\bootstrap4\Modal;
             <label class="chk"><input type="checkbox"  name="risk[]" value="old"> อายุ 60 ปีขึ้นไป</label>         
         </div>
         <div class="col-md">
-            <label class="chk"><input type="checkbox"  name="risk[]" value="child"> อายุ 5 ปีหรือต่ำกว่า</label>         
+            <label class="chk"><input type="checkbox"  name="risk[]" value="child"> อายุ 0-5 ปี</label>         
         </div>
-
+        <div class="col-md">
+            <label class="chk"><input type="checkbox"  name="risk[]" value="bed"> ผู้ป่วยติดเตียง</label>         
+        </div>
         <div class="col-md">
             <label class="chk"><input type="checkbox"  name="risk[]" value="bmi"> น้ำหนักมากกว่า 90</label>         
         </div>
@@ -311,15 +306,21 @@ use yii\bootstrap4\Modal;
 
 
     </div>
-
     <hr>
-
+    ท่านแพ้ยาหรือไม่
     <div class="row">
         <div class="col-md">
-            เลือกโรงพยาบาลใกล้บ้านท่าน
+            <label class="chk"><input type="radio"  name="Patient[drug_allergy]" value="ปฏิเสธ" required> ไม่</label> 
         </div>
+        <div class="col-md">
+            <label class="chk"><input type="radio"  name="Patient[drug_allergy]" value="แพ้" required> แพ้</label> 
+            <label>ชื่อยาที่แพ้ <input type="text" name="drug_allergy_name" /></label>
+        </div>
+
     </div>
 
+    <hr>
+    เลือกรับบริการกับโรงพยาบาลใกล้บ้านท่าน
 
     <div class="row">
         <div class="col-md">

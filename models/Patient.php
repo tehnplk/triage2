@@ -30,6 +30,7 @@ use app\models\Tmb;
  * @property string|null $nation
  * @property string|null $family
  * @property string|null $personal_disease
+ * @property string|null $drug_allergy
  * @property string|null $addr_no
  * @property string|null $addr_road
  * @property string|null $addr_moo
@@ -68,7 +69,8 @@ class Patient extends \yii\db\ActiveRecord {
             [['cid'], 'unique', 'targetAttribute' => ['hoscode', 'cid'], 'message' => 'เลขบัตรนี้มีในระบบอยู่แล้ว'],
             [['cid'], 'my_validate_cid'],
             [['hoscode'], 'my_validate_hoscode'],
-            [['addr_tmb_name', 'addr_amp_name', 'addr_chw_name',], 'string']
+            [['addr_tmb_name', 'addr_amp_name', 'addr_chw_name',], 'string'],
+            [['drug_allergy'], 'string']
         ];
     }
 
@@ -97,6 +99,7 @@ class Patient extends \yii\db\ActiveRecord {
             'nation' => 'สัญชาติ',
             'family' => 'ชื่อครอบครัว',
             'personal_disease' => 'โรคประจำตัว',
+            'drug_allergy' => 'แพ้ยา',
             'addr_no' => 'บ้านเลขที่',
             'addr_road' => 'ถนน',
             'addr_moo' => 'หมู่ที่',
@@ -176,9 +179,9 @@ class Patient extends \yii\db\ActiveRecord {
 
         //ชื่อ
         $this->full_name = "$this->prefix$this->first_name $this->last_name";
-        
+
         //tel
-        $this->tel = "'".$this->tel;
+        $this->tel = "'" . $this->tel;
 
         if ($insert) {
             $this->updateAttributes(['birth']);
