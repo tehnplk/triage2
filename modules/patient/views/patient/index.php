@@ -114,6 +114,19 @@ $this->title = 'Patients';
             'addr_chw_name',
             'tel:text:เบอร์โทร',
             [
+                'label'=>'โดย',
+                'attribute' => 'created_by',
+                'filter' => ['qr' => 'qr', 'all' => ''],
+                'value' => function ($model) {
+                    $is_qr = $model->created_by == 'qr';
+                    if ($is_qr) {
+                        return 'QR';
+                    } else {
+                        return '';
+                    }
+                }
+            ],
+            [
                 'label' => 'สี',
                 'format' => 'raw',
                 'value' => function($model) {
@@ -168,6 +181,10 @@ $this->title = 'Patients';
                 'attribute' => 'created_by',
                 'visible' => \app\components\MyRole::can_adm(),
                 'value' => function ($model) {
+                    $is_qr = $model->created_by == 'qr';
+                    if($is_qr){
+                        return 'QR';
+                    }
                     $user = \app\models\UserDb::findOne($model->created_by);
                     return $user->username;
                 }
