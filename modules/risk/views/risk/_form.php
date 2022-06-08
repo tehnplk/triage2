@@ -110,6 +110,7 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="row">
         <div class="col-md-3"><?= $form->field($model, 'kidney')->checkbox() ?></div>
+        <div class="col-md-3"><?= $form->field($model, 'bed')->checkbox() ?></div>
         <div class="col-md-3"><?= $form->field($model, 'vacless')->checkbox() ?></div>
     </div>
 

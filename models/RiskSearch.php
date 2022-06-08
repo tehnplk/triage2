@@ -18,7 +18,7 @@ class RiskSearch extends Risk {
         return [
             [['id', 'visit_id', 'patient_id'], 'integer'],
             [['hoscode', 'hosname', 'patient_cid', 'patient_fullname', 'risk_date', 'risk_time', 'aging', 'bmi', 'dm', 'copd', 'cirrhosis', 'stroke', 'ihd', 'hiv', 'cancer', 'suppress', 'preg', 'non_risk', 'created_at', 'created_by', 'updated_at', 'updated_by'], 'safe'],
-            [['kidney', 'vacless'], 'safe'],
+            [['kidney', 'vacless','bed'], 'safe'],
         ];
     }
 
@@ -78,6 +78,7 @@ class RiskSearch extends Risk {
                 ->andFilterWhere(['like', 'cancer', $this->cancer])
                 ->andFilterWhere(['like', 'suppress', $this->suppress])
                 ->andFilterWhere(['like', 'preg', $this->preg])
+                ->andFilterWhere(['like', 'kidney', $this->bed])
                 ->andFilterWhere(['like', 'kidney', $this->kidney])
                 ->andFilterWhere(['like', 'vacless', $this->vacless])
                 ->andFilterWhere(['like', 'non_risk', $this->non_risk])
