@@ -25,12 +25,12 @@ class TriageController extends Controller {
                         'only' => ['list', 'index', 'view', 'create', 'update', 'update-list', 'delete'],
                         'rules' => [
                             [
-                                'actions' => ['list', 'index', 'view','update',],
+                                'actions' => ['list', 'index', 'view', 'update',],
                                 'allow' => \app\components\MyRole::can_reg() || \app\components\MyRole::is_vww(),
                                 'roles' => ['@'],
                             ],
                             [
-                                'actions' => ['create',  'update-list'],
+                                'actions' => ['create', 'update-list'],
                                 'allow' => \app\components\MyRole::can_tri() || \app\components\MyRole::isOneStop(),
                                 'roles' => ['@'],
                             ],
@@ -122,7 +122,13 @@ class TriageController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            if (empty($model->color)) {
+                if ($model->risk == 'ไม่มี' || empty($model->risk)) {
+                    $model->color = 'เขียว';
+                }
+            }
+            $model->save();
             return $this->redirect(['index', 'patient_id' => $model->patient_id]);
         }
 
