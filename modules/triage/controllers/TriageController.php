@@ -123,8 +123,11 @@ class TriageController extends Controller {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
+
             if (empty($model->color)) {
-                if ($model->risk == 'ไม่มี' || empty($model->risk)) {
+                if ($model->risk == 'มี') {
+                    $model->color = 'เหลือง';
+                } else {
                     $model->color = 'เขียว';
                 }
             }
@@ -140,7 +143,16 @@ class TriageController extends Controller {
     public function actionUpdateList($id) {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post())) {
+
+            if (empty($model->color)) {
+                if ($model->risk == 'มี') {
+                    $model->color = 'เหลือง';
+                } else {
+                    $model->color = 'เขียว';
+                }
+            }
+            $model->save();
             return $this->redirect(['list']);
         }
 
